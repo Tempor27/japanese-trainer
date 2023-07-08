@@ -10,15 +10,12 @@ import random
 # random is imported so rng can be used in the practice algorithms
 import pyglet
 
+
+# change source to a list so vocab can be included in multiple packs
 # add 201
 
-# update conjugation for new rules (short form and verb stem)
-# add bonus pages from book
-# add more selection choices for character training
-# check volume 1 for any more useful ideas
 # make it look nicer
-# make into executable
-# make main menu go away after first selection
+# make into executable　
 # update writing trainer to include stroke order
 # create real language generator for particle and reading practice
 # users with user data
@@ -41,7 +38,7 @@ class Character:
 class Word:
     # This class represents words that will be studied in the vocab trainer, and includes member variables that both
     # sort and determine the words
-    def __init__(self, word_type="", category="", subject="",  english="", japanese="", source="", unit="",
+    def __init__(self, word_type="", category="", subject="", english="", japanese="", source="", unit="",
                  kanji="", num_correct=0):
         # String that determines noun, adjective etc.
         self.type = word_type
@@ -85,7 +82,6 @@ class Counter:
 
 
 pyglet.font.add_file('IPAMincho Regular.ttf')
-
 
 # list of the hiragana and katakana characters
 char_list = [Character("hiragana", "あ", "a"),
@@ -135,61 +131,61 @@ char_list = [Character("hiragana", "あ", "a"),
              Character("hiragana", "を", "wo"),
              Character("hiragana", "ん", "n"),
              Character("hiragana", "が", "ga"),
-             Character("hiragana", "ぎ", "gi"),
-             Character("hiragana", "ぐ", "gu"),
-             Character("hiragana", "げ", "ge"),
-             Character("hiragana", "ご", "go"),
-             Character("hiragana", "ざ", "za"),
-             Character("hiragana", "じ", "ji"),
-             Character("hiragana", "ず", "zu"),
-             Character("hiragana", "ぜ", "ze"),
-             Character("hiragana", "ぞ", "zo"),
-             Character("hiragana", "だ", "da"),
-             Character("hiragana", "で", "de"),
-             Character("hiragana", "ど", "do"),
-             Character("hiragana", "ば", "ba"),
-             Character("hiragana", "び", "bi"),
-             Character("hiragana", "ぶ", "bu"),
-             Character("hiragana", "べ", "be"),
-             Character("hiragana", "ぼ", "bo"),
-             Character("hiragana", "ぱ", "pa"),
-             Character("hiragana", "ぴ", "pi"),
-             Character("hiragana", "ぷ", "pu"),
-             Character("hiragana", "ぺ", "pe"),
-             Character("hiragana", "ぽ", "po"),
-             Character("hiragana", "きゃ", "kya"),
-             Character("hiragana", "きゅ", "kyu"),
-             Character("hiragana", "きょ", "kyo"),
-             Character("hiragana", "しゃ", "sha"),
-             Character("hiragana", "しゅ", "shu"),
-             Character("hiragana", "しょ", "sho"),
-             Character("hiragana", "ちゃ", "cha"),
-             Character("hiragana", "ちゅ", "chu"),
-             Character("hiragana", "ちょ", "cho"),
-             Character("hiragana", "にゃ", "nya"),
-             Character("hiragana", "にゅ", "nyu"),
-             Character("hiragana", "にょ", "nyo"),
-             Character("hiragana", "ひゃ", "hya"),
-             Character("hiragana", "ひゅ", "hyu"),
-             Character("hiragana", "ひょ", "hyo"),
-             Character("hiragana", "みゃ", "mya"),
-             Character("hiragana", "みゅ", "myu"),
-             Character("hiragana", "みょ", "myo"),
-             Character("hiragana", "りゃ", "rya"),
-             Character("hiragana", "りゅ", "ryu"),
-             Character("hiragana", "りょ", "ryo"),
-             Character("hiragana", "ぎゃ", "gya"),
-             Character("hiragana", "ぎゅ", "gyu"),
-             Character("hiragana", "ぎょ", "gyo"),
-             Character("hiragana", "じゃ", "ja"),
-             Character("hiragana", "じゅ", "ju"),
-             Character("hiragana", "じょ", "jo"),
-             Character("hiragana", "びゃ", "bya"),
-             Character("hiragana", "びゅ", "byu"),
-             Character("hiragana", "びょ", "byo"),
-             Character("hiragana", "ぴゃ", "pya"),
-             Character("hiragana", "ぴゅ", "pyu"),
-             Character("hiragana", "ぴょ", "pyo"),
+             Character("mod hiragana", "ぎ", "gi"),
+             Character("mod hiragana", "ぐ", "gu"),
+             Character("mod hiragana", "げ", "ge"),
+             Character("mod hiragana", "ご", "go"),
+             Character("mod hiragana", "ざ", "za"),
+             Character("mod hiragana", "じ", "ji"),
+             Character("mod hiragana", "ず", "zu"),
+             Character("mod hiragana", "ぜ", "ze"),
+             Character("mod hiragana", "ぞ", "zo"),
+             Character("mod hiragana", "だ", "da"),
+             Character("mod hiragana", "で", "de"),
+             Character("mod hiragana", "ど", "do"),
+             Character("mod hiragana", "ば", "ba"),
+             Character("mod hiragana", "び", "bi"),
+             Character("mod hiragana", "ぶ", "bu"),
+             Character("mod hiragana", "べ", "be"),
+             Character("mod hiragana", "ぼ", "bo"),
+             Character("mod hiragana", "ぱ", "pa"),
+             Character("mod hiragana", "ぴ", "pi"),
+             Character("mod hiragana", "ぷ", "pu"),
+             Character("mod hiragana", "ぺ", "pe"),
+             Character("mod hiragana", "ぽ", "po"),
+             Character("comp hiragana", "きゃ", "kya"),
+             Character("comp hiragana", "きゅ", "kyu"),
+             Character("comp hiragana", "きょ", "kyo"),
+             Character("comp hiragana", "しゃ", "sha"),
+             Character("comp hiragana", "しゅ", "shu"),
+             Character("comp hiragana", "しょ", "sho"),
+             Character("comp hiragana", "ちゃ", "cha"),
+             Character("comp hiragana", "ちゅ", "chu"),
+             Character("comp hiragana", "ちょ", "cho"),
+             Character("comp hiragana", "にゃ", "nya"),
+             Character("comp hiragana", "にゅ", "nyu"),
+             Character("comp hiragana", "にょ", "nyo"),
+             Character("comp hiragana", "ひゃ", "hya"),
+             Character("comp hiragana", "ひゅ", "hyu"),
+             Character("comp hiragana", "ひょ", "hyo"),
+             Character("comp hiragana", "みゃ", "mya"),
+             Character("comp hiragana", "みゅ", "myu"),
+             Character("comp hiragana", "みょ", "myo"),
+             Character("comp hiragana", "りゃ", "rya"),
+             Character("comp hiragana", "りゅ", "ryu"),
+             Character("comp hiragana", "りょ", "ryo"),
+             Character("comp hiragana", "ぎゃ", "gya"),
+             Character("comp hiragana", "ぎゅ", "gyu"),
+             Character("comp hiragana", "ぎょ", "gyo"),
+             Character("comp hiragana", "じゃ", "ja"),
+             Character("comp hiragana", "じゅ", "ju"),
+             Character("comp hiragana", "じょ", "jo"),
+             Character("comp hiragana", "びゃ", "bya"),
+             Character("comp hiragana", "びゅ", "byu"),
+             Character("comp hiragana", "びょ", "byo"),
+             Character("comp hiragana", "ぴゃ", "pya"),
+             Character("comp hiragana", "ぴゅ", "pyu"),
+             Character("comp hiragana", "ぴょ", "pyo"),
              Character("katakana", "ア", "a"),
              Character("katakana", "イ", "i"),
              Character("katakana", "ウ", "u"),
@@ -236,94 +232,94 @@ char_list = [Character("hiragana", "あ", "a"),
              Character("katakana", "ワ", "wa"),
              Character("katakana", "ヲ", "wo"),
              Character("katakana", "ン", "n"),
-             Character("katakana", "ガ", "ga"),
-             Character("katakana", "ギ", "gi"),
-             Character("katakana", "グ", "gu"),
-             Character("katakana", "ゲ", "ge"),
-             Character("katakana", "ゴ", "go"),
-             Character("katakana", "ザ", "za"),
-             Character("katakana", "ジ", "ji"),
-             Character("katakana", "ズ", "zu"),
-             Character("katakana", "ゼ", "ze"),
-             Character("katakana", "ゾ", "zo"),
-             Character("katakana", "ダ", "da"),
-             Character("katakana", "デ", "de"),
-             Character("katakana", "ド", "do"),
-             Character("katakana", "バ", "ba"),
-             Character("katakana", "ビ", "bi"),
-             Character("katakana", "ブ", "bu"),
-             Character("katakana", "ベ", "be"),
-             Character("katakana", "ボ", "bo"),
-             Character("katakana", "パ", "pa"),
-             Character("katakana", "ピ", "pi"),
-             Character("katakana", "プ", "pu"),
-             Character("katakana", "ペ", "pe"),
-             Character("katakana", "ポ", "po"),
-             Character("katakana", "キャ", "kya"),
-             Character("katakana", "キュ", "kyu"),
-             Character("katakana", "キョ", "kyo"),
-             Character("katakana", "シャ", "sha"),
-             Character("katakana", "シュ", "shu"),
-             Character("katakana", "シェ", "she"),
-             Character("katakana", "ショ", "sho"),
-             Character("katakana", "チャ", "cha"),
-             Character("katakana", "チュ", "chu"),
-             Character("katakana", "チェ", "che"),
-             Character("katakana", "チョ", "cho"),
-             Character("katakana", "ニャ", "nya"),
-             Character("katakana", "ニュ", "nyu"),
-             Character("katakana", "ニョ", "nyo"),
-             Character("katakana", "ヒャ", "hya"),
-             Character("katakana", "ヒュ", "hyu"),
-             Character("katakana", "ヒョ", "hyo"),
-             Character("katakana", "ミャ", "mya"),
-             Character("katakana", "ミュ", "myu"),
-             Character("katakana", "ミョ", "myo"),
-             Character("katakana", "リャ", "rya"),
-             Character("katakana", "リュ", "ryu"),
-             Character("katakana", "リョ", "ryo"),
-             Character("katakana", "ギャ", "gya"),
-             Character("katakana", "ギュ", "gyu"),
-             Character("katakana", "ギョ", "gyo"),
-             Character("katakana", "ジャ", "ja"),
-             Character("katakana", "ジュ", "ju"),
-             Character("katakana", "ジェ", "je"),
-             Character("katakana", "ジョ", "jo"),
-             Character("katakana", "ビャ", "bya"),
-             Character("katakana", "ビュ", "byu"),
-             Character("katakana", "ビョ", "byo"),
-             Character("katakana", "ピャ", "pya"),
-             Character("katakana", "ピュ", "pyu"),
-             Character("katakana", "ピョ", "pyo"),
-             Character("katakana", "ウィ", "wi"),
-             Character("katakana", "ウェ", "we"),
-             Character("katakana", "ヲ", "wo"),
-             Character("katakana", "クァ", "kwa"),
-             Character("katakana", "クィ", "kwi"),
-             Character("katakana", "クェ", "kwe"),
-             Character("katakana", "クォ", "kwo"),
-             Character("katakana", "ツァ", "tsa"),
-             Character("katakana", "ツィ", "tsi"),
-             Character("katakana", "ツェ", "tse"),
-             Character("katakana", "ツォ", "tso"),
-             Character("katakana", "ティ", "ti"),
-             Character("katakana", "テュ", "tyu"),
-             Character("katakana", "ファ", "fa"),
-             Character("katakana", "フィ", "fi"),
-             Character("katakana", "フュ", "fyu"),
-             Character("katakana", "フェ", "fe"),
-             Character("katakana", "フォ", "fo"),
-             Character("katakana", "ディ", "di"),
-             Character("katakana", "デュ", "dyu"),
-             Character("katakana", "ヴァ", "va"),
-             Character("katakana", "ヴィ", "vi"),
-             Character("katakana", "ヴ", "vu"),
-             Character("katakana", "ヴェ", "ve"),
-             Character("katakana", "ヴォ", "vo")]
+             Character("mod katakana", "ガ", "ga"),
+             Character("mod katakana", "ギ", "gi"),
+             Character("mod katakana", "グ", "gu"),
+             Character("mod katakana", "ゲ", "ge"),
+             Character("mod katakana", "ゴ", "go"),
+             Character("mod katakana", "ザ", "za"),
+             Character("mod katakana", "ジ", "ji"),
+             Character("mod katakana", "ズ", "zu"),
+             Character("mod katakana", "ゼ", "ze"),
+             Character("mod katakana", "ゾ", "zo"),
+             Character("mod katakana", "ダ", "da"),
+             Character("mod katakana", "デ", "de"),
+             Character("mod katakana", "ド", "do"),
+             Character("mod katakana", "バ", "ba"),
+             Character("mod katakana", "ビ", "bi"),
+             Character("mod katakana", "ブ", "bu"),
+             Character("mod katakana", "ベ", "be"),
+             Character("mod katakana", "ボ", "bo"),
+             Character("mod katakana", "パ", "pa"),
+             Character("mod katakana", "ピ", "pi"),
+             Character("mod katakana", "プ", "pu"),
+             Character("mod katakana", "ペ", "pe"),
+             Character("mod katakana", "ポ", "po"),
+             Character("comp katakana", "キャ", "kya"),
+             Character("comp katakana", "キュ", "kyu"),
+             Character("comp katakana", "キョ", "kyo"),
+             Character("comp katakana", "シャ", "sha"),
+             Character("comp katakana", "シュ", "shu"),
+             Character("comp katakana", "シェ", "she"),
+             Character("comp katakana", "ショ", "sho"),
+             Character("comp katakana", "チャ", "cha"),
+             Character("comp katakana", "チュ", "chu"),
+             Character("comp katakana", "チェ", "che"),
+             Character("comp katakana", "チョ", "cho"),
+             Character("comp katakana", "ニャ", "nya"),
+             Character("comp katakana", "ニュ", "nyu"),
+             Character("comp katakana", "ニョ", "nyo"),
+             Character("comp katakana", "ヒャ", "hya"),
+             Character("comp katakana", "ヒュ", "hyu"),
+             Character("comp katakana", "ヒョ", "hyo"),
+             Character("comp katakana", "ミャ", "mya"),
+             Character("comp katakana", "ミュ", "myu"),
+             Character("comp katakana", "ミョ", "myo"),
+             Character("comp katakana", "リャ", "rya"),
+             Character("comp katakana", "リュ", "ryu"),
+             Character("comp katakana", "リョ", "ryo"),
+             Character("comp katakana", "ギャ", "gya"),
+             Character("comp katakana", "ギュ", "gyu"),
+             Character("comp katakana", "ギョ", "gyo"),
+             Character("comp katakana", "ジャ", "ja"),
+             Character("comp katakana", "ジュ", "ju"),
+             Character("comp katakana", "ジェ", "je"),
+             Character("comp katakana", "ジョ", "jo"),
+             Character("comp katakana", "ビャ", "bya"),
+             Character("comp katakana", "ビュ", "byu"),
+             Character("comp katakana", "ビョ", "byo"),
+             Character("comp katakana", "ピャ", "pya"),
+             Character("comp katakana", "ピュ", "pyu"),
+             Character("comp katakana", "ピョ", "pyo"),
+             Character("rare katakana", "ウィ", "wi"),
+             Character("rare katakana", "ウェ", "we"),
+             Character("rare katakana", "ヲ", "wo"),
+             Character("rare katakana", "クァ", "kwa"),
+             Character("rare katakana", "クィ", "kwi"),
+             Character("rare katakana", "クェ", "kwe"),
+             Character("rare katakana", "クォ", "kwo"),
+             Character("rare katakana", "ツァ", "tsa"),
+             Character("rare katakana", "ツィ", "tsi"),
+             Character("rare katakana", "ツェ", "tse"),
+             Character("rare katakana", "ツォ", "tso"),
+             Character("rare katakana", "ティ", "ti"),
+             Character("rare katakana", "テュ", "tyu"),
+             Character("rare katakana", "ファ", "fa"),
+             Character("rare katakana", "フィ", "fi"),
+             Character("rare katakana", "フュ", "fyu"),
+             Character("rare katakana", "フェ", "fe"),
+             Character("rare katakana", "フォ", "fo"),
+             Character("rare katakana", "ディ", "di"),
+             Character("rare katakana", "デュ", "dyu"),
+             Character("rare katakana", "ヴァ", "va"),
+             Character("rare katakana", "ヴィ", "vi"),
+             Character("rare katakana", "ヴ", "vu"),
+             Character("rare katakana", "ヴェ", "ve"),
+             Character("rare katakana", "ヴォ", "vo")]
 
 # The following is a list of all the words the trainer will use
 vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101", "unit 1", "お父さん"),
-              Word("noun", "person", "family",  "mother", "おかあさん", "101", "unit 1", "お母さん"),
+              Word("noun", "person", "family", "mother", "おかあさん", "101", "unit 1", "お母さん"),
               Word("noun", "person", "family", "older brother", "おにいさん", "101", "unit 1", "お兄さん"),
               Word("noun", "person", "family", "younger brother", "おとうと", "101", "unit 1", "弟"),
               Word("noun", "person", "family", "older sister", "おねえさん", "101", "unit 1", "お姉さん"),
@@ -337,6 +333,12 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "person", "family", "my older sister", "あね", "102", "unit 7", "姉"),
               Word("noun", "person", "family", "siblings", "きょうだい", "102", "unit 7", "兄弟"),
               Word("noun", "person", "family", "host family", "ホストファミリー", "102", "unit 11"),
+              Word("noun", "person", "family", "husband", "ごしゅじん", "102", "bonus 1", "ご主人"),
+              Word("noun", "person", "family", "wife", "おくさん", "102", "bonus 1", "奥さん"),
+              Word("noun", "person", "family", "my husband", "おっと", "102", "bonus 1", "夫"),
+              Word("noun", "person", "family", "my wife", "つま", "102", "bonus 1", "妻"),
+              Word("noun", "person", "family", "my grandfather", "そふ", "102", "bonus 1", "祖父"),
+              Word("noun", "person", "family", "my grandmother", "そぼ", "102", "bonus 1", "祖母"),
               Word("noun", "person", "school", "teacher", "せんせい", "101", "unit 1", "先生"),
               Word("noun", "person", "school", "student", "がくせい", "101", "unit 1", "学生"),
               Word("noun", "person", "school", "college student", "だいがくせい", "101", "unit 1", "大学生"),
@@ -383,6 +385,10 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "person", "other", "she/girlfriend", "かのじょ", "102", "unit 12", "彼女"),
               Word("noun", "person", "other", "he/boyfriend", "かれ", "102", "unit 12", "彼"),
               Word("noun", "person", "other", "boyfriend", "かれし", "102", "unit 12", "彼氏"),
+              Word("noun", "person", "other", "physician", "ないか", "102", "bonus 1", "内科"),
+              Word("noun", "person", "other", "dermatologist", "ひふか", "102", "bonus 1", "皮膚科"),
+              Word("noun", "person", "other", "surgeon", "げか", "102", "bonus 1", "外科"),
+              Word("noun", "person", "other", "dentist", "しか", "102", "bonus 1", "歯科"),
               Word("noun", "place", "biome", "university", "だいがく", "101", "unit 1", "大学"),
               Word("noun", "place", "building", "high school", "こうこう", "101", "unit 1", "高校"),
               Word("noun", "place", "building", "home", "いえ", "101", "unit 3", "家"),
@@ -435,6 +441,13 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "place", "other", "spa/hot spring", "おんせん", "102", "unit 11", "温泉"),
               Word("noun", "place", "other", "camp", "キャンプ", "102", "unit 11"),
               Word("noun", "place", "other", "shrine", "じんじゃ", "102", "unit 11", "神社"),
+              Word("noun", "place", "other", "ticket vending area", "きっぷうりば", "102", "bonus 1", "切符売り場"),
+              Word("noun", "place", "other", "gate (train)", "かいさつ", "102", "bonus 1", "改札"),
+              Word("noun", "place", "other", "platform (train)", "ホーム", "102", "bonus 1"),
+              Word("noun", "place", "other", "shop/stand", "ばいてん", "102", "bonus 1", "売店"),
+              Word("noun", "place", "other", "exit", "でぐち", "102", "bonus 1", "出口"),
+              Word("noun", "place", "other", "entrance", "入口", "102", "bonus 1", "神社"),
+              Word("noun", "place", "other", "stairs", "かいだん", "102", "bonus 1", "階段"),
               Word("noun", "thing", "clothes", "t-shirt", "ティーシャツ", "101", "unit 2"),
               Word("noun", "thing", "clothes", "watch", "とけい", "101", "unit 2"),
               Word("noun", "thing", "clothes", "shoe", "くつ", "101", "unit 2"),
@@ -494,6 +507,27 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "thing", "food", "snack", "おかし", "102", "unit 11", "お菓子"),
               Word("noun", "thing", "food", "juice", "ジュース", "102", "unit 12"),
               Word("noun", "thing", "food", "egg", "たまご", "102", "unit 12", "卵"),
+              Word("noun", "thing", "food", "strawberry", "いちご", "102", "bonus 1"),
+              Word("noun", "thing", "food", "watermelon", "すいか", "102", "bonus 1"),
+              Word("noun", "thing", "food", "mandarin orange", "みかん", "102", "bonus 1"),
+              Word("noun", "thing", "food", "peach", "もも", "102", "bonus 1"),
+              Word("noun", "thing", "food", "grape", "ぶどう", "102", "bonus 1"),
+              Word("noun", "thing", "food", "carrot", "にんじん", "102", "bonus 1"),
+              Word("noun", "thing", "food", "onion", "たまねぎ", "102", "bonus 1"),
+              Word("noun", "thing", "food", "potato", "じゃがいも", "102", "bonus 1"),
+              Word("noun", "thing", "food", "eggplant", "なす", "102", "bonus 1"),
+              Word("noun", "thing", "food", "cucumber", "きゅうり", "102", "bonus 1"),
+              Word("noun", "thing", "food", "cabbage", "キャベツ", "102", "bonus 1"),
+              Word("noun", "thing", "food", "beef", "ぎゅうにく", "102", "bonus 1", "牛肉"),
+              Word("noun", "thing", "food", "pork", "ぶたにく", "102", "bonus 1", "豚肉"),
+              Word("noun", "thing", "food", "chicken meat", "とりにく", "102", "bonus 1", "鶏肉"),
+              Word("noun", "thing", "food", "side dish", "おかず", "102", "bonus 1"),
+              Word("noun", "thing", "food", "soup", "みそしる", "102", "bonus 1", "みそ汁"),
+              Word("noun", "thing", "food", "set menu", "ていしょく", "102", "bonus 1", "定食"),
+              Word("noun", "thing", "food", "dumplings", "ぎょうざ", "102", "bonus 1"),
+              Word("noun", "thing", "food", "beef rice bowl", "ぎゅうどん", "102", "bonus 1", "牛丼"),
+              Word("noun", "thing", "food", "pancake", "おこのみやき", "102", "bonus 1", "お好み焼き"),
+              Word("noun", "thing", "food", "rice balls", "おにぎり", "102", "bonus 1"),
               Word("noun", "thing", "entertainment", "movie", "えいが", "101", "unit 3", "映画"),
               Word("noun", "thing", "entertainment", "music", "おんがく", "101", "unit 3", "音楽"),
               Word("noun", "thing", "entertainment", "magazine", "ざっし", "101", "unit 3", "雑誌"),
@@ -552,6 +586,32 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "thing", "time", "next semester", "らいがっき", "102", "unit 11", "来学期"),
               Word("noun", "thing", "time", "New Year's", "おしょうがつ", "102", "unit 11", "お正月"),
               Word("noun", "thing", "time", "future", "しょうらい", "102", "unit 11", "将来"),
+              Word("noun", "thing", "time", "New Year's Day", "がんじつ", "102", "bonus 1", "元日"),
+              Word("noun", "thing", "time", "Coming-Of-Age Day", "せいじんのひ", "102", "bonus 1", "成人の日"),
+              Word("noun", "thing", "time", "National Foundation Day", "けんこくきねんのひ", "102", "bonus 1", "建国記念の日"),
+              Word("noun", "thing", "time", "Emperor's Birthday", "てんのたんじょうび", "102", "bonus 1", "天の誕生日"),
+              Word("noun", "thing", "time", "Vernal Equinox Day", "しゅんぶんのひ", "102", "bonus 1", "春分の日"),
+              Word("noun", "thing", "time", "Showa Day", "しょうわのひ", "102", "bonus 1", "昭和の日"),
+              Word("noun", "thing", "time", "Constitution Day", "けんぽうきねんび", "102", "bonus 1", "憲法記念日"),
+              Word("noun", "thing", "time", "Greenery Day", "みどりのひ", "102", "bonus 1", "みどりの日"),
+              Word("noun", "thing", "time", "Children's Day", "こどものひ", "102", "bonus 1", "こどもの日"),
+              Word("noun", "thing", "time", "Marine Day", "うみのひ", "102", "bonus 1", "海の日"),
+              Word("noun", "thing", "time", "Mountain Day", "やまのひ", "102", "bonus 1", "山の日"),
+              Word("noun", "thing", "time", "Respect-for-the-Aged Day", "けいろうのひ", "102", "bonus 1", "敬老の日"),
+              Word("noun", "thing", "time", "Autumnal Equinox Day", "しゅうぶんのひ", "102", "bonus 1", "秋分の日"),
+              Word("noun", "thing", "time", "Health and Sports Day", "スポーツのひ", "102", "bonus 1", "スポーツの日"),
+              Word("noun", "thing", "time", "Culture Day", "ぶんかのひ", "102", "bonus 1", "文化の日"),
+              Word("noun", "thing", "time", "Labor Thanksgiving Day", "きんろうかんしゃのひ", "102", "bonus 1", "勤労感謝の日"),
+              Word("noun", "thing", "time", "the day before yesterday", "おととい", "102", "bonus 1"),
+              Word("noun", "thing", "time", "two weeks ago", "にしゅうかんまえ", "102", "bonus 1", "二週間前"),
+              Word("noun", "thing", "time", "two months ago", "にかげつまえ", "102", "bonus 1", "二か月間"),
+              Word("noun", "thing", "time", "the year before last", "おととし", "102", "bonus 1"),
+              Word("noun", "thing", "time", "the week after next", "さらいしゅう", "102", "bonus 1", "再来週"),
+              Word("noun", "thing", "time", "the month after next", "さらいげつ", "102", "bonus 1", "再来月"),
+              Word("noun", "thing", "time", "the year after next", "さらいねん", "102", "bonus 1", "再来年"),
+              Word("noun", "thing", "time", "summer vacation", "なつやすみ", "102", "bonus 1", "夏休み"),
+              Word("noun", "thing", "time", "winter vacation", "ふゆやすみ", "102", "bonus 1", "冬休み"),
+              Word("noun", "thing", "time", "spring vacation", "はるやすみ", "102", "bonus 1", "春休み"),
               Word("noun", "thing", "animal", "dog", "いぬ", "101", "unit 4", "犬"),
               Word("noun", "thing", "animal", "cat", "ねこ", "101", "unit 4", "猫"),
               Word("noun", "thing", "other", "number", "ばんごう", "101", "unit 1"),
@@ -651,6 +711,68 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "thing", "other", "present (gift)", "プレゼント", "102", "unit 12"),
               Word("noun", "thing", "other", "ticket (train)", "きっぷ", "102", "unit 12", "切符"),
               Word("noun", "thing", "other", "fee", "だい", "102", "unit 12", "代"),
+              Word("noun", "thing", "other", "pencil", "えんぴつ", "101", "bonus 1"),
+              Word("noun", "thing", "other", "eraser", "けしゴム", "101", "bonus 1"),
+              Word("noun", "thing", "other", "dictionary", "じしょ", "101", "bonus 1"),
+              Word("noun", "thing", "other", "door", "ドア", "101", "bonus 1"),
+              Word("noun", "thing", "other", "curtain", "カーテン", "101", "bonus 1"),
+              Word("noun", "thing", "other", "blackboard", "こくばん", "101", "bonus 1"),
+              Word("noun", "thing", "other", "straw mats", "たたみ", "101", "bonus 1", "畳"),
+              Word("noun", "thing", "other", "sliding door", "じょうじ", "101", "bonus 1", "障子"),
+              Word("noun", "thing", "other", "entrance-way (home)", "げんかん", "101", "bonus 1", "玄関"),
+              Word("noun", "thing", "other", "graduate school", "だいがくいん", "101", "bonus 1", "大学院"),
+              Word("noun", "thing", "other", "junior college", "たんだい", "101", "bonus 1", "短大"),
+              Word("noun", "thing", "other", "junior high school", "ちゅうがく", "101", "bonus 1", "中学"),
+              Word("noun", "thing", "other", "elementary school", "しょうがっこう", "101", "bonus 1", "小学校"),
+              Word("noun", "thing", "other", "nursery school", "ほいくえん", "101", "bonus 1", "保育園"),
+              Word("noun", "thing", "other", "kindergarten", "ようちえん", "101", "bonus 1", "幼稚園"),
+              Word("noun", "thing", "other", "compulsory education", "ぎむきょういく", "101", "bonus 1", "義務教育"),
+              Word("noun", "thing", "other", "eyebrow", "まゆげ", "101", "bonus 1", "眉毛"),
+              Word("noun", "thing", "other", "ear", "みみ", "101", "bonus 1", "耳"),
+              Word("noun", "thing", "other", "hand", "て", "101", "bonus 1", "手"),
+              Word("noun", "thing", "other", "neck", "くび", "101", "bonus 1", "首"),
+              Word("noun", "thing", "other", "finger", "ゆび", "101", "bonus 1", "指"),
+              Word("noun", "thing", "other", "nose", "はな", "101", "bonus 1", "鼻"),
+              Word("noun", "thing", "other", "shoulders", "かた", "101", "bonus 1", "肩"),
+              Word("noun", "thing", "other", "chest", "むね", "101", "bonus 1", "胸"),
+              Word("noun", "thing", "other", "butt", "おしり", "101", "bonus 1", "お尻"),
+              Word("noun", "thing", "other", "back (body part)", "せなか", "101", "bonus 1", "背中"),
+              Word("noun", "thing", "other", "head", "あたま", "101", "bonus 1", "頭"),
+              Word("noun", "thing", "other", "green", "みどり", "101", "bonus 1", "緑"),
+              Word("noun", "thing", "other", "navy blue", "こんいろ", "101", "bonus 1", "紺色"),
+              Word("noun", "thing", "other", "light blue", "みずいろ", "101", "bonus 1", "水色"),
+              Word("noun", "thing", "other", "silver (color)", "ぎんいろ", "101", "bonus 1", "銀色"),
+              Word("noun", "thing", "other", "orange (color)", "オレンジ", "101", "bonus 1"),
+              Word("noun", "thing", "other", "purple", "むらさき", "101", "bonus 1", "紫"),
+              Word("noun", "thing", "other", "gray", "はいいろ", "101", "bonus 1", "灰色"),
+              Word("noun", "thing", "other", "gold (color)", "きんいろ", "101", "bonus 1", "金色"),
+              Word("noun", "thing", "other", "pink", "ピンク", "101", "bonus 1"),
+              Word("noun", "thing", "other", "beige", "ベージュ", "101", "bonus 1"),
+              Word("noun", "thing", "other", "local (train)", "ふつう", "101", "bonus 1", "普通"),
+              Word("noun", "thing", "other", "express (train)", "きゅうこう", "101", "bonus 1", "急行"),
+              Word("noun", "thing", "other", "super express (train)", "とっきゅう", "101", "bonus 1", "特急"),
+              Word("noun", "thing", "other", "boarding ticket", "じょうしゃけん", "101", "bonus 1", "乗車券"),
+              Word("noun", "thing", "other", "commuter's pass", "ていきけん", "101", "bonus 1", "定期券"),
+              Word("noun", "thing", "other", "student discount", "がくわり", "101", "bonus 1", "学割"),
+              Word("noun", "thing", "other", "reserved seat", "していせき", "101", "bonus 1", "指定席"),
+              Word("noun", "thing", "other", "general admission seat", "じゆうせき", "101", "bonus 1", "自由席"),
+              Word("noun", "thing", "other", "round trip", "おうふく", "101", "bonus 1", "往復"),
+              Word("noun", "thing", "other", "one way", "かたみち", "101", "bonus 1", "片道"),
+              Word("noun", "thing", "other", "transfer (train)", "のりかえ", "101", "bonus 1", "乗り換え"),
+              Word("noun", "thing", "other", "last train", "しゅうでん", "101", "bonus 1", "終電"),
+              Word("noun", "thing", "other", "deadline", "しめきり", "101", "bonus 1"),
+              Word("noun", "thing", "other", "exercise (in class)", "れんしゅう", "101", "bonus 1", "練習"),
+              Word("noun", "thing", "other", "pronunciation", "はつおん", "101", "bonus 1", "発音"),
+              Word("noun", "thing", "other", "grammar", "ぶんぽう", "101", "bonus 1", "文法"),
+              Word("noun", "thing", "other", "question", "しつもん", "101", "bonus 1", "質問"),
+              Word("noun", "thing", "other", "answer", "こたえ", "101", "bonus 1", "答"),
+              Word("noun", "thing", "other", "dialect", "ほうげん", "101", "bonus 1", "方言"),
+              Word("noun", "thing", "other", "common language", "きょうつうご", "101", "bonus 1", "共通語"),
+              Word("noun", "thing", "other", "example", "れい", "101", "bonus 1", "例"),
+              Word("noun", "thing", "other", "antibiotic", "こうせいぶっしつ", "101", "bonus 1", "抗生物質"),
+              Word("noun", "thing", "other", "operation", "しゅじゅつ", "101", "bonus 1", "手術"),
+              Word("noun", "thing", "other", "injection", "ちゅうしゃ", "101", "bonus 1", "注射"),
+              Word("noun", "thing", "other", "thermometer", "たいおんけい", "101", "bonus 1", "体温計"),
 
               Word("pronoun", "", "", "i", "わたし", "101", "unit 1", "私"),
               Word("pronoun", "", "", "i (men)", "ぼく", "101", "unit 5", "僕"),
@@ -699,6 +821,8 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("adjective", "i", "", "hurt/painful", "いたい", "102", "unit 12", "痛い"),
               Word("adjective", "i", "", "sweet", "あまい", "102", "unit 12", "甘い"),
               Word("adjective", "i", "", "many", "おおい", "102", "unit 12", "多い"),
+              Word("adjective", "i", "", "yellow", "きいろい", "102", "bonus 1", "黄色い"),
+              Word("adjective", "i", "", "brown", "ちゃいろい", "102", "bonus 1", "茶色い"),
               Word("adjective", "na", "", "like", "すきな", "101", "unit 5", "好きな"),
               Word("adjective", "na", "", "dislike", "きらいな", "101", "unit 5", "嫌いな"),
               Word("adjective", "na", "", "love", "だいすきな", "101", "unit 5", "大好きな"),
@@ -753,7 +877,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("preposition", "location", "", "right", "みぎ", "101", "unit 4", "右"),
               Word("preposition", "location", "", "left", "ひだり", "101", "unit 4", "左"),
               Word("preposition", "location", "", "front", "まえ", "101", "unit 4", "前"),
-              Word("preposition", "location", "", "back", "うしろ", "101", "unit 4", "後ろ"),
+              Word("preposition", "location", "", "back (of something)", "うしろ", "101", "unit 4", "後ろ"),
               Word("preposition", "location", "", "inside", "なか", "101", "unit 4", "中"),
               Word("preposition", "location", "", "on", "うえ", "101", "unit 4", "上"),
               Word("preposition", "location", "", "under", "した", "101", "unit 4", "下"),
@@ -763,6 +887,10 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("preposition", "location", "", "from...", "から", "102", "unit 9"),
               Word("preposition", "location", "", "to (a place/a time)", "まで", "102", "unit 9"),
               Word("preposition", "location", "", "coming from", "しゅっしん", "102", "unit 11", "出身"),
+              Word("preposition", "location", "", "north", "きた", "102", "bonus 1", "北"),
+              Word("preposition", "location", "", "south", "みなみ", "102", "bonus 1", "南"),
+              Word("preposition", "location", "", "east", "ひがし", "102", "bonus 1", "東"),
+              Word("preposition", "location", "", "west", "にし", "102", "bonus 1", "西"),
               Word("preposition", "time", "", "and then", "それから", "101", "unit 4"),
               Word("preposition", "time", "", "and then", "そして", "102", "unit 11"),
               Word("preposition", "time", "", "after (an event)", "あと", "102", "unit 11", "後"),
@@ -799,7 +927,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("verb", "u", "し", "to speak", "はなす", "101", "unit 3", "話す"),
               Word("verb", "u", "み", "to read", "よむ", "101", "unit 3", "読む"),
               Word("verb", "u", "い", "to meet", "あう", "101", "unit 4", "会う"),
-              Word("verb", "u", "り", "there is", "ある", "101", "unit 4"),
+              Word("verb", "u", "り", "is (non-living thing)", "ある", "101", "unit 4"),
               Word("verb", "u", "い", "to buy", "かう", "101", "unit 4", "買う"),
               Word("verb", "u", "き", "to write", "かく", "101", "unit 4", "書く"),
               Word("verb", "u", "り", "to take a picture", "とる", "101", "unit 4", "撮る"),
@@ -868,7 +996,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("verb", "ru", "", "to eat", "たべる", "101", "unit 3", "食べる"),
               Word("verb", "ru", "", "to sleep", "ねる", "101", "unit 3", "寝る"),
               Word("verb", "ru", "", "to see", "みる", "101", "unit 3", "見る"),
-              Word("verb", "ru", "", "is in", "いる", "101", "unit 4"),
+              Word("verb", "ru", "", "is (living thing)", "いる", "101", "unit 4"),
               Word("verb", "ru", "", "to open", "あける", "101", "unit 6", "開ける"),
               Word("verb", "ru", "", "to close", "しめる", "101", "unit 6", "閉める"),
               Word("verb", "ru", "", "to teach", "おしえる", "101", "unit 6", "教える"),
@@ -990,6 +1118,8 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("expressions", "", "", "probably", "たぶん", "102", "unit 12", "多分"),
               Word("expressions", "", "", "moreover", "それに", "102", "unit 12"),
               Word("expressions", "", "", "same", "おなじ", "102", "unit 12", "同じ"),
+              Word("expressions", "", "", "for example", "たとえば", "102", "bonus 1"),
+              Word("expressions", "", "", "anything else", "ほかに", "102", "bonus 1"),
               Word("expressions", "", "", "is that so", "そうですか", "101", "unit 1")]
 
 # The following is a list of all the particles the user can study
@@ -1043,8 +1173,6 @@ counter_list = [Counter("ドル", "dollars", "1", ""),
 # functions
 # current word is the word that the user is being tested on in the vocab trainer
 global current
-# vocab is the window that runs the vocabulary trainer
-global session_window
 # new button is the button that calls get word, which moves to the next word in the vocab trainer
 global new_button
 # prompt is a label in the vocab window that gives the user there vocab to practice
@@ -1067,8 +1195,6 @@ global expression
 # checkboxes to select what the user wants to study in the character trainer
 global katakana
 global hiragana
-# menu_1 is the window where the user will select what kinds of vocab terms they want to study
-global menu_1
 # the number the user is working on
 global current_num
 # the time the user is given
@@ -1084,57 +1210,90 @@ global enter
 # current_conj is a string that holds the conjugation type being used at the time
 global current_conj
 # used to determine whether kanji will be used in practice sessions
-global kanji
+global is_kanji
 # the label for the progress in the session
 global progress
 # used to display the progress in a round
 global round_total
 global round_counter
 # label for progress in round
-global round
+global curr_round
 # determines whether session is test or flashcards
 global session_type
 global session_type_alt
+global mod_katakana
+global comp_katakana
+global rare_katakana
+global mod_hiragana
+global comp_hiragana
+# the main window
+global root
+global window_width
+global window_height
+global full_screen
+global window_option
+global main_frame
 
 
 def character_menu():
     # This function creates the menu that allows user to customize their character study session
     global katakana
     global hiragana
-    global menu_1
+    global mod_katakana
+    global comp_katakana
+    global rare_katakana
+    global mod_hiragana
+    global comp_hiragana
+    global root
     global session_type
+    global main_frame
 
-    menu_1 = Toplevel()
-    menu_1.title("Character Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     hiragana = IntVar()
+    mod_hiragana = IntVar()
+    comp_hiragana = IntVar()
     katakana = IntVar()
+    mod_katakana = IntVar()
+    comp_katakana = IntVar()
+    rare_katakana = IntVar()
     session_type = StringVar()
     session_type.set("flashcard")
 
-    type_label = Label(menu_1, text="Select the character types you would like to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    type_label = Label(main_frame, text="Select the character types you would like to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
-    katakana_check = Checkbutton(menu_1, text="katakana", variable=katakana)
-    hiragana_check = Checkbutton(menu_1, text="hiragana", variable=hiragana)
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    katakana_check = Checkbutton(main_frame, text="katakana", variable=katakana)
+    mod_katakana_check = Checkbutton(main_frame, text="modified katakana", variable=mod_katakana)
+    comp_katakana_check = Checkbutton(main_frame, text="compound katakana", variable=comp_katakana)
+    rare_katakana_check = Checkbutton(main_frame, text="rare katakana", variable=rare_katakana)
+    hiragana_check = Checkbutton(main_frame, text="hiragana", variable=hiragana)
+    mod_hiragana_check = Checkbutton(main_frame, text="modified hiragana", variable=mod_hiragana)
+    comp_hiragana_check = Checkbutton(main_frame, text="compound hiragana", variable=comp_hiragana)
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
 
     type_label.grid(row=0, column=0)
     katakana_check.grid(row=1, column=0)
-    hiragana_check.grid(row=2, column=0)
+    mod_katakana_check.grid(row=2, column=0)
+    comp_katakana_check.grid(row=3, column=0)
+    rare_katakana_check.grid(row=4, column=0)
+    hiragana_check.grid(row=5, column=0)
+    mod_hiragana_check.grid(row=6, column=0)
+    comp_hiragana_check.grid(row=7, column=0)
     session_label.grid(row=0, column=1)
     flashcard.grid(row=1, column=1)
     test_session.grid(row=2, column=1)
 
-    session_button = Button(menu_1, text="Create Session", command=create_character_session, pady=10)
+    session_button = Button(main_frame, text="Create Session", command=create_character_session, pady=10)
 
-    session_button.grid(row=3, column=0, columnspan=1)
+    session_button.grid(row=8, column=0, columnspan=1)
 
 
 def create_character_session():
     # This function creates a session by creating a session list and calling the character session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -1144,40 +1303,60 @@ def create_character_session():
         for i in range(len(char_list)):
             if char_list[i].char_type == "katakana":
                 session_list.append(char_list[i])
+    if mod_katakana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "mod katakana":
+                session_list.append(char_list[i])
+    if comp_katakana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "comp katakana":
+                session_list.append(char_list[i])
+    if rare_katakana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "rare katakana":
+                session_list.append(char_list[i])
     global hiragana
     if hiragana.get() == 1:
         for i in range(len(char_list)):
             if char_list[i].char_type == "hiragana":
                 session_list.append(char_list[i])
+    if mod_hiragana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "mod hiragana":
+                session_list.append(char_list[i])
+    if comp_hiragana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "comp hiragana":
+                session_list.append(char_list[i])
 
     shuffle_list(session_list)
     character_session_window()
-    menu_1.destroy()
 
 
 def character_session_window():
     # This function runs the character trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
     global answer
     global show_button
     global enter
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
 
-    new_button = Button(session_window, text="New Character", command=get_char)
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+
+    new_button = Button(main_frame, text="New Character", command=get_char)
     global input_box
-    input_box = Entry(session_window, font=("Arial", 30))
-    enter = Button(session_window, text="Enter", command=test_char)
+    input_box = Entry(main_frame, font=("Arial", 30))
+    enter = Button(main_frame, text="Enter", command=test_char)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(session_window, text="Select the new word character to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_char)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    prompt = Label(main_frame, text="Select the new word character to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_char)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -1190,7 +1369,7 @@ def character_session_window():
 def get_char():
     # this function gets a character from the session list and stores it in current char
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -1211,7 +1390,7 @@ def get_char():
     prompt_text = "Enter the romaji for " + session_list[current].character + ":"
     # A random word is selected from the session list
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     # The old prompt is erased and the prompt for the new word is created and displayed
     new_button["state"] = DISABLED
@@ -1226,7 +1405,7 @@ def get_char():
 
 def test_char():
     # This function checks whether the correct answer was entered
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -1241,7 +1420,7 @@ def test_char():
             feedback.destroy()
         if answer.winfo_exists() == 1:
             answer.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
@@ -1250,19 +1429,19 @@ def test_char():
         session_list[current].num_correct = 0
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
 def show_char():
     # This function displays the current word
-    global session_window
+    global main_frame
     global current
     global answer
     global show_button
 
     session_list[current].num_correct = 0
-    answer = Label(session_window, text=session_list[current].romaji, font=("Arial", 15))
+    answer = Label(main_frame, text=session_list[current].romaji, font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
@@ -1273,31 +1452,51 @@ def character_w_menu():
     # This function creates the menu that allows user to customize their character writing session
     global katakana
     global hiragana
-    global menu_1
+    global mod_katakana
+    global comp_katakana
+    global rare_katakana
+    global mod_hiragana
+    global comp_hiragana
+    global main_frame
 
-    menu_1 = Toplevel()
-    menu_1.title("Character Writing Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     hiragana = IntVar()
+    mod_hiragana = IntVar()
+    comp_hiragana = IntVar()
     katakana = IntVar()
+    mod_katakana = IntVar()
+    comp_katakana = IntVar()
+    rare_katakana = IntVar()
 
-    type_label = Label(menu_1, text="Select the character types you would like to practice writing:", padx=50)
+    type_label = Label(main_frame, text="Select the character types you would like to practice writing:", padx=50)
 
-    katakana_check = Checkbutton(menu_1, text="katakana", variable=katakana)
-    hiragana_check = Checkbutton(menu_1, text="hiragana", variable=hiragana)
+    katakana_check = Checkbutton(main_frame, text="katakana", variable=katakana)
+    mod_katakana_check = Checkbutton(main_frame, text="modified katakana", variable=mod_katakana)
+    comp_katakana_check = Checkbutton(main_frame, text="compound katakana", variable=comp_katakana)
+    rare_katakana_check = Checkbutton(main_frame, text="rare katakana", variable=rare_katakana)
+    hiragana_check = Checkbutton(main_frame, text="hiragana", variable=hiragana)
+    mod_hiragana_check = Checkbutton(main_frame, text="modified hiragana", variable=mod_hiragana)
+    comp_hiragana_check = Checkbutton(main_frame, text="compound hiragana", variable=comp_hiragana)
 
     type_label.grid(row=0, column=0)
     katakana_check.grid(row=1, column=0)
     hiragana_check.grid(row=2, column=0)
+    mod_katakana_check.grid(row=3, column=0)
+    comp_katakana_check.grid(row=4, column=0)
+    rare_katakana_check.grid(row=5, column=0)
+    mod_hiragana_check.grid(row=6, column=0)
+    comp_hiragana_check.grid(row=7, column=0)
 
-    session_button = Button(menu_1, text="Create Session", command=create_char_w_session, pady=10)
+    session_button = Button(main_frame, text="Create Session", command=create_char_w_session, pady=10)
 
-    session_button.grid(row=3, column=0, columnspan=1)
+    session_button.grid(row=8, column=0, columnspan=1)
 
 
 def create_char_w_session():
     # This function creates a session by creating a session list and calling the character session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -1307,32 +1506,52 @@ def create_char_w_session():
         for i in range(len(char_list)):
             if char_list[i].char_type == "katakana":
                 session_list.append(char_list[i])
+    if mod_katakana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "mod katakana":
+                session_list.append(char_list[i])
+    if comp_katakana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "comp katakana":
+                session_list.append(char_list[i])
+    if rare_katakana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "rare katakana":
+                session_list.append(char_list[i])
     global hiragana
     if hiragana.get() == 1:
         for i in range(len(char_list)):
             if char_list[i].char_type == "hiragana":
                 session_list.append(char_list[i])
+    if mod_hiragana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "mod hiragana":
+                session_list.append(char_list[i])
+    if comp_hiragana.get() == 1:
+        for i in range(len(char_list)):
+            if char_list[i].char_type == "comp hiragana":
+                session_list.append(char_list[i])
 
     shuffle_list(session_list)
     char_w_session_window()
-    menu_1.destroy()
 
 
 def char_w_session_window():
     # This function runs the character writing trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
     global show_button
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
 
-    new_button = Button(session_window, text="New Character", command=get_char_w)
-    prompt = Label(session_window, text="Select the new character button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the show character button to reveal the character", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Character", command=show_char_w)
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+
+    new_button = Button(main_frame, text="New Character", command=get_char_w)
+    prompt = Label(main_frame, text="Select the new character button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the show character button to reveal the character", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Character", command=show_char_w)
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=0, column=0)
     prompt.grid(row=1, column=0, columnspan=2)
@@ -1343,7 +1562,7 @@ def char_w_session_window():
 def get_char_w():
     # this function gets a character from the session list and stores it in current char
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -1353,7 +1572,7 @@ def get_char_w():
     current = (current + 1) % len(session_list)
     prompt_text = "Draw the " + session_list[current].char_type + " character for " + session_list[current].romaji + ":"
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=1, column=0, columnspan=2)
     # The old prompt is erased and the prompt for the new character is created and displayed
     new_button["state"] = DISABLED
@@ -1364,13 +1583,13 @@ def get_char_w():
 
 def show_char_w():
     # This function displays the current word
-    global session_window
+    global main_frame
     global current
     global feedback
     global show_button
 
     feedback.destroy()
-    feedback = Label(session_window, text=session_list[current].character, font=("IPAMincho", 80))
+    feedback = Label(main_frame, text=session_list[current].character, font=("IPAMincho", 80))
     feedback.grid(row=2, column=0, columnspan=2)
     show_button["state"] = DISABLED
     new_button["state"] = NORMAL
@@ -1379,7 +1598,7 @@ def show_char_w():
 def get_word():
     # this function gets a word from the session list and stores it in current word
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -1387,7 +1606,7 @@ def get_word():
     global enter
     global round_counter
     global round_total
-    global round
+    global curr_round
     global answer
 
     counter = len(session_list)
@@ -1403,7 +1622,7 @@ def get_word():
             session_list[i].num_correct = 0
             session_list[current].first_attempt = True
         end_message = "Session complete, you may keep studying or exit to start new session"
-        end_label = Label(session_window, text=end_message, font=("Arial", 15))
+        end_label = Label(main_frame, text=end_message, font=("Arial", 15))
         end_label.grid(row=7, column=0, columnspan=3)
     round_counter = round_counter + 1
     if round_counter == round_total:
@@ -1412,14 +1631,14 @@ def get_word():
         for i in session_list:
             if i.num_correct != 3:
                 round_total += 1
-    round.destroy()
+    curr_round.destroy()
     round_string = "round progress:" + str(round_counter) + "/" + str(round_total)
-    round = Label(session_window, text=round_string, font=("Arial", 15))
-    round.grid(row=5, column=1)
+    curr_round = Label(main_frame, text=round_string, font=("Arial", 15))
+    curr_round.grid(row=5, column=1)
     prompt_text = "Enter the Japanese word for " + session_list[current].english + ":"
     # A random word is selected from the session list
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     # The old prompt is erased and the prompt for the new word is created and displayed
     new_button["state"] = DISABLED
@@ -1434,7 +1653,7 @@ def get_word():
 
 def test_entry():
     # This function checks whether the correct answer was entered
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -1456,13 +1675,13 @@ def test_entry():
         if progress.winfo_exists() == 1:
             progress.destroy()
         progress_string = "words learned: " + str(counter) + "/" + str(len(session_list))
-        progress = Label(session_window, text=progress_string, font=("Arial", 15))
+        progress = Label(main_frame, text=progress_string, font=("Arial", 15))
         progress.grid(row=4, column=1)
         if feedback.winfo_exists() == 1:
             feedback.destroy()
         if answer.winfo_exists() == 1:
             answer.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
@@ -1473,7 +1692,7 @@ def test_entry():
             session_list[current].first_attempt = False
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
@@ -1482,7 +1701,7 @@ session_list = []
 
 def show_answer():
     # This function displays the current word
-    global session_window
+    global main_frame
     global current
     global answer
     global show_button
@@ -1491,7 +1710,7 @@ def show_answer():
     session_list[current].num_correct = 0
     if session_list[current].first_attempt:
         session_list[current].first_attempt = False
-    answer = Label(session_window, text=session_list[current].japanese, font=("Arial", 15))
+    answer = Label(main_frame, text=session_list[current].japanese, font=("Arial", 15))
     answer.grid(row=6, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
@@ -1500,7 +1719,7 @@ def show_answer():
 
 def create_vocab_session(list_units):
     # This function creates a session by creating a session list and calling the vocab session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -1559,12 +1778,11 @@ def create_vocab_session(list_units):
 
     shuffle_list(session_list)
     vocab_session_window()
-    menu_1.destroy()
 
 
 def vocab_session_window():
     # This function runs the vocab trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -1575,30 +1793,30 @@ def vocab_session_window():
     global progress
     global round_total
     global round_counter
-    global round
+    global curr_round
     global session_type
 
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     round_total = len(session_list)
     round_counter = -1
 
-    input_box = Entry(session_window, font=("Arial", 30))
-    enter = Button(session_window, text="Enter", command=test_entry)
+    input_box = Entry(main_frame, font=("Arial", 30))
+    enter = Button(main_frame, text="Enter", command=test_entry)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
     progress_string = "words learned: 0/" + str(len(session_list))
-    progress = Label(session_window, text=progress_string, font=("Arial", 15))
+    progress = Label(main_frame, text=progress_string, font=("Arial", 15))
 
-    new_button = Button(session_window, text="New Word", command=get_word)
-    prompt = Label(session_window, text="Select the new word button to start practicing", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_answer)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    new_button = Button(main_frame, text="New Word", command=get_word)
+    prompt = Label(main_frame, text="Select the new word button to start practicing", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_answer)
+    answer = Label(main_frame, text="", font=("Arial", 15))
     round_string = "round progress:" + str(round_counter) + "/" + str(round_total)
-    round = Label(session_window, text=round_string, font=("Arial", 15))
+    curr_round = Label(main_frame, text=round_string, font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     input_box.grid(row=0, column=0, columnspan=3)
     enter.grid(row=1, column=2)
@@ -1608,7 +1826,7 @@ def vocab_session_window():
     new_button.grid(row=1, column=0)
     prompt.grid(row=2, column=0, columnspan=3)
     show_button.grid(row=1, column=1)
-    round.grid(row=5, column=1)
+    curr_round.grid(row=5, column=1)
 
 
 def vocab_menu():
@@ -1623,11 +1841,11 @@ def vocab_menu():
     global question
     global verb
     global expression
-    global menu_1
+    global root
     global session_type
 
-    menu_1 = Toplevel()
-    menu_1.title("Vocabulary Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     noun = IntVar()
     pronoun = IntVar()
@@ -1651,6 +1869,7 @@ def vocab_menu():
     unit_10 = StringVar()
     unit_11 = StringVar()
     unit_12 = StringVar()
+    bonus_1 = StringVar()
     session_type = StringVar()
     session_type.set("flashcard")
 
@@ -1665,25 +1884,26 @@ def vocab_menu():
                  unit_9,
                  unit_10,
                  unit_11,
-                 unit_12]
+                 unit_12,
+                 bonus_1]
 
-    type_label = Label(menu_1, text="Select the word types you would like to study:", padx=50)
-    unit_label = Label(menu_1, text="Select the units you would like to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    type_label = Label(main_frame, text="Select the word types you would like to study:", padx=50)
+    unit_label = Label(main_frame, text="Select the units you would like to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
-    noun_check = Checkbutton(menu_1, text="noun", variable=noun)
-    pronoun_check = Checkbutton(menu_1, text="pronoun", variable=pronoun)
-    title_check = Checkbutton(menu_1, text="title", variable=title)
-    adjective_check = Checkbutton(menu_1, text="adjective", variable=adjective)
-    adverb_check = Checkbutton(menu_1, text="adverb", variable=adverb)
-    preposition_check = Checkbutton(menu_1, text="preposition", variable=preposition)
-    time_check = Checkbutton(menu_1, text="time", variable=time)
-    question_check = Checkbutton(menu_1, text="question", variable=question)
-    verb_check = Checkbutton(menu_1, text="verb", variable=verb)
-    expression_check = Checkbutton(menu_1, text="expression", variable=expression)
+    noun_check = Checkbutton(main_frame, text="noun", variable=noun)
+    pronoun_check = Checkbutton(main_frame, text="pronoun", variable=pronoun)
+    title_check = Checkbutton(main_frame, text="title", variable=title)
+    adjective_check = Checkbutton(main_frame, text="adjective", variable=adjective)
+    adverb_check = Checkbutton(main_frame, text="adverb", variable=adverb)
+    preposition_check = Checkbutton(main_frame, text="preposition", variable=preposition)
+    time_check = Checkbutton(main_frame, text="time", variable=time)
+    question_check = Checkbutton(main_frame, text="question", variable=question)
+    verb_check = Checkbutton(main_frame, text="verb", variable=verb)
+    expression_check = Checkbutton(main_frame, text="expression", variable=expression)
 
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
 
     session_label.grid(row=0, column=2)
     flashcard.grid(row=1, column=2)
@@ -1701,18 +1921,19 @@ def vocab_menu():
     verb_check.grid(row=9, column=1)
     expression_check.grid(row=10, column=1)
 
-    unit_1_check = Checkbutton(menu_1, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
-    unit_2_check = Checkbutton(menu_1, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
-    unit_3_check = Checkbutton(menu_1, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
-    unit_4_check = Checkbutton(menu_1, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
-    unit_5_check = Checkbutton(menu_1, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
-    unit_6_check = Checkbutton(menu_1, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
-    unit_7_check = Checkbutton(menu_1, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
-    unit_8_check = Checkbutton(menu_1, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
-    unit_9_check = Checkbutton(menu_1, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
-    unit_10_check = Checkbutton(menu_1, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
-    unit_11_check = Checkbutton(menu_1, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
-    unit_12_check = Checkbutton(menu_1, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    unit_1_check = Checkbutton(main_frame, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
+    unit_2_check = Checkbutton(main_frame, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
+    unit_3_check = Checkbutton(main_frame, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
+    unit_4_check = Checkbutton(main_frame, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
+    unit_5_check = Checkbutton(main_frame, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
+    unit_6_check = Checkbutton(main_frame, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
+    unit_7_check = Checkbutton(main_frame, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
+    unit_8_check = Checkbutton(main_frame, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
+    unit_9_check = Checkbutton(main_frame, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
+    unit_10_check = Checkbutton(main_frame, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
+    unit_11_check = Checkbutton(main_frame, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
+    unit_12_check = Checkbutton(main_frame, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    bonus_1_check = Checkbutton(main_frame, text="bonus 1", variable=bonus_1, onvalue="bonus 1", offvalue="")
 
     unit_label.grid(row=0, column=0)
     unit_1_check.grid(row=1, column=0)
@@ -1727,6 +1948,7 @@ def vocab_menu():
     unit_10_check.grid(row=10, column=0)
     unit_11_check.grid(row=11, column=0)
     unit_12_check.grid(row=12, column=0)
+    bonus_1_check.grid(row=13, column=0)
 
     unit_1_check.deselect()
     unit_2_check.deselect()
@@ -1740,21 +1962,22 @@ def vocab_menu():
     unit_10_check.deselect()
     unit_11_check.deselect()
     unit_12_check.deselect()
+    bonus_1_check.deselect()
 
-    session_button = Button(menu_1, text="Create Session", command=lambda: create_vocab_session(unit_list), pady=10)
+    session_button = Button(main_frame, text="Create Session", command=lambda: create_vocab_session(unit_list), pady=10)
 
-    session_button.grid(row=13, column=0, columnspan=2)
+    session_button.grid(row=14, column=0, columnspan=4)
 
 
 def particle_menu():
     # This function runs a window where the user can customize their particle practice session
 
-    global menu_1
+    global main_frame
 
-    menu_1 = Toplevel()
-    menu_1.title("Particle Practice Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    part_label = Label(menu_1, text="Select the particles you would like to study:", padx=50)
+    part_label = Label(main_frame, text="Select the particles you would like to study:", padx=50)
     part_label.grid(row=0, column=0, columnspan=2)
 
     wa = StringVar()
@@ -1783,18 +2006,18 @@ def particle_menu():
                      he,
                      to]
 
-    wa_check = Checkbutton(menu_1, text="wa (は)", variable=wa, onvalue="は", offvalue="")
-    no_check = Checkbutton(menu_1, text="no (の)", variable=no, onvalue="の", offvalue="")
-    ka_check = Checkbutton(menu_1, text="ka (か)", variable=ka, onvalue="か", offvalue="")
-    mo_check = Checkbutton(menu_1, text="mo (も)", variable=mo, onvalue="も", offvalue="")
-    ne_check = Checkbutton(menu_1, text="ne (ね)", variable=ne, onvalue="ね", offvalue="")
-    yo_check = Checkbutton(menu_1, text="yo (よ)", variable=yo, onvalue="よ", offvalue="")
-    ni_check = Checkbutton(menu_1, text="ni (に)", variable=ni, onvalue="に", offvalue="")
-    o_check = Checkbutton(menu_1, text="o (を)", variable=o, onvalue="を", offvalue="")
-    de_check = Checkbutton(menu_1, text="de (で)", variable=de, onvalue="で", offvalue="")
-    ga_check = Checkbutton(menu_1, text="ga (が)", variable=ga, onvalue="が", offvalue="")
-    he_check = Checkbutton(menu_1, text="he (へ)", variable=he, onvalue="へ", offvalue="")
-    to_check = Checkbutton(menu_1, text="to (と)", variable=to, onvalue="と", offvalue="")
+    wa_check = Checkbutton(main_frame, text="wa (は)", variable=wa, onvalue="は", offvalue="")
+    no_check = Checkbutton(main_frame, text="no (の)", variable=no, onvalue="の", offvalue="")
+    ka_check = Checkbutton(main_frame, text="ka (か)", variable=ka, onvalue="か", offvalue="")
+    mo_check = Checkbutton(main_frame, text="mo (も)", variable=mo, onvalue="も", offvalue="")
+    ne_check = Checkbutton(main_frame, text="ne (ね)", variable=ne, onvalue="ね", offvalue="")
+    yo_check = Checkbutton(main_frame, text="yo (よ)", variable=yo, onvalue="よ", offvalue="")
+    ni_check = Checkbutton(main_frame, text="ni (に)", variable=ni, onvalue="に", offvalue="")
+    o_check = Checkbutton(main_frame, text="o (を)", variable=o, onvalue="を", offvalue="")
+    de_check = Checkbutton(main_frame, text="de (で)", variable=de, onvalue="で", offvalue="")
+    ga_check = Checkbutton(main_frame, text="ga (が)", variable=ga, onvalue="が", offvalue="")
+    he_check = Checkbutton(main_frame, text="he (へ)", variable=he, onvalue="へ", offvalue="")
+    to_check = Checkbutton(main_frame, text="to (と)", variable=to, onvalue="と", offvalue="")
 
     wa_check.grid(row=1, column=0)
     no_check.grid(row=2, column=0)
@@ -1822,9 +2045,9 @@ def particle_menu():
     he_check.deselect()
     to_check.deselect()
 
-    session_button_def = Button(menu_1, text="Practice Definitions",
+    session_button_def = Button(main_frame, text="Practice Definitions",
                                 command=lambda: create_part_def_ses(particle_list), pady=10)
-    session_button_use = Button(menu_1, text="Practice Usage",
+    session_button_use = Button(main_frame, text="Practice Usage",
                                 command=lambda: create_part_use_ses(particle_list), pady=10)
 
     session_button_def.grid(row=7, column=0)
@@ -1834,7 +2057,7 @@ def particle_menu():
 def create_part_def_ses(p_list):
     # This function creates a session by creating a session list and calling the particle definition
     # session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -1847,12 +2070,11 @@ def create_part_def_ses(p_list):
 
     shuffle_list(session_list)
     part_def_ses_win()
-    menu_1.destroy()
 
 
 def part_def_ses_win():
     # This function runs the particle definition trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -1861,17 +2083,17 @@ def part_def_ses_win():
     global enter
     global input_box
 
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    new_button = Button(session_window, text="New Particle", command=get_part_def)
-    input_box = Entry(session_window, font=("Arial", 30))
-    enter = Button(session_window, text="Enter", command=test_part_def)
-    prompt = Label(session_window, text="Select the new particle to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_part_def)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    new_button = Button(main_frame, text="New Particle", command=get_part_def)
+    input_box = Entry(main_frame, font=("Arial", 30))
+    enter = Button(main_frame, text="Enter", command=test_part_def)
+    prompt = Label(main_frame, text="Select the new particle to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_part_def)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -1884,7 +2106,7 @@ def part_def_ses_win():
 def get_part_def():
     # this function gets a particle from the session list and stores its index in current
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -1896,7 +2118,7 @@ def get_part_def():
     prompt_text = "Enter the particle that " + session_list[current].uses[use] + ":"
     # A random particle is selected from the session list
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     # The old prompt is erased and the prompt for the new word is created and displayed
     new_button["state"] = DISABLED
@@ -1908,7 +2130,7 @@ def get_part_def():
 
 def test_part_def():
     # This function checks whether the correct answer was entered
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -1922,7 +2144,7 @@ def test_part_def():
             feedback.destroy()
         if answer.winfo_exists() == 1:
             answer.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
@@ -1930,18 +2152,18 @@ def test_part_def():
     else:
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
 def show_part_def():
     # This function displays the current particle
-    global session_window
+    global main_frame
     global current
     global answer
     global show_button
 
-    answer = Label(session_window, text=session_list[current].character, font=("Arial", 15))
+    answer = Label(main_frame, text=session_list[current].character, font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
 
@@ -1949,7 +2171,7 @@ def show_part_def():
 def create_part_use_ses(p_list):
     # This function creates a session by creating a session list and calling the particle usage
     # session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -1963,12 +2185,11 @@ def create_part_use_ses(p_list):
     shuffle_list(session_list)
     session_list.append(Particle("X", ["No particle"]))
     part_use_ses_win()
-    menu_1.destroy()
 
 
 def part_use_ses_win():
     # This function runs the particle definition trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -1977,17 +2198,18 @@ def part_use_ses_win():
     global enter
     global input_box
 
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    new_button = Button(session_window, text="New Particle", command=get_part_use)
-    input_box = Entry(session_window, font=("Arial", 30))
-    enter = Button(session_window, text="Enter", command=test_part_def)
-    prompt = Label(session_window, text="Select the new particle to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_part_def)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    new_button = Button(main_frame, text="New Particle", command=get_part_use)
+    input_box = Entry(main_frame, font=("Arial", 30))
+    enter = Button(main_frame, text="Enter", command=test_part_def)
+    prompt = Label(main_frame, text="Select the new particle to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_part_def)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
+
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -2000,7 +2222,7 @@ def part_use_ses_win():
 def get_part_use():
     # this function gets a particle from the session list and stores its index in current
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -2011,7 +2233,7 @@ def get_part_use():
     prompt_text = "Enter the particle that belongs at ? (X for none)\n" + gen_sentence_particle()
     # A random particle is selected from the session list
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     # The old prompt is erased and the prompt for the new word is created and displayed
     new_button["state"] = DISABLED
@@ -2103,10 +2325,10 @@ def gen_sentence_particle():
         return name + "は" + desu + "です。" + name_2 + "?" + desu + "です"
 
     # if session_list[current].character == "ね":
-        #  return ""
+    #  return ""
 
     # if session_list[current].character == "よ":
-        # return ""
+    # return ""
 
     if session_list[current].character == "に":
         cur_day = days[random.randint(0, len(days) - 1)]
@@ -2143,26 +2365,26 @@ def gen_sentence_particle():
 
 def num_menu():
     # This function creates the menu that allows user to customize their number session
-    global menu_1
+    global main_frame
     global session_type
     global session_type_alt
 
-    menu_1 = Toplevel()
-    menu_1.title("Number Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     session_type_alt = StringVar()
     session_type_alt.set("hiragana")
     session_type = StringVar()
     session_type.set("flashcard")
 
-    session_alt_label = Label(menu_1, text="Select the number character type you would like to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    session_alt_label = Label(main_frame, text="Select the number character type you would like to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
 
-    hiragana_button = Radiobutton(menu_1, text="hiragana", variable=session_type_alt, value="hiragana")
-    kanji_button = Radiobutton(menu_1, text="kanji", variable=session_type_alt, value="kanji")
+    hiragana_button = Radiobutton(main_frame, text="hiragana", variable=session_type_alt, value="hiragana")
+    kanji_button = Radiobutton(main_frame, text="kanji", variable=session_type_alt, value="kanji")
 
     session_alt_label.grid(row=0, column=0)
     hiragana_button.grid(row=1, column=0)
@@ -2172,7 +2394,7 @@ def num_menu():
     flashcard.grid(row=1, column=1)
     test_session.grid(row=2, column=1)
 
-    session_button = Button(menu_1, text="Create Session", command=numbers, pady=10)
+    session_button = Button(main_frame, text="Create Session", command=numbers, pady=10)
 
     session_button.grid(row=3, column=0, columnspan=2)
 
@@ -2181,26 +2403,25 @@ def numbers():
     # this function runs the number practice window
     global prompt
     global feedback
-    global session_window
+    global main_frame
     global new_button
     global answer
     global show_button
 
-    menu_1.destroy()
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    session_window = Toplevel()
-    session_window.title("Japanese number practice")
-
-    new_button = Button(session_window, text="New number", command=get_number)
+    new_button = Button(main_frame, text="New number", command=get_number)
     global input_box
-    input_box = Entry(session_window, font=("Arial", 30), width=35)
-    enter_num = Button(session_window, text="Enter", command=test_num)
+    input_box = Entry(main_frame, font=("Arial", 30), width=35)
+    enter_num = Button(main_frame, text="Enter", command=test_num)
     if session_type.get() == "flashcard":
         enter_num["state"] = DISABLED
-    prompt = Label(session_window, text="Select the new number button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_num)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    prompt = Label(main_frame, text="Select the new number button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_num)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -2213,7 +2434,7 @@ def numbers():
 def get_number():
     # this function creates the number for the number trainer
     global current_num
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -2225,7 +2446,7 @@ def get_number():
     if session_type_alt.get() == "kanji":
         prompt_text = "Enter the Hiragana for " + num_kanji(str(current_num)) + ":"
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -2236,7 +2457,7 @@ def get_number():
 
 def test_num():
     # this function checks to see if the entry is correct
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -2246,27 +2467,27 @@ def test_num():
     if current_entry == num_convert(str(current_num)):
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
     else:
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
 def show_num():
     # This function displays the current number
-    global session_window
+    global main_frame
     global current_num
     global answer
     global show_button
 
     if answer.winfo_exists() == 1:
         answer.destroy()
-    answer = Label(session_window, text=num_convert(str(current_num)), font=("Arial", 15))
+    answer = Label(main_frame, text=num_convert(str(current_num)), font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
@@ -2361,26 +2582,26 @@ def num_kanji(number):
 
 def time_menu():
     # This function creates the menu that allows user to customize their number session
-    global menu_1
+    global main_frame
     global session_type
     global session_type_alt
 
-    menu_1 = Toplevel()
-    menu_1.title("Time Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     session_type_alt = StringVar()
     session_type_alt.set("hiragana")
     session_type = StringVar()
     session_type.set("flashcard")
 
-    session_alt_label = Label(menu_1, text="Select the time character type you would like to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    session_alt_label = Label(main_frame, text="Select the time character type you would like to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
 
-    hiragana_button = Radiobutton(menu_1, text="hiragana", variable=session_type_alt, value="hiragana")
-    kanji_button = Radiobutton(menu_1, text="kanji", variable=session_type_alt, value="kanji")
+    hiragana_button = Radiobutton(main_frame, text="hiragana", variable=session_type_alt, value="hiragana")
+    kanji_button = Radiobutton(main_frame, text="kanji", variable=session_type_alt, value="kanji")
 
     session_alt_label.grid(row=0, column=0)
     hiragana_button.grid(row=1, column=0)
@@ -2390,34 +2611,35 @@ def time_menu():
     flashcard.grid(row=1, column=1)
     test_session.grid(row=2, column=1)
 
-    session_button = Button(menu_1, text="Create Session", command=time_session_window, pady=10)
+    session_button = Button(main_frame, text="Create Session", command=time_session_window, pady=10)
 
     session_button.grid(row=3, column=0, columnspan=2)
 
 
 def time_session_window():
     # This function runs the time window
-    global session_window
+    global main_frame
     global new_button
     global input_box
     global prompt
     global feedback
     global answer
     global show_button
+    global enter
 
-    session_window = Toplevel()
-    session_window.title("Time practice")
-    session_window.geometry("1200x800")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    new_button = Button(session_window, text="New time", command=get_time)
-    input_box = Entry(session_window, font=("Arial", 30), width=35)
-    enter = Button(session_window, text="Enter", command=test_time)
+    new_button = Button(main_frame, text="New time", command=get_time)
+    input_box = Entry(main_frame, font=("Arial", 30), width=35)
+    enter = Button(main_frame, text="Enter", command=test_time)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(session_window, text="Select the new time button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_time)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    prompt = Label(main_frame, text="Select the new time button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_time)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -2430,7 +2652,7 @@ def time_session_window():
 def get_time():
     # This function provides a random time for the time trainer
     global current_time
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -2446,7 +2668,7 @@ def get_time():
     if session_type_alt.get() == "kanji":
         prompt_text = "Enter the Hiragana for " + time_kanji(current_time)
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -2457,7 +2679,7 @@ def get_time():
 
 def test_time():
     # This function tests whether the entry is correct for the time trainer
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -2467,25 +2689,25 @@ def test_time():
     if current_entry == time_convert(current_time):
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
     else:
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
 def show_time():
     # This function displays the current time
-    global session_window
+    global main_frame
     global current_time
     global answer
     global show_button
 
-    answer = Label(session_window, text=time_convert(current_time), font=("Arial", 15))
+    answer = Label(main_frame, text=time_convert(current_time), font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
@@ -2630,26 +2852,26 @@ def time_kanji(cur_tim):
 
 def calendar_menu():
     # This function creates the menu that allows user to customize their calendar session
-    global menu_1
+    global main_frame
     global session_type
     global session_type_alt
 
-    menu_1 = Toplevel()
-    menu_1.title("Calendar Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     session_type_alt = StringVar()
     session_type_alt.set("hiragana")
     session_type = StringVar()
     session_type.set("flashcard")
 
-    session_alt_label = Label(menu_1, text="Select the calendar character type you would like to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    session_alt_label = Label(main_frame, text="Select the calendar character type you would like to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
 
-    hiragana_button = Radiobutton(menu_1, text="hiragana", variable=session_type_alt, value="hiragana")
-    kanji_button = Radiobutton(menu_1, text="kanji", variable=session_type_alt, value="kanji")
+    hiragana_button = Radiobutton(main_frame, text="hiragana", variable=session_type_alt, value="hiragana")
+    kanji_button = Radiobutton(main_frame, text="kanji", variable=session_type_alt, value="kanji")
 
     session_alt_label.grid(row=0, column=0)
     hiragana_button.grid(row=1, column=0)
@@ -2659,14 +2881,14 @@ def calendar_menu():
     flashcard.grid(row=1, column=1)
     test_session.grid(row=2, column=1)
 
-    session_button = Button(menu_1, text="Create Session", command=calendar, pady=10)
+    session_button = Button(main_frame, text="Create Session", command=calendar, pady=10)
 
     session_button.grid(row=3, column=0, columnspan=2)
 
 
 def calendar():
     # This function runs the calendar window
-    global session_window
+    global main_frame
     global new_button
     global input_box
     global prompt
@@ -2675,19 +2897,19 @@ def calendar():
     global show_button
     global enter
 
-    session_window = Toplevel()
-    session_window.title("Calender practice")
-    session_window.geometry("1200x800")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    input_box = Entry(session_window, font=("Arial", 30), width=50)
-    new_button = Button(session_window, text="New Date", command=get_date)
-    enter = Button(session_window, text="Enter", command=test_date)
+    input_box = Entry(main_frame, font=("Arial", 30), width=50)
+    new_button = Button(main_frame, text="New Date", command=get_date)
+    enter = Button(main_frame, text="Enter", command=test_date)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(session_window, text="Select the new date button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_date)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    prompt = Label(main_frame, text="Select the new date button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_date)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     input_box.grid(row=0, column=0, columnspan=3)
     new_button.grid(row=1, column=0)
@@ -2699,7 +2921,7 @@ def calendar():
 
 def get_date():
     # This function creates a random date for the calendar trainer
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -2722,7 +2944,7 @@ def get_date():
     if session_type_alt.get() == "kanji":
         prompt_text = "Enter the Hiragana for " + date_kanji(month, day)
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -2735,23 +2957,23 @@ def test_date():
     # This function checks if the entry is correct for the calendar trainer
     global month
     global day
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
 
     current_entry = input_box.get()
-    if current_entry == date_convert(month, day):
+    if current_entry == date_convert():
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
     else:
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
@@ -2759,18 +2981,18 @@ def show_date():
     # This function displays the current date
     global month
     global day
-    global session_window
+    global main_frame
     global answer
     global show_button
 
-    answer = Label(session_window, text=date_convert(month, day), font=("Arial", 15))
+    answer = Label(main_frame, text=date_convert(), font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
         new_button["state"] = NORMAL
 
 
-def date_convert(cur_month, cur_day):
+def date_convert():
     # This function converts an english date to a japanese date
     converted = ""
 
@@ -2863,19 +3085,19 @@ def date_kanji(cur_month, cur_day):
 def verb_menu():
     # This function runs a window where the user can customize their verb practice session
 
-    global menu_1
+    global main_frame
     global session_type
 
-    menu_1 = Toplevel()
-    menu_1.title("Verb Conjugation Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     session_type = StringVar()
     session_type.set("flashcard")
 
-    verb_label = Label(menu_1, text="Select the verb types you would like to study:", padx=50)
-    unit_label = Label(menu_1, text="Select the units you would like to study:", padx=50)
-    conj_label = Label(menu_1, text="Select the conjugations you would like to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    verb_label = Label(main_frame, text="Select the verb types you would like to study:", padx=50)
+    unit_label = Label(main_frame, text="Select the units you would like to study:", padx=50)
+    conj_label = Label(main_frame, text="Select the conjugations you would like to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
     verb_label.grid(row=0, column=1)
     unit_label.grid(row=0, column=0)
@@ -2920,33 +3142,43 @@ def verb_menu():
     past_aff = StringVar()
     past_neg = StringVar()
     te_form = StringVar()
+    verb_stem = StringVar()
+    short_past_aff = StringVar()
+    short_past_neg = StringVar()
+    short_pres_aff = StringVar()
+    short_pres_neg = StringVar()
 
     conj_list = [pres_aff,
                  pres_neg,
                  past_aff,
                  past_neg,
-                 te_form]
+                 te_form,
+                 verb_stem,
+                 short_past_aff,
+                 short_past_neg,
+                 short_pres_aff,
+                 short_pres_neg]
 
-    ru_check = Checkbutton(menu_1, text="ru", variable=ru, onvalue="ru", offvalue="")
-    u_check = Checkbutton(menu_1, text="u", variable=u, onvalue="u", offvalue="")
-    irr_check = Checkbutton(menu_1, text="irregular", variable=irr, onvalue="irregular", offvalue="")
+    ru_check = Checkbutton(main_frame, text="ru", variable=ru, onvalue="ru", offvalue="")
+    u_check = Checkbutton(main_frame, text="u", variable=u, onvalue="u", offvalue="")
+    irr_check = Checkbutton(main_frame, text="irregular", variable=irr, onvalue="irregular", offvalue="")
 
     ru_check.grid(row=1, column=1)
     u_check.grid(row=2, column=1)
     irr_check.grid(row=3, column=1)
 
-    unit_1_check = Checkbutton(menu_1, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
-    unit_2_check = Checkbutton(menu_1, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
-    unit_3_check = Checkbutton(menu_1, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
-    unit_4_check = Checkbutton(menu_1, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
-    unit_5_check = Checkbutton(menu_1, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
-    unit_6_check = Checkbutton(menu_1, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
-    unit_7_check = Checkbutton(menu_1, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
-    unit_8_check = Checkbutton(menu_1, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
-    unit_9_check = Checkbutton(menu_1, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
-    unit_10_check = Checkbutton(menu_1, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
-    unit_11_check = Checkbutton(menu_1, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
-    unit_12_check = Checkbutton(menu_1, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    unit_1_check = Checkbutton(main_frame, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
+    unit_2_check = Checkbutton(main_frame, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
+    unit_3_check = Checkbutton(main_frame, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
+    unit_4_check = Checkbutton(main_frame, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
+    unit_5_check = Checkbutton(main_frame, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
+    unit_6_check = Checkbutton(main_frame, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
+    unit_7_check = Checkbutton(main_frame, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
+    unit_8_check = Checkbutton(main_frame, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
+    unit_9_check = Checkbutton(main_frame, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
+    unit_10_check = Checkbutton(main_frame, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
+    unit_11_check = Checkbutton(main_frame, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
+    unit_12_check = Checkbutton(main_frame, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
 
     unit_1_check.grid(row=1, column=0)
     unit_2_check.grid(row=2, column=0)
@@ -2974,35 +3206,56 @@ def verb_menu():
     unit_11_check.deselect()
     unit_12_check.deselect()
 
-    pres_aff_check = Checkbutton(menu_1, text="present affirmative", variable=pres_aff,
+    pres_aff_check = Checkbutton(main_frame, text="present affirmative", variable=pres_aff,
                                  onvalue="present affirmative", offvalue="")
-    pres_neg_check = Checkbutton(menu_1, text="present negative", variable=pres_neg,
+    pres_neg_check = Checkbutton(main_frame, text="present negative", variable=pres_neg,
                                  onvalue="present negative", offvalue="")
-    past_aff_check = Checkbutton(menu_1, text="past affirmative", variable=past_aff,
+    past_aff_check = Checkbutton(main_frame, text="past affirmative", variable=past_aff,
                                  onvalue="past affirmative", offvalue="")
-    past_neg_check = Checkbutton(menu_1, text="past negative", variable=past_neg, onvalue="past negative", offvalue="")
-    te_form_check = Checkbutton(menu_1, text="te form", variable=te_form, onvalue="te form", offvalue="")
+    past_neg_check = Checkbutton(main_frame, text="past negative", variable=past_neg,
+                                 onvalue="past negative", offvalue="")
+    te_form_check = Checkbutton(main_frame, text="te form", variable=te_form, onvalue="te form", offvalue="")
+    short_pres_aff_check = Checkbutton(main_frame, text="short present affirmative", variable=short_pres_aff,
+                                       onvalue="short present affirmative", offvalue="")
+    short_pres_neg_check = Checkbutton(main_frame, text="short present negative", variable=short_pres_neg,
+                                       onvalue="short present negative", offvalue="")
+    short_past_aff_check = Checkbutton(main_frame, text="short past affirmative", variable=short_past_aff,
+                                       onvalue="short past affirmative", offvalue="")
+    short_past_neg_check = Checkbutton(main_frame, text="short past negative", variable=short_past_neg,
+                                       onvalue="short past negative", offvalue="")
+    verb_stem_check = Checkbutton(main_frame, text="verb stem", variable=verb_stem,
+                                  onvalue="verb stem", offvalue="")
 
     pres_aff_check.grid(row=1, column=2)
     pres_neg_check.grid(row=2, column=2)
     past_aff_check.grid(row=3, column=2)
     past_neg_check.grid(row=4, column=2)
     te_form_check.grid(row=5, column=2)
+    short_pres_aff_check.grid(row=6, column=2)
+    short_pres_neg_check.grid(row=7, column=2)
+    short_past_aff_check.grid(row=8, column=2)
+    short_past_neg_check.grid(row=9, column=2)
+    verb_stem_check.grid(row=10, column=2)
 
     pres_aff_check.deselect()
     pres_neg_check.deselect()
     past_aff_check.deselect()
     past_neg_check.deselect()
     te_form_check.deselect()
+    short_pres_aff_check.deselect()
+    short_pres_neg_check.deselect()
+    short_past_aff_check.deselect()
+    short_past_neg_check.deselect()
+    verb_stem_check.deselect()
 
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
 
     session_label.grid(row=0, column=3)
     flashcard.grid(row=1, column=3)
     test_session.grid(row=2, column=3)
 
-    session_button = Button(menu_1, text="Create Session",
+    session_button = Button(main_frame, text="Create Session",
                             command=lambda: create_conj_session(unit_list, verb_types, conj_list), pady=10)
 
     session_button.grid(row=13, column=0, columnspan=3)
@@ -3010,7 +3263,7 @@ def verb_menu():
 
 def create_conj_session(list_units, verb_list, conj_list):
     # This function creates a session by creating a session list and calling the conj session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -3030,12 +3283,11 @@ def create_conj_session(list_units, verb_list, conj_list):
 
     shuffle_list(session_list)
     conj_session_window(conjugations)
-    menu_1.destroy()
 
 
 def conj_session_window(conjugations):
     # This function runs the verb conjugation trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -3045,19 +3297,19 @@ def conj_session_window(conjugations):
     global input_box
     global session_type
 
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    new_button = Button(session_window, text="New Verb", command=lambda: get_verb(conjugations))
-    input_box = Entry(session_window, font=("Arial", 30))
-    enter = Button(session_window, text="Enter", command=test_verb)
+    new_button = Button(main_frame, text="New Verb", command=lambda: get_verb(conjugations))
+    input_box = Entry(main_frame, font=("Arial", 30))
+    enter = Button(main_frame, text="Enter", command=test_verb)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(session_window, text="Select the new verb button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_verb)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    prompt = Label(main_frame, text="Select the new verb button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_verb)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -3071,7 +3323,7 @@ def get_verb(conjugations):
     # this function gets a verb from the session list and stores it in current and gets a conjugation type from
     # conjugations, and stores it in current_conj
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -3084,7 +3336,7 @@ def get_verb(conjugations):
     prompt_text = "Enter the " + current_conj + " conjugation of " + session_list[current].english + ":"
     # A random word is selected from the session list
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     # The old prompt is erased and the prompt for the new word is created and displayed
     new_button["state"] = DISABLED
@@ -3099,7 +3351,7 @@ def get_verb(conjugations):
 
 def test_verb():
     # This function checks whether the correct answer was entered
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -3108,12 +3360,12 @@ def test_verb():
     global enter
 
     current_entry = input_box.get()
-    if current_entry == conjugate_verb():
+    if current_entry == conjugate_verb(current, current_conj):
         if feedback.winfo_exists() == 1:
             feedback.destroy()
         if answer.winfo_exists() == 1:
             answer.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
@@ -3121,189 +3373,202 @@ def test_verb():
     else:
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
 def show_verb():
     # This function displays the current verb in conjugated form
-    global session_window
+    global main_frame
     global answer
     global show_button
 
-    answer = Label(session_window, text=conjugate_verb(), font=("Arial", 15))
+    answer = Label(main_frame, text=conjugate_verb(current, current_conj), font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
         new_button["state"] = NORMAL
 
 
-def conjugate_verb():
-    global current
-    global current_conj
-    conj_verb = session_list[current].japanese
+def conjugate_verb(curr, curr_conj):
+    conj_verb = session_list[curr].japanese
 
-    if current_conj == "present affirmative":
-        if session_list[current].category == "ru":
+    if curr_conj == "present affirmative":
+        if session_list[curr].category == "ru":
             conj_verb = conj_verb[:len(conj_verb) - 1]
             conj_verb += "ます"
 
-        if session_list[current].category == "u":
+        if session_list[curr].category == "u":
             conj_verb = conj_verb[:len(conj_verb) - 1]
-            conj_verb += session_list[current].subject
+            conj_verb += session_list[curr].subject
             conj_verb += "ます"
 
-        if session_list[current].category == "irregular":
+        if session_list[curr].category == "irregular":
             conj_verb = conj_verb[:len(conj_verb) - 2]
-            if session_list[current].subject == "する":
+            if session_list[curr].subject == "する":
                 conj_verb += "します"
-            if session_list[current].subject == "くる":
+            if session_list[curr].subject == "くる":
                 conj_verb += "きます"
 
-    if current_conj == "present negative":
-        if session_list[current].category == "ru":
+    if curr_conj == "present negative":
+        if session_list[curr].category == "ru":
             conj_verb = conj_verb[:len(conj_verb) - 1]
             conj_verb += "ません"
 
-        if session_list[current].category == "u":
+        if session_list[curr].category == "u":
             conj_verb = conj_verb[:len(conj_verb) - 1]
-            conj_verb += session_list[current].subject
+            conj_verb += session_list[curr].subject
             conj_verb += "ません"
 
-        if session_list[current].category == "irregular":
+        if session_list[curr].category == "irregular":
             conj_verb = conj_verb[:len(conj_verb) - 2]
-            if session_list[current].subject == "する":
+            if session_list[curr].subject == "する":
                 conj_verb += "しません"
-            if session_list[current].subject == "くる":
+            if session_list[curr].subject == "くる":
                 conj_verb += "きません"
 
-    if current_conj == "past affirmative":
-        if session_list[current].category == "ru":
+    if curr_conj == "past affirmative":
+        if session_list[curr].category == "ru":
             conj_verb = conj_verb[:len(conj_verb) - 1]
             conj_verb += "ました"
 
-        if session_list[current].category == "u":
+        if session_list[curr].category == "u":
             conj_verb = conj_verb[:len(conj_verb) - 1]
             conj_verb += session_list[current].subject
             conj_verb += "ました"
 
-        if session_list[current].category == "irregular":
+        if session_list[curr].category == "irregular":
             conj_verb = conj_verb[:len(conj_verb) - 2]
-            if session_list[current].subject == "する":
+            if session_list[curr].subject == "する":
                 conj_verb += "しました"
-            if session_list[current].subject == "くる":
+            if session_list[curr].subject == "くる":
                 conj_verb += "きました"
 
-    if current_conj == "past negative":
-        if session_list[current].category == "ru":
+    if curr_conj == "past negative":
+        if session_list[curr].category == "ru":
             conj_verb = conj_verb[:len(conj_verb) - 1]
             conj_verb += "ませんでした"
 
-        if session_list[current].category == "u":
+        if session_list[curr].category == "u":
             conj_verb = conj_verb[:len(conj_verb) - 1]
-            conj_verb += session_list[current].subject
+            conj_verb += session_list[curr].subject
             conj_verb += "ませんでした"
 
-        if session_list[current].category == "irregular":
+        if session_list[curr].category == "irregular":
             conj_verb = conj_verb[:len(conj_verb) - 2]
-            if session_list[current].subject == "する":
+            if session_list[curr].subject == "する":
                 conj_verb += "しませんでした"
-            if session_list[current].subject == "くる":
+            if session_list[curr].subject == "くる":
                 conj_verb += "きませんでした"
 
-    if current_conj == "te form":
-        if session_list[current].category == "ru":
+    if curr_conj == "te form":
+        if session_list[curr].category == "ru":
             conj_verb = conj_verb[:len(conj_verb) - 1]
             conj_verb += "て"
 
-        if session_list[current].category == "u":
+        if session_list[curr].category == "u":
             conj_verb = conj_verb[:len(conj_verb) - 1]
-            if (session_list[current].subject == "い" or session_list[current].subject == "ち"
-                    or session_list[current].subject == "り"):
+            if (session_list[curr].subject == "い" or session_list[curr].subject == "ち"
+                    or session_list[curr].subject == "り"):
                 conj_verb += "って"
 
-            if (session_list[current].subject == "み" or session_list[current].subject == "び"
-                    or session_list[current].subject == "に"):
+            if (session_list[curr].subject == "み" or session_list[curr].subject == "び"
+                    or session_list[curr].subject == "に"):
                 conj_verb += "んで"
 
-            if session_list[current].subject == "ぎ":
+            if session_list[curr].subject == "ぎ":
                 conj_verb += "いで"
 
-            if session_list[current].subject == "し":
+            if session_list[curr].subject == "し":
                 conj_verb += "して"
 
-            if session_list[current].subject == "き":
-                if session_list[current].japanese == "いく":
+            if session_list[curr].subject == "き":
+                if session_list[curr].japanese == "いく":
                     conj_verb += "って"
                 else:
                     conj_verb += "いて"
 
-        if session_list[current].category == "irregular":
+        if session_list[curr].category == "irregular":
             conj_verb = conj_verb[:len(conj_verb) - 2]
-            if session_list[current].subject == "する":
+            if session_list[curr].subject == "する":
                 conj_verb += "して"
-            if session_list[current].subject == "くる":
+            if session_list[curr].subject == "くる":
                 conj_verb += "きて"
 
-    if current_conj == "verb stem":
-        if session_list[current].category == "ru":
+    if curr_conj == "verb stem":
+        if session_list[curr].category == "ru":
             conj_verb = conj_verb[:len(conj_verb) - 1]
 
-        if session_list[current].category == "u":
+        if session_list[curr].category == "u":
             conj_verb = conj_verb[:len(conj_verb) - 1]
-            conj_verb += session_list[current].subject
+            conj_verb += session_list[curr].subject
 
-        if session_list[current].category == "irregular":
+        if session_list[curr].category == "irregular":
             conj_verb = conj_verb[:len(conj_verb) - 2]
-            if session_list[current].subject == "する":
+            if session_list[curr].subject == "する":
                 conj_verb += "し"
-            if session_list[current].subject == "くる":
+            if session_list[curr].subject == "くる":
                 conj_verb += "き"
 
-    if current_conj == "short present affirmative":
+    if curr_conj == "short present affirmative":
         pass
 
-    if current_conj == "short present negative":
-        if session_list[current].category == "ru":
+    if curr_conj == "short present negative":
+        if session_list[curr].category == "ru":
             conj_verb = conj_verb[:len(conj_verb) - 1]
             conj_verb += "ない"
 
-        if session_list[current].category == "u" and session_list[current].japanese != "ある":
+        if session_list[current].category == "u" and session_list[curr].japanese != "ある":
             conj_verb = conj_verb[:len(conj_verb) - 1]
-            if session_list[current].subject == "い":
+            if session_list[curr].subject == "い":
                 conj_verb += "わない"
-            if session_list[current].subject == "き":
+            if session_list[curr].subject == "き":
                 conj_verb += "かない"
-            if session_list[current].subject == "り":
+            if session_list[curr].subject == "り":
                 conj_verb += "らない"
-            if session_list[current].subject == "み":
+            if session_list[curr].subject == "み":
                 conj_verb += "まない"
-            if session_list[current].subject == "に":
+            if session_list[curr].subject == "に":
                 conj_verb += "なない"
-            if session_list[current].subject == "し":
+            if session_list[curr].subject == "し":
                 conj_verb += "さない"
-            if session_list[current].subject == "ち":
+            if session_list[curr].subject == "ち":
                 conj_verb += "わたない"
-            if session_list[current].subject == "び":
+            if session_list[curr].subject == "び":
                 conj_verb += "ばない"
-            if session_list[current].subject == "ぎ":
+            if session_list[curr].subject == "ぎ":
                 conj_verb += "がない"
 
-        if session_list[current].category == "irregular":
+        if session_list[curr].category == "irregular":
             conj_verb = conj_verb[:len(conj_verb) - 2]
-            if session_list[current].subject == "する":
+            if session_list[curr].subject == "する":
                 conj_verb += "しない"
-            if session_list[current].subject == "くる":
+            if session_list[curr].subject == "くる":
                 conj_verb += "こない"
 
-        if session_list[current].japanese == "ある":
+        if session_list[curr].japanese == "ある":
             conj_verb = "ない"
 
-    if current_conj == "short past affirmative":
-        pass
+    if curr_conj == "short past affirmative":
+        te = conjugate_verb(current, "te form")
 
-    if current_conj == "short past negative":
-        pass
+        if te[len(te) - 1] == "て":
+            te = te[:len(te) - 1]
+            te += "た"
+
+        elif te[len(te) - 1] == "で":
+            te = te[:len(te) - 1]
+            te += "だ"
+
+        conj_verb = te
+
+    if curr_conj == "short past negative":
+        nai = conjugate_verb(current, "short present negative")
+
+        nai = nai[:len(nai) - 1]
+        nai += "かった"
+
+        conj_verb = nai
 
     return conj_verb
 
@@ -3311,19 +3576,19 @@ def conjugate_verb():
 def adjective_menu():
     # This function runs a window where the user can customize their adjective practice session
 
-    global menu_1
+    global main_frame
     global session_type
 
-    menu_1 = Toplevel()
-    menu_1.title("Adjective Conjugation Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     session_type = StringVar()
     session_type.set("flashcard")
 
-    verb_label = Label(menu_1, text="Select the adjective types you would like to study:", padx=50)
-    unit_label = Label(menu_1, text="Select the units you would like to study:", padx=50)
-    conj_label = Label(menu_1, text="Select the conjugations you would like to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    verb_label = Label(main_frame, text="Select the adjective types you would like to study:", padx=50)
+    unit_label = Label(main_frame, text="Select the units you would like to study:", padx=50)
+    conj_label = Label(main_frame, text="Select the conjugations you would like to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
     verb_label.grid(row=0, column=1)
     unit_label.grid(row=0, column=0)
@@ -3349,6 +3614,7 @@ def adjective_menu():
     unit_10 = StringVar()
     unit_11 = StringVar()
     unit_12 = StringVar()
+    bonus_1 = StringVar()
 
     unit_list = [unit_1,
                  unit_2,
@@ -3361,38 +3627,48 @@ def adjective_menu():
                  unit_9,
                  unit_10,
                  unit_11,
-                 unit_12]
+                 unit_12,
+                 bonus_1]
 
     pres_aff = StringVar()
     pres_neg = StringVar()
     past_aff = StringVar()
     past_neg = StringVar()
+    short_past_aff = StringVar()
+    short_past_neg = StringVar()
+    short_pres_aff = StringVar()
+    short_pres_neg = StringVar()
 
     conj_list = [pres_aff,
                  pres_neg,
                  past_aff,
-                 past_neg]
+                 past_neg,
+                 short_past_aff,
+                 short_past_neg,
+                 short_pres_aff,
+                 short_pres_neg]
 
-    i_check = Checkbutton(menu_1, text="i", variable=i, onvalue="i", offvalue="")
-    na_check = Checkbutton(menu_1, text="na", variable=na, onvalue="na", offvalue="")
-    irr_check = Checkbutton(menu_1, text="irregular", variable=irr, onvalue="irregular", offvalue="")
+    i_check = Checkbutton(main_frame, text="i", variable=i, onvalue="i", offvalue="")
+    na_check = Checkbutton(main_frame, text="na", variable=na, onvalue="na", offvalue="")
+    irr_check = Checkbutton(main_frame, text="irregular", variable=irr, onvalue="irregular", offvalue="")
 
     i_check.grid(row=1, column=1)
     na_check.grid(row=2, column=1)
     irr_check.grid(row=3, column=1)
 
-    unit_1_check = Checkbutton(menu_1, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
-    unit_2_check = Checkbutton(menu_1, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
-    unit_3_check = Checkbutton(menu_1, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
-    unit_4_check = Checkbutton(menu_1, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
-    unit_5_check = Checkbutton(menu_1, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
-    unit_6_check = Checkbutton(menu_1, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
-    unit_7_check = Checkbutton(menu_1, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
-    unit_8_check = Checkbutton(menu_1, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
-    unit_9_check = Checkbutton(menu_1, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
-    unit_10_check = Checkbutton(menu_1, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
-    unit_11_check = Checkbutton(menu_1, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
-    unit_12_check = Checkbutton(menu_1, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    unit_1_check = Checkbutton(main_frame, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
+    unit_2_check = Checkbutton(main_frame, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
+    unit_3_check = Checkbutton(main_frame, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
+    unit_4_check = Checkbutton(main_frame, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
+    unit_5_check = Checkbutton(main_frame, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
+    unit_6_check = Checkbutton(main_frame, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
+    unit_7_check = Checkbutton(main_frame, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
+    unit_8_check = Checkbutton(main_frame, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
+    unit_9_check = Checkbutton(main_frame, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
+    unit_10_check = Checkbutton(main_frame, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
+    unit_11_check = Checkbutton(main_frame, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
+    unit_12_check = Checkbutton(main_frame, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    bonus_1_check = Checkbutton(main_frame, text="bonus 1", variable=bonus_1, onvalue="bonus 1", offvalue="")
 
     unit_1_check.grid(row=1, column=0)
     unit_2_check.grid(row=2, column=0)
@@ -3406,6 +3682,7 @@ def adjective_menu():
     unit_10_check.grid(row=10, column=0)
     unit_11_check.grid(row=11, column=0)
     unit_12_check.grid(row=12, column=0)
+    bonus_1_check.grid(row=13, column=0)
 
     unit_1_check.deselect()
     unit_2_check.deselect()
@@ -3419,41 +3696,59 @@ def adjective_menu():
     unit_10_check.deselect()
     unit_11_check.deselect()
     unit_12_check.deselect()
+    bonus_1_check.deselect()
 
-    pres_aff_check = Checkbutton(menu_1, text="present affirmative", variable=pres_aff,
+    pres_aff_check = Checkbutton(main_frame, text="present affirmative", variable=pres_aff,
                                  onvalue="present affirmative", offvalue="")
-    pres_neg_check = Checkbutton(menu_1, text="present negative", variable=pres_neg,
+    pres_neg_check = Checkbutton(main_frame, text="present negative", variable=pres_neg,
                                  onvalue="present negative", offvalue="")
-    past_aff_check = Checkbutton(menu_1, text="past affirmative", variable=past_aff,
+    past_aff_check = Checkbutton(main_frame, text="past affirmative", variable=past_aff,
                                  onvalue="past affirmative", offvalue="")
-    past_neg_check = Checkbutton(menu_1, text="past negative", variable=past_neg, onvalue="past negative", offvalue="")
+    past_neg_check = Checkbutton(main_frame, text="past negative", variable=past_neg,
+                                 onvalue="past negative", offvalue="")
+    short_pres_aff_check = Checkbutton(main_frame, text="short present affirmative", variable=short_pres_aff,
+                                       onvalue="short present affirmative", offvalue="")
+    short_pres_neg_check = Checkbutton(main_frame, text="short present negative", variable=short_pres_neg,
+                                       onvalue="short present negative", offvalue="")
+    short_past_aff_check = Checkbutton(main_frame, text="short past affirmative", variable=short_past_aff,
+                                       onvalue="short past affirmative", offvalue="")
+    short_past_neg_check = Checkbutton(main_frame, text="short past negative", variable=short_past_neg,
+                                       onvalue="short past negative", offvalue="")
 
     pres_aff_check.grid(row=1, column=2)
     pres_neg_check.grid(row=2, column=2)
     past_aff_check.grid(row=3, column=2)
     past_neg_check.grid(row=4, column=2)
+    short_pres_aff_check.grid(row=5, column=2)
+    short_pres_neg_check.grid(row=6, column=2)
+    short_past_aff_check.grid(row=7, column=2)
+    short_past_neg_check.grid(row=8, column=2)
 
     pres_aff_check.deselect()
     pres_neg_check.deselect()
     past_aff_check.deselect()
     past_neg_check.deselect()
+    short_pres_aff_check.deselect()
+    short_pres_neg_check.deselect()
+    short_past_aff_check.deselect()
+    short_past_neg_check.deselect()
 
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
 
     session_label.grid(row=0, column=3)
     flashcard.grid(row=1, column=3)
     test_session.grid(row=2, column=3)
 
-    session_button = Button(menu_1, text="Create Session",
+    session_button = Button(main_frame, text="Create Session",
                             command=lambda: create_adj_session(unit_list, adj_types, conj_list), pady=10)
 
-    session_button.grid(row=13, column=0, columnspan=3)
+    session_button.grid(row=14, column=0, columnspan=3)
 
 
 def create_adj_session(list_units, adj_list, conj_list):
     # This function creates a session by creating a session list and calling the adj session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -3473,12 +3768,11 @@ def create_adj_session(list_units, adj_list, conj_list):
 
     shuffle_list(session_list)
     adj_session_window(conjugations)
-    menu_1.destroy()
 
 
 def adj_session_window(conjugations):
     # This function runs the adjective conjugation trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -3487,19 +3781,19 @@ def adj_session_window(conjugations):
     global enter
     global input_box
 
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    new_button = Button(session_window, text="New Adjective", command=lambda: get_adj(conjugations))
-    input_box = Entry(session_window, font=("Arial", 30))
-    enter = Button(session_window, text="Enter", command=test_adj)
+    new_button = Button(main_frame, text="New Adjective", command=lambda: get_adj(conjugations))
+    input_box = Entry(main_frame, font=("Arial", 30))
+    enter = Button(main_frame, text="Enter", command=test_adj)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(session_window, text="Select the new adjective button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_adj)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    prompt = Label(main_frame, text="Select the new adjective button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_adj)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -3513,7 +3807,7 @@ def get_adj(conjugations):
     # this function gets an adjective from the session list and stores it in current and gets a conjugation type from
     # conjugations, and stores it in current_conj
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -3526,7 +3820,7 @@ def get_adj(conjugations):
     prompt_text = "Enter the " + current_conj + " conjugation of " + session_list[current].english + ":"
     # A random word is selected from the session list
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     # The old prompt is erased and the prompt for the new word is created and displayed
     new_button["state"] = DISABLED
@@ -3541,7 +3835,7 @@ def get_adj(conjugations):
 
 def test_adj():
     # This function checks whether the correct answer was entered
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -3555,7 +3849,7 @@ def test_adj():
             feedback.destroy()
         if answer.winfo_exists() == 1:
             answer.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
@@ -3563,17 +3857,17 @@ def test_adj():
     else:
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
 def show_adj():
     # This function displays the current verb in conjugated form
-    global session_window
+    global main_frame
     global answer
     global show_button
 
-    answer = Label(session_window, text=conjugate_adj(), font=("Arial", 15))
+    answer = Label(main_frame, text=conjugate_adj(), font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
@@ -3635,16 +3929,66 @@ def conjugate_adj():
             conj_adj = conj_adj[:len(conj_adj) - 2]
             conj_adj += "よくなかったです"
 
+    if current_conj == "short present affirmative":
+        if session_list[current].category == "i":
+            pass
+
+        if session_list[current].category == "na":
+            conj_adj = conj_adj[:len(conj_adj) - 1]
+            conj_adj += "だ"
+
+        if session_list[current].category == "irregular":
+            pass
+
+    if current_conj == "short present negative":
+        if session_list[current].category == "i":
+            conj_adj = conj_adj[:len(conj_adj) - 1]
+            conj_adj += "くない"
+
+        if session_list[current].category == "na":
+            conj_adj = conj_adj[:len(conj_adj) - 1]
+            conj_adj += "じゃない"
+
+        if session_list[current].category == "irregular":
+            conj_adj = conj_adj[:len(conj_adj) - 2]
+            conj_adj += "よくない"
+
+    if current_conj == "short past affirmative":
+        if session_list[current].category == "i":
+            conj_adj = conj_adj[:len(conj_adj) - 1]
+            conj_adj += "かった"
+
+        if session_list[current].category == "na":
+            conj_adj = conj_adj[:len(conj_adj) - 1]
+            conj_adj += "だった"
+
+        if session_list[current].category == "irregular":
+            conj_adj = conj_adj[:len(conj_adj) - 2]
+            conj_adj += "よかった"
+
+    if current_conj == "short past negative":
+        if session_list[current].category == "i":
+            conj_adj = conj_adj[:len(conj_adj) - 1]
+            conj_adj += "くなかった"
+
+        if session_list[current].category == "na":
+            conj_adj = conj_adj[:len(conj_adj) - 1]
+            conj_adj += "じゃなかった"
+
+        if session_list[current].category == "irregular":
+            conj_adj = conj_adj[:len(conj_adj) - 2]
+            conj_adj += "よくなかった"
+
     return conj_adj
 
 
 def kanji_menu():
     # This function creates the menu that allows user to customize their kanji session
-    global menu_1
+    global main_frame
     global session_type
 
-    menu_1 = Toplevel()
-    menu_1.title("Kanji Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     unit_1 = StringVar()
     unit_2 = StringVar()
@@ -3658,6 +4002,7 @@ def kanji_menu():
     unit_10 = StringVar()
     unit_11 = StringVar()
     unit_12 = StringVar()
+    bonus_1 = StringVar()
     session_type = StringVar()
     session_type.set("flashcard")
 
@@ -3672,23 +4017,25 @@ def kanji_menu():
                  unit_9,
                  unit_10,
                  unit_11,
-                 unit_12]
+                 unit_12,
+                 bonus_1]
 
-    unit_label = Label(menu_1, text="Select the units you would like to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    unit_label = Label(main_frame, text="Select the units you would like to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
-    unit_1_check = Checkbutton(menu_1, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
-    unit_2_check = Checkbutton(menu_1, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
-    unit_3_check = Checkbutton(menu_1, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
-    unit_4_check = Checkbutton(menu_1, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
-    unit_5_check = Checkbutton(menu_1, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
-    unit_6_check = Checkbutton(menu_1, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
-    unit_7_check = Checkbutton(menu_1, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
-    unit_8_check = Checkbutton(menu_1, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
-    unit_9_check = Checkbutton(menu_1, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
-    unit_10_check = Checkbutton(menu_1, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
-    unit_11_check = Checkbutton(menu_1, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
-    unit_12_check = Checkbutton(menu_1, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    unit_1_check = Checkbutton(main_frame, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
+    unit_2_check = Checkbutton(main_frame, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
+    unit_3_check = Checkbutton(main_frame, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
+    unit_4_check = Checkbutton(main_frame, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
+    unit_5_check = Checkbutton(main_frame, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
+    unit_6_check = Checkbutton(main_frame, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
+    unit_7_check = Checkbutton(main_frame, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
+    unit_8_check = Checkbutton(main_frame, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
+    unit_9_check = Checkbutton(main_frame, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
+    unit_10_check = Checkbutton(main_frame, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
+    unit_11_check = Checkbutton(main_frame, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
+    unit_12_check = Checkbutton(main_frame, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    bonus_1_check = Checkbutton(main_frame, text="bonus 1", variable=bonus_1, onvalue="bonus 1", offvalue="")
 
     unit_label.grid(row=0, column=0)
     unit_1_check.grid(row=1, column=0)
@@ -3703,6 +4050,7 @@ def kanji_menu():
     unit_10_check.grid(row=10, column=0)
     unit_11_check.grid(row=11, column=0)
     unit_12_check.grid(row=12, column=0)
+    bonus_1_check.grid(row=13, column=0)
 
     unit_1_check.deselect()
     unit_2_check.deselect()
@@ -3716,21 +4064,22 @@ def kanji_menu():
     unit_10_check.deselect()
     unit_11_check.deselect()
     unit_12_check.deselect()
+    bonus_1_check.deselect()
 
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
     session_label.grid(row=0, column=1)
     flashcard.grid(row=1, column=1)
     test_session.grid(row=2, column=1)
 
-    session_button = Button(menu_1, text="Create Session", command=lambda: create_kanji_session(unit_list), pady=10)
+    session_button = Button(main_frame, text="Create Session", command=lambda: create_kanji_session(unit_list), pady=10)
 
-    session_button.grid(row=13, column=0, columnspan=1)
+    session_button.grid(row=14, column=0, columnspan=1)
 
 
 def create_kanji_session(unit_list):
     # This function creates a session by creating a session list and calling the kanji session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -3742,12 +4091,11 @@ def create_kanji_session(unit_list):
 
     shuffle_list(session_list)
     kanji_session_window()
-    menu_1.destroy()
 
 
 def kanji_session_window():
     # This function runs the kanji trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -3757,19 +4105,19 @@ def kanji_session_window():
     global input_box
     global session_type
 
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    new_button = Button(session_window, text="New Kanji", command=get_kanji)
-    input_box = Entry(session_window, font=("Arial", 30))
-    enter = Button(session_window, text="Enter", command=test_kanji)
+    new_button = Button(main_frame, text="New Kanji", command=get_kanji)
+    input_box = Entry(main_frame, font=("Arial", 30))
+    enter = Button(main_frame, text="Enter", command=test_kanji)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(session_window, text="Select the new kanji button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_kanji)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    prompt = Label(main_frame, text="Select the new kanji button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_kanji)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -3782,7 +4130,7 @@ def kanji_session_window():
 def get_kanji():
     # this function gets a kanji from the session list and stores it in current word
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -3803,11 +4151,11 @@ def get_kanji():
             session_list[i].num_correct = 0
             session_list[current].first_attempt = True
         end_message = "Session complete, you may keep studying or exit to start new session"
-        end_label = Label(session_window, text=end_message, font=("Arial", 15))
+        end_label = Label(main_frame, text=end_message, font=("Arial", 15))
         end_label.grid(row=4, column=0, columnspan=3)
     prompt_text = "Enter the Hiragana word for " + session_list[current].kanji + ":"
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     # The old prompt is erased and the prompt for the new kanji is created and displayed
     new_button["state"] = DISABLED
@@ -3822,7 +4170,7 @@ def get_kanji():
 
 def test_kanji():
     # This function checks whether the correct answer was entered
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -3839,7 +4187,7 @@ def test_kanji():
             feedback.destroy()
         if answer.winfo_exists() == 1:
             answer.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
@@ -3850,13 +4198,13 @@ def test_kanji():
             session_list[current].first_attempt = False
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
 def show_kanji():
     # This function displays the current kanji
-    global session_window
+    global main_frame
     global current
     global answer
     global show_button
@@ -3864,7 +4212,7 @@ def show_kanji():
     session_list[current].num_correct = 0
     if session_list[current].first_attempt:
         session_list[current].first_attempt = False
-    answer = Label(session_window, text=session_list[current].japanese, font=("Arial", 15))
+    answer = Label(main_frame, text=session_list[current].japanese, font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
@@ -3873,10 +4221,10 @@ def show_kanji():
 
 def kanji_w_menu():
     # This function creates the menu that allows user to customize their kanji writing session
-    global menu_1
+    global main_frame
 
-    menu_1 = Toplevel()
-    menu_1.title("Kanji Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     unit_1 = StringVar()
     unit_2 = StringVar()
@@ -3890,6 +4238,7 @@ def kanji_w_menu():
     unit_10 = StringVar()
     unit_11 = StringVar()
     unit_12 = StringVar()
+    bonus_1 = StringVar()
 
     unit_list = [unit_1,
                  unit_2,
@@ -3902,22 +4251,24 @@ def kanji_w_menu():
                  unit_9,
                  unit_10,
                  unit_11,
-                 unit_12]
+                 unit_12,
+                 bonus_1]
 
-    unit_label = Label(menu_1, text="Select the units you would like to study:", padx=50)
+    unit_label = Label(main_frame, text="Select the units you would like to study:", padx=50)
 
-    unit_1_check = Checkbutton(menu_1, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
-    unit_2_check = Checkbutton(menu_1, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
-    unit_3_check = Checkbutton(menu_1, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
-    unit_4_check = Checkbutton(menu_1, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
-    unit_5_check = Checkbutton(menu_1, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
-    unit_6_check = Checkbutton(menu_1, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
-    unit_7_check = Checkbutton(menu_1, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
-    unit_8_check = Checkbutton(menu_1, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
-    unit_9_check = Checkbutton(menu_1, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
-    unit_10_check = Checkbutton(menu_1, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
-    unit_11_check = Checkbutton(menu_1, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
-    unit_12_check = Checkbutton(menu_1, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    unit_1_check = Checkbutton(main_frame, text="unit 1", variable=unit_1, onvalue="unit 1", offvalue="")
+    unit_2_check = Checkbutton(main_frame, text="unit 2", variable=unit_2, onvalue="unit 2", offvalue="")
+    unit_3_check = Checkbutton(main_frame, text="unit 3", variable=unit_3, onvalue="unit 3", offvalue="")
+    unit_4_check = Checkbutton(main_frame, text="unit 4", variable=unit_4, onvalue="unit 4", offvalue="")
+    unit_5_check = Checkbutton(main_frame, text="unit 5", variable=unit_5, onvalue="unit 5", offvalue="")
+    unit_6_check = Checkbutton(main_frame, text="unit 6", variable=unit_6, onvalue="unit 6", offvalue="")
+    unit_7_check = Checkbutton(main_frame, text="unit 7", variable=unit_7, onvalue="unit 7", offvalue="")
+    unit_8_check = Checkbutton(main_frame, text="unit 8", variable=unit_8, onvalue="unit 8", offvalue="")
+    unit_9_check = Checkbutton(main_frame, text="unit 9", variable=unit_9, onvalue="unit 9", offvalue="")
+    unit_10_check = Checkbutton(main_frame, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
+    unit_11_check = Checkbutton(main_frame, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
+    unit_12_check = Checkbutton(main_frame, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    bonus_1_check = Checkbutton(main_frame, text="bonus 1", variable=bonus_1, onvalue="bonus 1", offvalue="")
 
     unit_label.grid(row=0, column=0)
     unit_1_check.grid(row=1, column=0)
@@ -3932,6 +4283,7 @@ def kanji_w_menu():
     unit_10_check.grid(row=10, column=0)
     unit_11_check.grid(row=11, column=0)
     unit_12_check.grid(row=12, column=0)
+    bonus_1_check.grid(row=13, column=0)
 
     unit_1_check.deselect()
     unit_2_check.deselect()
@@ -3945,15 +4297,17 @@ def kanji_w_menu():
     unit_10_check.deselect()
     unit_11_check.deselect()
     unit_12_check.deselect()
+    bonus_1_check.deselect()
 
-    session_button = Button(menu_1, text="Create Session", command=lambda: create_kanji_w_session(unit_list), pady=10)
+    session_button = Button(main_frame, text="Create Session",
+                            command=lambda: create_kanji_w_session(unit_list), pady=10)
 
-    session_button.grid(row=13, column=0, columnspan=1)
+    session_button.grid(row=14, column=0, columnspan=1)
 
 
 def create_kanji_w_session(unit_list):
     # This function creates a session by creating a session list and calling the kanji writing session window function
-    global menu_1
+    global main_frame
     global current
 
     session_list.clear()
@@ -3965,24 +4319,24 @@ def create_kanji_w_session(unit_list):
 
     shuffle_list(session_list)
     kanji_w_session_window()
-    menu_1.destroy()
 
 
 def kanji_w_session_window():
     # This function runs the kanji writing trainer session
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
     global show_button
-    session_window = Toplevel()
-    session_window.title("Current session")
-    session_window.geometry("1200x800")
 
-    new_button = Button(session_window, text="New Kanji", command=get_kanji_w)
-    prompt = Label(session_window, text="Select the new kanji button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the show kanji button to reveal the character", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Kanji", command=show_kanji_w)
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+
+    new_button = Button(main_frame, text="New Kanji", command=get_kanji_w)
+    prompt = Label(main_frame, text="Select the new kanji button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the show kanji button to reveal the character", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Kanji", command=show_kanji_w)
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=0, column=0)
     prompt.grid(row=1, column=0, columnspan=2)
@@ -3993,7 +4347,7 @@ def kanji_w_session_window():
 def get_kanji_w():
     # this function gets a kanji from the session list and stores it in current char
     global current
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -4004,7 +4358,7 @@ def get_kanji_w():
     prompt_text = "Draw the kanji character for " + session_list[current].english + " / " \
                   + session_list[current].japanese + ":"
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=1, column=0, columnspan=2)
     # The old prompt is erased and the prompt for the new kanji is created and displayed
     new_button["state"] = DISABLED
@@ -4015,13 +4369,13 @@ def get_kanji_w():
 
 def show_kanji_w():
     # This function displays the current kanji
-    global session_window
+    global main_frame
     global current
     global feedback
     global show_button
 
     feedback.destroy()
-    feedback = Label(session_window, text=session_list[current].kanji, font=("IPAMincho", 80))
+    feedback = Label(main_frame, text=session_list[current].kanji, font=("IPAMincho", 80))
     feedback.grid(row=2, column=0, columnspan=2)
     show_button["state"] = DISABLED
     new_button["state"] = NORMAL
@@ -4031,24 +4385,24 @@ def counters_menu():
     # This function creates the menu that allows user to customize their counter study session
     global session_type
     global session_type_alt
-    global menu_1
+    global main_frame
 
-    menu_1 = Toplevel()
-    menu_1.title("Counter Trainer Session Menu")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
     session_type = StringVar()
     session_type.set("flashcard")
     session_type_alt = StringVar()
     session_type_alt.set("hiragana")
 
-    type_label = Label(menu_1, text="Select the character type to study:", padx=50)
-    session_label = Label(menu_1, text="Select which session type you would like:", padx=50)
+    type_label = Label(main_frame, text="Select the character type to study:", padx=50)
+    session_label = Label(main_frame, text="Select which session type you would like:", padx=50)
 
-    hir_button = Radiobutton(menu_1, text="hiragana", variable=session_type_alt, value="hiragana")
-    kanji_button = Radiobutton(menu_1, text="kanji", variable=session_type_alt, value="kanji")
+    hir_button = Radiobutton(main_frame, text="hiragana", variable=session_type_alt, value="hiragana")
+    kanji_button = Radiobutton(main_frame, text="kanji", variable=session_type_alt, value="kanji")
 
-    flashcard = Radiobutton(menu_1, text="flashcards", variable=session_type, value="flashcard")
-    test_session = Radiobutton(menu_1, text="test", variable=session_type, value="test")
+    flashcard = Radiobutton(main_frame, text="flashcards", variable=session_type, value="flashcard")
+    test_session = Radiobutton(main_frame, text="test", variable=session_type, value="test")
 
     type_label.grid(row=0, column=0)
     hir_button.grid(row=1, column=0)
@@ -4058,15 +4412,15 @@ def counters_menu():
     flashcard.grid(row=1, column=1)
     test_session.grid(row=2, column=1)
 
-    session_button = Button(menu_1, text="Create Session", command=create_counter_session, pady=10)
+    session_button = Button(main_frame, text="Create Session", command=create_counter_session, pady=10)
 
     session_button.grid(row=3, column=0, columnspan=1)
 
 
 def create_counter_session():
     # This function creates a session by creating a session list and calling the counter session window function
-    global menu_1
-    global kanji
+    global main_frame
+    global is_kanji
     global hiragana
 
     session_list.clear()
@@ -4075,32 +4429,32 @@ def create_counter_session():
         session_list.append(i)
 
     counter_session_window()
-    menu_1.destroy()
 
 
 def counter_session_window():
     # this function runs the number practice window
     global prompt
     global feedback
-    global session_window
+    global main_frame
     global new_button
     global answer
     global show_button
     global input_box
     global enter
 
-    session_window = Toplevel()
-    session_window.title("Japanese counter practice")
+    for widget in main_frame.winfo_children():
+        widget.destroy()
 
-    new_button = Button(session_window, text="New prompt", command=get_counter)
-    input_box = Entry(session_window, font=("Arial", 30), width=35)
-    enter = Button(session_window, text="Enter", command=test_counter)
+    new_button = Button(main_frame, text="New prompt", command=get_counter)
+    input_box = Entry(main_frame, font=("Arial", 30), width=35)
+    enter = Button(main_frame, text="Enter", command=test_counter)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(session_window, text="Select the new prompt button to start practicing", font=("Arial", 15))
-    feedback = Label(session_window, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(session_window, text="Show Answer", command=show_counter)
-    answer = Label(session_window, text="", font=("Arial", 15))
+    prompt = Label(main_frame, text="Select the new prompt button to start practicing", font=("Arial", 15))
+    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
+    show_button = Button(main_frame, text="Show Answer", command=show_counter)
+    answer = Label(main_frame, text="", font=("Arial", 15))
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
@@ -4112,7 +4466,7 @@ def counter_session_window():
 
 def show_counter():
     # This function displays the current counter
-    global session_window
+    global main_frame
     global current_num
     global current
     global answer
@@ -4120,7 +4474,7 @@ def show_counter():
 
     if answer.winfo_exists() == 1:
         answer.destroy()
-    answer = Label(session_window, text=counter_convert(str(current_num), current), font=("Arial", 15))
+    answer = Label(main_frame, text=counter_convert(str(current_num), current), font=("Arial", 15))
     answer.grid(row=4, column=0, columnspan=3)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
@@ -4129,7 +4483,7 @@ def show_counter():
 
 def test_counter():
     # This function tests whether the entry is correct for the counter trainer
-    global session_window
+    global main_frame
     global input_box
     global new_button
     global feedback
@@ -4139,21 +4493,21 @@ def test_counter():
     if current_entry == counter_convert(current_num, current):
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="correct", font=("Arial", 15))
+        feedback = Label(main_frame, text="correct", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
     else:
         if feedback.winfo_exists() == 1:
             feedback.destroy()
-        feedback = Label(session_window, text="incorrect", font=("Arial", 15))
+        feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
         feedback.grid(row=3, column=0, columnspan=3)
 
 
 def get_counter():
     # this function creates the number for the counter trainer
     global current_num
-    global session_window
+    global main_frame
     global new_button
     global prompt
     global feedback
@@ -4178,7 +4532,7 @@ def get_counter():
     if session_type_alt.get() == "kanji":
         prompt_text = "Enter the Hiragana for " + counter_kanji(current_num, current) + ":"
     prompt.destroy()
-    prompt = Label(session_window, text=prompt_text, font=("Arial", 15))
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
     prompt.grid(row=2, column=0, columnspan=3)
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -4189,7 +4543,6 @@ def get_counter():
 
 def counter_convert(curr_num, curr):
     converted = ""
-    crit_value = ""
 
     num_dict = {"1": "いち",
                 "2": "に",
@@ -4529,25 +4882,142 @@ def shuffle_list(a_list):
         a_list[i] = temp
 
 
-if __name__ == "__main__":
+def study_menu():
     # This is the main loop that the program runs in
-    root = Tk()
+
+    global main_frame
+
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+
+    Label(main_frame, text="select what you would like to study below").pack()
+
+    Button(main_frame, text="Characters", command=character_menu).pack()
+    Button(main_frame, text="Character Writing", command=character_w_menu).pack()
+    Button(main_frame, text="Vocabulary", command=vocab_menu).pack()
+    Button(main_frame, text="Particles", command=particle_menu).pack()
+    Button(main_frame, text="Numbers", command=num_menu).pack()
+    Button(main_frame, text="Time", command=time_menu).pack()
+    Button(main_frame, text="Calendar", command=calendar_menu).pack()
+    Button(main_frame, text="Verb Conjugation", command=verb_menu).pack()
+    Button(main_frame, text="Adjective Conjugation", command=adjective_menu).pack()
+    Button(main_frame, text="Kanji Identification", command=kanji_menu).pack()
+    Button(main_frame, text="Kanji Writing", command=kanji_w_menu).pack()
+    Button(main_frame, text="Counters", command=counters_menu).pack()
+
+
+def settings():
+    global window_width
+    global window_height
+    global window_option
+    global root
+    global main_frame
+
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+
+    Label(main_frame, text="setting menu").grid(row=0, column=0)
+    Label(main_frame, text="window size").grid(row=1, column=0)
+
+    full_screen_button = Radiobutton(main_frame, text="fullscreen", variable=window_option, value="fullscreen")
+    detected_button = Radiobutton(main_frame, text="detected screen size", variable=window_option,
+                                  value="detected screen size")
+    custom_button = Radiobutton(main_frame, text="custom", variable=window_option, value="custom")
+    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
+
+    full_screen_button.grid(row=2, column=0)
+    detected_button.grid(row=3, column=0)
+    custom_button.grid(row=4, column=0)
+
+    width_option = Entry(main_frame, font=("Arial", 15), width=10)
+    height_option = Entry(main_frame, font=("Arial", 15), width=10)
+
+    width_option.grid(row=5, column=0)
+    height_option.grid(row=6, column=0)
+
+    apply_button = Button(main_frame, text="apply", command=lambda: apply(width_option.get(), height_option.get()))
+
+    apply_button.grid(row=7, column=0)
+
+
+def apply(width, height):
+    global window_width
+    global window_height
+    global window_option
+    global root
+    global main_frame
+
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+    main_frame.destroy()
+
+    if window_option.get() == "fullscreen":
+        root.attributes('-fullscreen', True)
+        window_width = root.winfo_screenwidth()
+        window_height = root.winfo_screenheight()
+        width_offset = (int(root.winfo_screenwidth() / 2)) - (int(window_width / 2))
+        height_offset = (int(root.winfo_screenheight() / 2)) - (int(window_height / 2))
+        root.geometry(str(window_width) + "x" + str(window_height) + "+" + str(width_offset) + "+" + str(height_offset))
+
+    elif window_option.get() == "detected screen size":
+        root.attributes('-fullscreen', False)
+        window_width = root.winfo_screenwidth()
+        window_height = root.winfo_screenheight()
+        width_offset = (int(root.winfo_screenwidth() / 2)) - (int(window_width / 2))
+        height_offset = (int(root.winfo_screenheight() / 2)) - (int(window_height / 2))
+        root.geometry(str(window_width) + "x" + str(window_height) + "+" + str(width_offset) + "+" + str(height_offset))
+
+    elif window_option.get() == "custom":
+        root.attributes('-fullscreen', False)
+        window_width = int(width)
+        window_height = int(height)
+        width_offset = (int(root.winfo_screenwidth() / 2)) - (int(window_width / 2))
+        height_offset = (int(root.winfo_screenheight() / 2)) - (int(window_height / 2))
+        root.geometry(str(window_width) + "x" + str(window_height) + "+" + str(width_offset) + "+" + str(height_offset))
+
+    main_frame = LabelFrame(root, borderwidth=0, highlightthickness=0)
+    main_frame.pack()
+
+    settings()
+
+
+def main_menu():
+    # This is the main loop that the program runs in
+    global main_frame
+
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+
+    Label(main_frame, text="welcome to the japanese trainer").grid(row=0, column=0)
+
+    Button(main_frame, text="Study", command=study_menu).grid(row=1, column=0)
+    Button(main_frame, text="Settings", command=settings).grid(row=2, column=0)
+
+
+def launch():
+    global window_width
+    global window_height
+    global main_frame
+    global window_option
+    global root
+
+    window_width = root.winfo_screenwidth()
+    window_height = root.winfo_screenheight()
+    width_offset = (int(root.winfo_screenwidth() / 2)) - (int(window_width / 2))
+    height_offset = (int(root.winfo_screenheight() / 2)) - (int(window_height / 2))
+    window_option = StringVar()
+    window_option.set("fullscreen")
+    root.geometry(str(window_width) + "x" + str(window_height) + "+" + str(width_offset) + "+" + str(height_offset))
+    if window_option.get() == "fullscreen":
+        root.attributes('-fullscreen', True)
     root.title("Japanese Trainer")
+    main_frame = LabelFrame(root, borderwidth=0, highlightthickness=0)
+    main_frame.pack()
 
-    Label(root, text="welcome to the japanese trainer").pack()
-    Label(root, text="select what you would like to study below").pack()
+    main_menu()
 
-    Button(root, text="Characters", command=character_menu).pack()
-    Button(root, text="Character Writing", command=character_w_menu).pack()
-    Button(root, text="Vocabulary", command=vocab_menu).pack()
-    Button(root, text="Particles", command=particle_menu).pack()
-    Button(root, text="Numbers", command=num_menu).pack()
-    Button(root, text="Time", command=time_menu).pack()
-    Button(root, text="Calendar", command=calendar_menu).pack()
-    Button(root, text="Verb Conjugation", command=verb_menu).pack()
-    Button(root, text="Adjective Conjugation", command=adjective_menu).pack()
-    Button(root, text="Kanji Identification", command=kanji_menu).pack()
-    Button(root, text="Kanji Writing", command=kanji_w_menu).pack()
-    Button(root, text="Counters", command=counters_menu).pack()
 
+if __name__ == "__main__":
+    root = Tk()
+    launch()
     root.mainloop()
