@@ -15,6 +15,8 @@ import pyglet
 # add 201
 
 # make it look nicer
+#   use empty labels with padding as spacers to format
+#   research how to make more compelling designs
 # make into executable　
 # update writing trainer to include stroke order
 # create real language generator for particle and reading practice
@@ -38,9 +40,11 @@ class Character:
 class Word:
     # This class represents words that will be studied in the vocab trainer, and includes member variables that both
     # sort and determine the words
-    def __init__(self, word_type="", category="", subject="", english="", japanese="", source="", unit="",
+    def __init__(self, word_type="", category="", subject="", english="", japanese="", source="", unit=None,
                  kanji="", num_correct=0):
         # String that determines noun, adjective etc.
+        if unit is None:
+            unit = [""]
         self.type = word_type
         # A string value for sorting words
         self.category = category
@@ -130,7 +134,7 @@ char_list = [Character("hiragana", "あ", "a"),
              Character("hiragana", "わ", "wa"),
              Character("hiragana", "を", "wo"),
              Character("hiragana", "ん", "n"),
-             Character("hiragana", "が", "ga"),
+             Character("mod hiragana", "が", "ga"),
              Character("mod hiragana", "ぎ", "gi"),
              Character("mod hiragana", "ぐ", "gu"),
              Character("mod hiragana", "げ", "ge"),
@@ -318,809 +322,810 @@ char_list = [Character("hiragana", "あ", "a"),
              Character("rare katakana", "ヴォ", "vo")]
 
 # The following is a list of all the words the trainer will use
-vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101", "unit 1", "お父さん"),
-              Word("noun", "person", "family", "mother", "おかあさん", "101", "unit 1", "お母さん"),
-              Word("noun", "person", "family", "older brother", "おにいさん", "101", "unit 1", "お兄さん"),
-              Word("noun", "person", "family", "younger brother", "おとうと", "101", "unit 1", "弟"),
-              Word("noun", "person", "family", "older sister", "おねえさん", "101", "unit 1", "お姉さん"),
-              Word("noun", "person", "family", "younger sister", "いもうと", "101", "unit 1", "妹"),
-              Word("noun", "person", "family", "family", "かぞく", "101", "unit 1", "家族"),
-              Word("noun", "person", "family", "grandfather", "おじいさん", "102", "unit 7"),
-              Word("noun", "person", "family", "grandmother", "おばあさん", "102", "unit 7"),
-              Word("noun", "person", "family", "my father", "ちち", "102", "unit 7", "父"),
-              Word("noun", "person", "family", "my mother", "はは", "102", "unit 7", "母"),
-              Word("noun", "person", "family", "my older brother", "あに", "102", "unit 7", "兄"),
-              Word("noun", "person", "family", "my older sister", "あね", "102", "unit 7", "姉"),
-              Word("noun", "person", "family", "siblings", "きょうだい", "102", "unit 7", "兄弟"),
-              Word("noun", "person", "family", "host family", "ホストファミリー", "102", "unit 11"),
-              Word("noun", "person", "family", "husband", "ごしゅじん", "102", "bonus 1", "ご主人"),
-              Word("noun", "person", "family", "wife", "おくさん", "102", "bonus 1", "奥さん"),
-              Word("noun", "person", "family", "my husband", "おっと", "102", "bonus 1", "夫"),
-              Word("noun", "person", "family", "my wife", "つま", "102", "bonus 1", "妻"),
-              Word("noun", "person", "family", "my grandfather", "そふ", "102", "bonus 1", "祖父"),
-              Word("noun", "person", "family", "my grandmother", "そぼ", "102", "bonus 1", "祖母"),
-              Word("noun", "person", "school", "teacher", "せんせい", "101", "unit 1", "先生"),
-              Word("noun", "person", "school", "student", "がくせい", "101", "unit 1", "学生"),
-              Word("noun", "person", "school", "college student", "だいがくせい", "101", "unit 1", "大学生"),
-              Word("noun", "person", "school", "international student", "りゅうがくせい", "101", "unit 1"),
-              Word("noun", "person", "school", "first year student", "いちねんせい", "101", "unit 1", "一年生"),
-              Word("noun", "person", "school", "second year student", "にねんせい", "101", "unit 1", "二年生"),
-              Word("noun", "person", "school", "third year student", "さんねんせい", "101", "unit 1", "三年生"),
-              Word("noun", "person", "school", "fourth year student", "よんねんせい", "101", "unit 1", "四年生"),
-              Word("noun", "person", "school", "high school student", "こうこうせい", "101", "unit 1", "高校生"),
-              Word("noun", "person", "school", "graduate student", "だいがくいんせい", "101", "unit 1"),
-              Word("noun", "person", "occupation", "doctor", "いしゃ", "101", "unit 1", "医者"),
-              Word("noun", "person", "occupation", "office worker", "かいしゃいん", "101", "unit 1", "会社員"),
-              Word("noun", "person", "occupation", "nurse", "かんごし", "101", "unit 1", "看護師"),
-              Word("noun", "person", "occupation", "housewife", "しゅふ", "101", "unit 1"),
-              Word("noun", "person", "occupation", "lawyer", "べんごし", "101", "unit 1"),
-              Word("noun", "person", "occupation", "occupation", "しごと", "101", "unit 1", "仕事"),
-              Word("noun", "person", "occupation", "singer", "かしゅ", "102", "unit 11", "歌手"),
-              Word("noun", "person", "occupation", "president of a company", "しゃちょう", "102", "unit 11", "社長"),
-              Word("noun", "person", "occupation", "writer", "さっか", "102", "unit 11", "作家"),
-              Word("noun", "person", "occupation", "journalist", "ジャーナリスト", "102", "unit 11"),
-              Word("noun", "person", "occupation", "police officer", "けいさつかん", "102", "unit 11", "警察官"),
-              Word("noun", "person", "occupation", "firefighter", "しょうぼうし", "102", "unit 11", "消防士"),
-              Word("noun", "person", "occupation", "schoolteacher", "きょうし", "102", "unit 11", "教師"),
-              Word("noun", "person", "occupation", "researcher", "けんきゅうしゃ", "102", "unit 11", "研究者"),
-              Word("noun", "person", "occupation", "astronaut", "うちゅうひこうし", "102", "unit 11", "宇宙飛行士"),
-              Word("noun", "person", "occupation", "athlete", "スポーツせんしゅ", "102", "unit 11", "スポーツ選手"),
-              Word("noun", "person", "occupation", "president of a country", "だいとうりょう", "102", "unit 11", "大統領"),
-              Word("noun", "person", "occupation", "actor", "はいゆう", "102", "unit 11", "俳優"),
-              Word("noun", "person", "occupation", "chef", "シェフ", "102", "unit 11"),
-              Word("noun", "person", "occupation", "cartoonist", "まんがか", "102", "unit 11", "漫画家"),
-              Word("noun", "person", "nationality", "japanese person", "にほんじん", "101", "unit 1", "日本人"),
-              Word("noun", "person", "nationality", "american person", "アメリカじん", "101", "unit 1"),
-              Word("noun", "person", "other", "friend", "ともだち", "101", "unit 1", "友だち"),
-              Word("noun", "person", "other", "person", "ひと", "101", "unit 4", "人"),
-              Word("noun", "person", "other", "child", "こども", "101", "unit 4", "子供"),
-              Word("noun", "person", "other", "man", "おとこのひと", "102", "unit 7", "男の人"),
-              Word("noun", "person", "other", "woman", "おんなのひと", "102", "unit 7", "女の子"),
-              Word("noun", "person", "other", "good child", "いいこ", "102", "unit 9", "いい子"),
-              Word("noun", "person", "other", "rich person", "おかねもち", "102", "unit 10", "お金持ち"),
-              Word("noun", "person", "other", "celebrity", "ゆうめいじん", "102", "unit 10", "有名人"),
-              Word("noun", "person", "other", "someone older", "としうえ", "102", "unit 10", "年上"),
-              Word("noun", "person", "other", "this person", "こちら", "102", "unit 11"),
-              Word("noun", "person", "other", "roommate", "ルームメイト", "102", "unit 11"),
-              Word("noun", "person", "other", "she/girlfriend", "かのじょ", "102", "unit 12", "彼女"),
-              Word("noun", "person", "other", "he/boyfriend", "かれ", "102", "unit 12", "彼"),
-              Word("noun", "person", "other", "boyfriend", "かれし", "102", "unit 12", "彼氏"),
-              Word("noun", "person", "other", "physician", "ないか", "102", "bonus 1", "内科"),
-              Word("noun", "person", "other", "dermatologist", "ひふか", "102", "bonus 1", "皮膚科"),
-              Word("noun", "person", "other", "surgeon", "げか", "102", "bonus 1", "外科"),
-              Word("noun", "person", "other", "dentist", "しか", "102", "bonus 1", "歯科"),
-              Word("noun", "place", "biome", "university", "だいがく", "101", "unit 1", "大学"),
-              Word("noun", "place", "building", "high school", "こうこう", "101", "unit 1", "高校"),
-              Word("noun", "place", "building", "home", "いえ", "101", "unit 3", "家"),
-              Word("noun", "place", "building", "restaurant", "レストラン", "101", "unit 4"),
-              Word("noun", "place", "building", "store", "みせ", "100", "unit 2"),
-              Word("noun", "place", "building", "my place", "うち", "100", "unit 3"),
-              Word("noun", "place", "building", "cafe", "カフェ", "100", "unit 3"),
-              Word("noun", "place", "building", "school", "がっこう", "101", "unit 3", "学校"),
-              Word("noun", "place", "building", "hospital", "びょういん", "101", "unit 4", "病院"),
-              Word("noun", "place", "building", "bank", "ぎんこう", "101", "unit 2"),
-              Word("noun", "place", "building", "temple", "おてら", "101", "unit 4", "お寺"),
-              Word("noun", "place", "building", "supermarket", "スーパー", "101", "unit 4"),
-              Word("noun", "place", "building", "hotel", "ホテル", "101", "unit 4"),
-              Word("noun", "place", "building", "bookstore", "ほんや", "101", "unit 4", "本屋"),
-              Word("noun", "place", "building", "convenience store", "コンビニ", "101", "unit 2"),
-              Word("noun", "place", "building", "department store", "デパート", "102", "unit 7"),
-              Word("noun", "place", "building", "beauty parlor", "びよういん", "102", "unit 10", "美容院"),
-              Word("noun", "place", "building", "library", "としょかん", "101", "unit 2"),
-              Word("noun", "place", "building", "post office", "ゆうびんきょく", "101", "unit 2"),
-              Word("noun", "place", "building", "art museum", "びじゅつかん", "102", "unit 11", "美術館"),
-              Word("noun", "place", "country", "britain", "イギリス", "101", "unit 1"),
-              Word("noun", "place", "country", "australia", "オーストラリア", "101", "unit 1"),
-              Word("noun", "place", "country", "canada", "カナダ", "101", "unit 1"),
-              Word("noun", "place", "country", "india", "インド", "101", "unit 1"),
-              Word("noun", "place", "country", "egypt", "エジプト", "101", "unit 1"),
-              Word("noun", "place", "country", "philippines", "フィリピン", "101", "unit 1"),
-              Word("noun", "place", "country", "japan", "にほん", "101", "unit 1", "日本"),
-              Word("noun", "place", "country", "united states", "アメリカ", "101", "unit 1"),
-              Word("noun", "place", "country", "korea", "かんこく", "101", "unit 1"),
-              Word("noun", "place", "country", "country", "くに", "101", "unit 1", "国"),
-              Word("noun", "place", "country", "china", "ちゅうごく", "101", "unit 1"),
-              Word("noun", "place", "country", "spain", "スペイン", "102", "unit 8"),
-              Word("noun", "place", "country", "foreign country", "がいこく", "102", "unit 11", "外国"),
-              Word("noun", "place", "room", "restroom", "トイレ", "101", "unit 2"),
-              Word("noun", "place", "room", "cafeteria", "しょくどう", "102", "unit 7", "食堂"),
-              Word("noun", "place", "room", "room", "へや", "101", "unit 5", "部屋"),
-              Word("noun", "place", "room", "restroom", "おてあらい", "102", "unit 12", "お手洗い"),
-              Word("noun", "place", "biome", "town", "まち", "101", "unit 4", "町"),
-              Word("noun", "place", "biome", "sea", "うみ", "101", "unit 5", "海"),
-              Word("noun", "place", "biome", "river", "かわ", "102", "unit 11", "川"),
-              Word("noun", "place", "biome", "lake", "みずうみ", "102", "unit 11", "湖"),
-              Word("noun", "place", "biome", "mountain", "やま", "102", "unit 11", "山"),
-              Word("noun", "place", "other", "park", "こうえん", "101", "unit 4", "公園"),
-              Word("noun", "place", "other", "bus stop", "バスてい", "101", "unit 4", "バス停"),
-              Word("noun", "place", "other", "place", "ところ", "102", "unit 8", "所"),
-              Word("noun", "place", "other", "station", "えき", "102", "unit 10", "駅"),
-              Word("noun", "place", "other", "subway", "ちかてつ", "102", "unit 10", "地下鉄"),
-              Word("noun", "place", "other", "zoo", "どうぶつえん", "102", "unit 10", "動物園"),
-              Word("noun", "place", "other", "world", "せかい", "102", "unit 10", "世界"),
-              Word("noun", "place", "other", "spa/hot spring", "おんせん", "102", "unit 11", "温泉"),
-              Word("noun", "place", "other", "camp", "キャンプ", "102", "unit 11"),
-              Word("noun", "place", "other", "shrine", "じんじゃ", "102", "unit 11", "神社"),
-              Word("noun", "place", "other", "ticket vending area", "きっぷうりば", "102", "bonus 1", "切符売り場"),
-              Word("noun", "place", "other", "gate (train)", "かいさつ", "102", "bonus 1", "改札"),
-              Word("noun", "place", "other", "platform (train)", "ホーム", "102", "bonus 1"),
-              Word("noun", "place", "other", "shop/stand", "ばいてん", "102", "bonus 1", "売店"),
-              Word("noun", "place", "other", "exit", "でぐち", "102", "bonus 1", "出口"),
-              Word("noun", "place", "other", "entrance", "入口", "102", "bonus 1", "神社"),
-              Word("noun", "place", "other", "stairs", "かいだん", "102", "bonus 1", "階段"),
-              Word("noun", "thing", "clothes", "t-shirt", "ティーシャツ", "101", "unit 2"),
-              Word("noun", "thing", "clothes", "watch", "とけい", "101", "unit 2"),
-              Word("noun", "thing", "clothes", "shoe", "くつ", "101", "unit 2"),
-              Word("noun", "thing", "clothes", "jeans", "ジーンズ", "101", "unit 2"),
-              Word("noun", "thing", "clothes", "hat", "ぼうし", "101", "unit 2"),
-              Word("noun", "thing", "clothes", "gloves", "てぶくろ", "102", "unit 10", "手袋"),
-              Word("noun", "thing", "clothes", "clothes", "ふく", "102", "unit 12", "服"),
-              Word("noun", "thing", "furniture", "chair", "いす", "101", "unit 4"),
-              Word("noun", "thing", "furniture", "desk", "つくえ", "101", "unit 4", "机"),
-              Word("noun", "thing", "furniture", "bath", "おふろ", "102", "unit 8", "お風呂"),
-              Word("noun", "thing", "major", "major", "せんこう", "101", "unit 1"),
-              Word("noun", "thing", "major", "english", "えいご", "101", "unit 2"),
-              Word("noun", "thing", "major", "asian studies", "アジアけんきゅう", "101", "unit 1"),
-              Word("noun", "thing", "major", "economics", "けいざい", "101", "unit 1"),
-              Word("noun", "thing", "major", "engineering", "こうがく", "101", "unit 1"),
-              Word("noun", "thing", "major", "computer", "コンピューター", "101", "unit 1"),
-              Word("noun", "thing", "major", "politics", "せいじ", "101", "unit 1", "政治"),
-              Word("noun", "thing", "major", "biology", "せいぶつがく", "101", "unit 1"),
-              Word("noun", "thing", "major", "business", "ビジネス", "101", "unit 1"),
-              Word("noun", "thing", "major", "literature", "ぶんがく", "101", "unit 1", "文学"),
-              Word("noun", "thing", "major", "history", "れきし", "101", "unit 1"),
-              Word("noun", "thing", "major", "international relations", "こくさいかんけい", "101", "unit 1"),
-              Word("noun", "thing", "technology", "telephone", "でんわ", "101", "unit 1", "電話"),
-              Word("noun", "thing", "technology", "smart phone", "スマホ", "101", "unit 2"),
-              Word("noun", "thing", "technology", "camera", "カメラ", "102", "unit 8"),
-              Word("noun", "thing", "food", "fish", "さかな", "101", "unit 2"),
-              Word("noun", "thing", "food", "food", "たべもの", "101", "unit 5", "食べ物"),
-              Word("noun", "thing", "food", "drink", "のみもの", "101", "unit 5", "飲み物"),
-              Word("noun", "thing", "food", "fruit", "くだもの", "101", "unit 5", "果物"),
-              Word("noun", "thing", "food", "pork cutlet", "とんかつ", "101", "unit 2"),
-              Word("noun", "thing", "food", "meat", "にく", "101", "unit 2"),
-              Word("noun", "thing", "food", "ice cream", "アイスクリーム", "101", "unit 3"),
-              Word("noun", "thing", "food", "hamburger", "ハンバーガー", "101", "unit 3"),
-              Word("noun", "thing", "food", "alcohol", "おさけ", "101", "unit 3", "お酒"),
-              Word("noun", "thing", "food", "green tea", "おちゃ", "101", "unit 3", "お茶"),
-              Word("noun", "thing", "food", "coffee", "コーヒー", "101", "unit 3"),
-              Word("noun", "thing", "food", "water", "みず", "101", "unit 3", "水"),
-              Word("noun", "thing", "food", "breakfast", "あさごはん", "101", "unit 3", "朝ご飯"),
-              Word("noun", "thing", "food", "lunch", "ひるごはん", "101", "unit 3", "昼ご飯"),
-              Word("noun", "thing", "food", "dinner", "ばんごはん", "101", "unit 3", "晩ご飯"),
-              Word("noun", "thing", "food", "rice", "ごはん", "101", "unit 4", "ご飯"),
-              Word("noun", "thing", "food", "bread", "パン", "101", "unit 4"),
-              Word("noun", "thing", "food", "menu", "メニュー", "101", "unit 2"),
-              Word("noun", "thing", "food", "vegetables", "やさい", "101", "unit 2"),
-              Word("noun", "thing", "food", "barbecue", "バーベキュー", "102", "unit 8"),
-              Word("noun", "thing", "food", "tomato", "トマト", "102", "unit 8"),
-              Word("noun", "thing", "food", "chopsticks", "はし", "102", "unit 8"),
-              Word("noun", "thing", "food", "boxed lunch", "おべんとう", "102", "unit 9", "お弁当"),
-              Word("noun", "thing", "food", "pizza", "ピザ", "102", "unit 9"),
-              Word("noun", "thing", "food", "milk", "ぎゅうにゅう", "102", "unit 10", "牛乳"),
-              Word("noun", "thing", "food", "cake", "ケーキ", "102", "unit 10"),
-              Word("noun", "thing", "food", "sushi", "すし", "102", "unit 10"),
-              Word("noun", "thing", "food", "tempura", "てんぷら", "102", "unit 10", "天ぷら"),
-              Word("noun", "thing", "food", "apple", "りんご", "102", "unit 10"),
-              Word("noun", "thing", "food", "cuisine", "りょうり", "102", "unit 10", "料理"),
-              Word("noun", "thing", "food", "beer", "ビール", "102", "unit 11"),
-              Word("noun", "thing", "food", "snack", "おかし", "102", "unit 11", "お菓子"),
-              Word("noun", "thing", "food", "juice", "ジュース", "102", "unit 12"),
-              Word("noun", "thing", "food", "egg", "たまご", "102", "unit 12", "卵"),
-              Word("noun", "thing", "food", "strawberry", "いちご", "102", "bonus 1"),
-              Word("noun", "thing", "food", "watermelon", "すいか", "102", "bonus 1"),
-              Word("noun", "thing", "food", "mandarin orange", "みかん", "102", "bonus 1"),
-              Word("noun", "thing", "food", "peach", "もも", "102", "bonus 1"),
-              Word("noun", "thing", "food", "grape", "ぶどう", "102", "bonus 1"),
-              Word("noun", "thing", "food", "carrot", "にんじん", "102", "bonus 1"),
-              Word("noun", "thing", "food", "onion", "たまねぎ", "102", "bonus 1"),
-              Word("noun", "thing", "food", "potato", "じゃがいも", "102", "bonus 1"),
-              Word("noun", "thing", "food", "eggplant", "なす", "102", "bonus 1"),
-              Word("noun", "thing", "food", "cucumber", "きゅうり", "102", "bonus 1"),
-              Word("noun", "thing", "food", "cabbage", "キャベツ", "102", "bonus 1"),
-              Word("noun", "thing", "food", "beef", "ぎゅうにく", "102", "bonus 1", "牛肉"),
-              Word("noun", "thing", "food", "pork", "ぶたにく", "102", "bonus 1", "豚肉"),
-              Word("noun", "thing", "food", "chicken meat", "とりにく", "102", "bonus 1", "鶏肉"),
-              Word("noun", "thing", "food", "side dish", "おかず", "102", "bonus 1"),
-              Word("noun", "thing", "food", "soup", "みそしる", "102", "bonus 1", "みそ汁"),
-              Word("noun", "thing", "food", "set menu", "ていしょく", "102", "bonus 1", "定食"),
-              Word("noun", "thing", "food", "dumplings", "ぎょうざ", "102", "bonus 1"),
-              Word("noun", "thing", "food", "beef rice bowl", "ぎゅうどん", "102", "bonus 1", "牛丼"),
-              Word("noun", "thing", "food", "pancake", "おこのみやき", "102", "bonus 1", "お好み焼き"),
-              Word("noun", "thing", "food", "rice balls", "おにぎり", "102", "bonus 1"),
-              Word("noun", "thing", "entertainment", "movie", "えいが", "101", "unit 3", "映画"),
-              Word("noun", "thing", "entertainment", "music", "おんがく", "101", "unit 3", "音楽"),
-              Word("noun", "thing", "entertainment", "magazine", "ざっし", "101", "unit 3", "雑誌"),
-              Word("noun", "thing", "entertainment", "sports", "スポーツ", "101", "unit 3"),
-              Word("noun", "thing", "entertainment", "date", "デート", "101", "unit 3"),
-              Word("noun", "thing", "entertainment", "tennis", "テニス", "101", "unit 3"),
-              Word("noun", "thing", "entertainment", "television", "テレビ", "101", "unit 3"),
-              Word("noun", "thing", "entertainment", "karaoke", "カラオケ", "102", "unit 8"),
-              Word("noun", "thing", "entertainment", "party", "パーティー", "102", "unit 8"),
-              Word("noun", "thing", "entertainment", "concert", "コンサート", "102", "unit 9"),
-              Word("noun", "thing", "entertainment", "kabuki", "かぶき", "102", "unit 9", "歌舞伎"),
-              Word("noun", "thing", "entertainment", "soccer", "サッカー", "102", "unit 10"),
-              Word("noun", "thing", "entertainment", "baseball", "やきゅう", "102", "unit 10", "野球"),
-              Word("noun", "thing", "entertainment", "festival", "おまつり", "102", "unit 11", "お祭り"),
-              Word("noun", "thing", "entertainment", "toy", "おもちゃ", "102", "unit 11"),
-              Word("noun", "thing", "entertainment", "match/game", "しあい", "102", "unit 12", "試合"),
-              Word("noun", "thing", "time", "tomorrow", "あした", "101", "unit 3", "明日"),
-              Word("noun", "thing", "time", "today", "きょう", "101", "unit 3", "今日"),
-              Word("noun", "thing", "time", "yesterday", "きのう", "101", "unit 4", "昨日"),
-              Word("noun", "thing", "time", "hours", "じかん", "101", "unit 4", "時間"),
-              Word("noun", "thing", "time", "last week", "せんしゅう", "101", "unit 4", "先週"),
-              Word("noun", "thing", "time", "this week", "こんしゅう", "101", "unit 6", "今週"),
-              Word("noun", "thing", "time", "next week", "らいしゅう", "101", "unit 6", "来週"),
-              Word("noun", "thing", "time", "next year", "らいねん", "101", "unit 6", "来年"),
-              Word("noun", "thing", "time", "night", "よる", "101", "unit 6", "夜"),
-              Word("noun", "thing", "time", "morning", "あさ", "101", "unit 3", "朝"),
-              Word("noun", "thing", "time", "tonight", "こんばん", "101", "unit 3", "今晩"),
-              Word("noun", "thing", "time", "every day", "まいにち", "101", "unit 3", "毎日"),
-              Word("noun", "thing", "time", "every night", "まいばん", "101", "unit 3", "毎晩"),
-              Word("noun", "thing", "time", "weekend", "しゅうまつ", "101", "unit 3", "週末"),
-              Word("noun", "thing", "time", "saturday", "どようび", "101", "unit 3", "土曜日"),
-              Word("noun", "thing", "time", "sunday", "にちようび", "101", "unit 3", "日曜日"),
-              Word("noun", "thing", "time", "monday", "げつようび", "101", "unit 4", "月曜日"),
-              Word("noun", "thing", "time", "tuesday", "かようび", "101", "unit 4", "火曜日"),
-              Word("noun", "thing", "time", "wednesday", "すいようび", "101", "unit 4", "水曜日"),
-              Word("noun", "thing", "time", "thursday", "もくようび", "101", "unit 4", "木曜日"),
-              Word("noun", "thing", "time", "friday", "きんようび", "101", "unit 4", "金曜日"),
-              Word("noun", "thing", "time", "holiday", "やすみ", "101", "unit 5", "休み"),
-              Word("noun", "thing", "time", "birthday", "たんじょうび", "101", "unit 5", "誕生日"),
-              Word("noun", "thing", "time", "summer", "なつ", "102", "unit 8", "夏"),
-              Word("noun", "thing", "time", "winter", "ふゆ", "102", "unit 8", "冬"),
-              Word("noun", "thing", "time", "this morning", "けさ", "102", "unit 8", "今朝"),
-              Word("noun", "thing", "time", "the day after tomorrow", "あさって", "102", "unit 8"),
-              Word("noun", "thing", "time", "every week", "まいしゅう", "102", "unit 8", "毎週"),
-              Word("noun", "thing", "time", "this month", "こんげつ", "102", "unit 8", "今月"),
-              Word("noun", "thing", "time", "next month", "らいげつ", "102", "unit 8", "来月"),
-              Word("noun", "thing", "time", "near future", "こんど", "102", "unit 9", "今度"),
-              Word("noun", "thing", "time", "last month", "せんげつ", "102", "unit 9", "先月"),
-              Word("noun", "thing", "time", "last year", "きょねん", "102", "unit 9", "去年"),
-              Word("noun", "thing", "time", "season", "きせつ", "102", "unit 10", "季節"),
-              Word("noun", "thing", "time", "spring", "はる", "102", "unit 10", "春"),
-              Word("noun", "thing", "time", "fall", "あき", "102", "unit 10", "秋"),
-              Word("noun", "thing", "time", "time", "じかん", "102", "unit 10", "時間"),
-              Word("noun", "thing", "time", "this year", "ことし", "102", "unit 10", "今年"),
-              Word("noun", "thing", "time", "this semester", "こんがっき", "102", "unit 11", "今学期"),
-              Word("noun", "thing", "time", "next semester", "らいがっき", "102", "unit 11", "来学期"),
-              Word("noun", "thing", "time", "New Year's", "おしょうがつ", "102", "unit 11", "お正月"),
-              Word("noun", "thing", "time", "future", "しょうらい", "102", "unit 11", "将来"),
-              Word("noun", "thing", "time", "New Year's Day", "がんじつ", "102", "bonus 1", "元日"),
-              Word("noun", "thing", "time", "Coming-Of-Age Day", "せいじんのひ", "102", "bonus 1", "成人の日"),
-              Word("noun", "thing", "time", "National Foundation Day", "けんこくきねんのひ", "102", "bonus 1", "建国記念の日"),
-              Word("noun", "thing", "time", "Emperor's Birthday", "てんのたんじょうび", "102", "bonus 1", "天の誕生日"),
-              Word("noun", "thing", "time", "Vernal Equinox Day", "しゅんぶんのひ", "102", "bonus 1", "春分の日"),
-              Word("noun", "thing", "time", "Showa Day", "しょうわのひ", "102", "bonus 1", "昭和の日"),
-              Word("noun", "thing", "time", "Constitution Day", "けんぽうきねんび", "102", "bonus 1", "憲法記念日"),
-              Word("noun", "thing", "time", "Greenery Day", "みどりのひ", "102", "bonus 1", "みどりの日"),
-              Word("noun", "thing", "time", "Children's Day", "こどものひ", "102", "bonus 1", "こどもの日"),
-              Word("noun", "thing", "time", "Marine Day", "うみのひ", "102", "bonus 1", "海の日"),
-              Word("noun", "thing", "time", "Mountain Day", "やまのひ", "102", "bonus 1", "山の日"),
-              Word("noun", "thing", "time", "Respect-for-the-Aged Day", "けいろうのひ", "102", "bonus 1", "敬老の日"),
-              Word("noun", "thing", "time", "Autumnal Equinox Day", "しゅうぶんのひ", "102", "bonus 1", "秋分の日"),
-              Word("noun", "thing", "time", "Health and Sports Day", "スポーツのひ", "102", "bonus 1", "スポーツの日"),
-              Word("noun", "thing", "time", "Culture Day", "ぶんかのひ", "102", "bonus 1", "文化の日"),
-              Word("noun", "thing", "time", "Labor Thanksgiving Day", "きんろうかんしゃのひ", "102", "bonus 1", "勤労感謝の日"),
-              Word("noun", "thing", "time", "the day before yesterday", "おととい", "102", "bonus 1"),
-              Word("noun", "thing", "time", "two weeks ago", "にしゅうかんまえ", "102", "bonus 1", "二週間前"),
-              Word("noun", "thing", "time", "two months ago", "にかげつまえ", "102", "bonus 1", "二か月間"),
-              Word("noun", "thing", "time", "the year before last", "おととし", "102", "bonus 1"),
-              Word("noun", "thing", "time", "the week after next", "さらいしゅう", "102", "bonus 1", "再来週"),
-              Word("noun", "thing", "time", "the month after next", "さらいげつ", "102", "bonus 1", "再来月"),
-              Word("noun", "thing", "time", "the year after next", "さらいねん", "102", "bonus 1", "再来年"),
-              Word("noun", "thing", "time", "summer vacation", "なつやすみ", "102", "bonus 1", "夏休み"),
-              Word("noun", "thing", "time", "winter vacation", "ふゆやすみ", "102", "bonus 1", "冬休み"),
-              Word("noun", "thing", "time", "spring vacation", "はるやすみ", "102", "bonus 1", "春休み"),
-              Word("noun", "thing", "animal", "dog", "いぬ", "101", "unit 4", "犬"),
-              Word("noun", "thing", "animal", "cat", "ねこ", "101", "unit 4", "猫"),
-              Word("noun", "thing", "other", "number", "ばんごう", "101", "unit 1"),
-              Word("noun", "thing", "other", "name", "なまえ", "101", "unit 1", "名前"),
-              Word("noun", "thing", "other", "umbrella", "かさ", "101", "unit 2"),
-              Word("noun", "thing", "other", "bag", "かばん", "101", "unit 2"),
-              Word("noun", "thing", "other", "wallet", "さいふ", "101", "unit 2"),
-              Word("noun", "thing", "other", "bicycle", "じてんしゃ", "101", "unit 2"),
-              Word("noun", "thing", "other", "newspaper", "しんぶん", "101", "unit 2", "新聞"),
-              Word("noun", "thing", "other", "notebook", "ノート", "101", "unit 2"),
-              Word("noun", "thing", "other", "pen", "ぺん", "101", "unit 2"),
-              Word("noun", "thing", "other", "book", "ほん", "101", "unit 2", "本"),
-              Word("noun", "thing", "other", "this one", "これ", "101", "unit 2"),
-              Word("noun", "thing", "other", "that one", "それ", "101", "unit 2"),
-              Word("noun", "thing", "other", "that one over there", "あれ", "101", "unit 2"),
-              Word("noun", "thing", "other", "yen", "えん", "101", "unit 2", "円"),
-              Word("noun", "thing", "other", "game", "ゲーム", "101", "unit 4"),
-              Word("noun", "thing", "other", "class", "クラス", "101", "unit 4"),
-              Word("noun", "thing", "other", "shopping", "かいもの", "101", "unit 4", "買い物"),
-              Word("noun", "thing", "other", "part-time job", "アルバイト", "101", "unit 4"),
-              Word("noun", "thing", "other", "flower", "はな", "101", "unit 4", "花"),
-              Word("noun", "thing", "other", "picture", "しゃしん", "101", "unit 4", "写真"),
-              Word("noun", "thing", "other", "report", "レポート", "101", "unit 4"),
-              Word("noun", "thing", "other", "travel", "りょこう", "101", "unit 5", "旅行"),
-              Word("noun", "thing", "other", "surfing", "サーフィン", "101", "unit 5"),
-              Word("noun", "thing", "other", "souvenir", "おみやげ", "101", "unit 5", "お土産"),
-              Word("noun", "thing", "other", "bus", "バス", "101", "unit 5"),
-              Word("noun", "thing", "other", "weather", "てんき", "101", "unit 5", "天気"),
-              Word("noun", "thing", "other", "homework", "しゅくだい", "101", "unit 5", "宿題"),
-              Word("noun", "thing", "other", "size", "サイズ", "101", "unit 5"),
-              Word("noun", "thing", "other", "kanji", "かんじ", "101", "unit 6", "漢字"),
-              Word("noun", "thing", "other", "textbook", "きょうかしょ", "101", "unit 6", "教科書"),
-              Word("noun", "thing", "other", "page", "ページ", "101", "unit 6"),
-              Word("noun", "thing", "other", "next", "つぎ", "101", "unit 6", "次"),
-              Word("noun", "thing", "other", "money", "おかね", "101", "unit 6", "お金"),
-              Word("noun", "thing", "other", "baggage", "にもつ", "101", "unit 6", "荷物"),
-              Word("noun", "thing", "other", "personal computer", "パソコン", "101", "unit 6"),
-              Word("noun", "thing", "other", "shower", "シャワー", "101", "unit 6"),
-              Word("noun", "thing", "other", "air conditioner", "エアコン", "101", "unit 6"),
-              Word("noun", "thing", "other", "electricity", "でんき", "101", "unit 6", "電気"),
-              Word("noun", "thing", "other", "window", "まど", "101", "unit 6", "窓"),
-              Word("noun", "thing", "other", "train", "でんしゃ", "101", "unit 6", "電車"),
-              Word("noun", "thing", "other", "test", "テスト", "101　", "unit 5"),
-              Word("noun", "thing", "other", "japanese language", "にほんご", "101", "unit 1", "日本語"),
-              Word("noun", "thing", "other", "company", "かいしゃ", "102", "unit 7", "会社"),
-              Word("noun", "thing", "other", "hair", "かみ", "102", "unit 7", "髪"),
-              Word("noun", "thing", "other", "mouth", "くち", "102", "unit 7", "口"),
-              Word("noun", "thing", "other", "eye", "め", "102", "unit 7", "目"),
-              Word("noun", "thing", "other", "glasses", "めがね", "102", "unit 7", "眼鏡"),
-              Word("noun", "thing", "other", "song", "うた", "102", "unit 7", "歌"),
-              Word("noun", "thing", "other", "club activity", "サークル", "102", "unit 7"),
-              Word("noun", "thing", "other", "car", "くるま", "102", "unit 7", "車"),
-              Word("noun", "thing", "other", "sunny weather", "はれ", "102", "unit 8", "晴れ"),
-              Word("noun", "thing", "other", "rain", "あめ", "102", "unit 8", "雨"),
-              Word("noun", "thing", "other", "cloudy weather", "くもり", "102", "unit 8", "曇り"),
-              Word("noun", "thing", "other", "snow", "ゆき", "102", "unit 8", "雪"),
-              Word("noun", "thing", "other", "weather forecast", "てんきよほう", "102", "unit 8", "天気予報"),
-              Word("noun", "thing", "other", "temperature (weather)", "きおん", "102", "unit 8", "気温"),
-              Word("noun", "thing", "other", "something", "なにか", "102", "unit 8", "何か"),
-              Word("noun", "thing", "other", "word", "たんご", "102", "unit 9", "単語"),
-              Word("noun", "thing", "other", "essay", "さくぶん", "102", "unit 9", "作文"),
-              Word("noun", "thing", "other", "exam", "しけん", "102", "unit 9", "試験"),
-              Word("noun", "thing", "other", "letter", "てがみ", "102", "unit 9", "手紙"),
-              Word("noun", "thing", "other", "e-mail", "メール", "102", "unit 9"),
-              Word("noun", "thing", "other", "guitar", "ギター", "102", "unit 9"),
-              Word("noun", "thing", "other", "piano", "ピアノ", "102", "unit 9"),
-              Word("noun", "thing", "other", "ticket", "チケット", "102", "unit 9"),
-              Word("noun", "thing", "other", "ski", "スキー", "102", "unit 9"),
-              Word("noun", "thing", "other", "illness", "びょうき", "102", "unit 9", "病気"),
-              Word("noun", "thing", "other", "medicine", "くすり", "102", "unit 9", "薬"),
-              Word("noun", "thing", "other", "color", "いろ", "102", "unit 9", "色"),
-              Word("noun", "thing", "other", "face", "かお", "102", "unit 10", "顔"),
-              Word("noun", "thing", "other", "bullet train", "しんかんせん", "102", "unit 10", "新幹線"),
-              Word("noun", "thing", "other", "ship", "ふね", "102", "unit 10", "船"),
-              Word("noun", "thing", "other", "airplane", "ひこうき", "102", "unit 10", "飛行機"),
-              Word("noun", "thing", "other", "reservation", "よやく", "102", "unit 10", "予約"),
-              Word("noun", "thing", "other", "tour", "ツアー", "102", "unit 10"),
-              Word("noun", "thing", "other", "life", "せいかつ", "102", "unit 10", "生活"),
-              Word("noun", "thing", "other", "dream", "ゆめ", "102", "unit 11", "夢"),
-              Word("noun", "thing", "other", "class", "じゅぎょう", "102", "unit 11", "授業"),
-              Word("noun", "thing", "other", "fishing", "つり", "102", "unit 11"),
-              Word("noun", "thing", "other", "drive", "ドライブ", "102", "unit 11"),
-              Word("noun", "thing", "other", "stomach", "おなか", "102", "unit 12"),
-              Word("noun", "thing", "other", "leg/foot", "あし", "102", "unit 12", "足"),
-              Word("noun", "thing", "other", "throat", "のど", "102", "unit 12", "喉"),
-              Word("noun", "thing", "other", "tooth", "は", "102", "unit 12", "歯"),
-              Word("noun", "thing", "other", "influenza", "インフルエンザ", "102", "unit 12"),
-              Word("noun", "thing", "other", "cold", "かぜ", "102", "unit 12", "風邪"),
-              Word("noun", "thing", "other", "cough", "せき", "102", "unit 12"),
-              Word("noun", "thing", "other", "hangover", "ふつかよい", "102", "unit 12", "二日酔い"),
-              Word("noun", "thing", "other", "homesickness", "ホームシッカ", "102", "unit 12"),
-              Word("noun", "thing", "other", "allergy", "アレルギー", "102", "unit 12"),
-              Word("noun", "thing", "other", "thing (an object)", "もの", "102", "unit 12", "物"),
-              Word("noun", "thing", "other", "business (to take  care of)", "ようじ", "102", "unit 12", "用事"),
-              Word("noun", "thing", "other", "grade", "せいせき", "102", "unit 12", "載積"),
-              Word("noun", "thing", "other", "meaning", "いみ", "102", "unit 12", "意味"),
-              Word("noun", "thing", "other", "present (gift)", "プレゼント", "102", "unit 12"),
-              Word("noun", "thing", "other", "ticket (train)", "きっぷ", "102", "unit 12", "切符"),
-              Word("noun", "thing", "other", "fee", "だい", "102", "unit 12", "代"),
-              Word("noun", "thing", "other", "pencil", "えんぴつ", "101", "bonus 1"),
-              Word("noun", "thing", "other", "eraser", "けしゴム", "101", "bonus 1"),
-              Word("noun", "thing", "other", "dictionary", "じしょ", "101", "bonus 1"),
-              Word("noun", "thing", "other", "door", "ドア", "101", "bonus 1"),
-              Word("noun", "thing", "other", "curtain", "カーテン", "101", "bonus 1"),
-              Word("noun", "thing", "other", "blackboard", "こくばん", "101", "bonus 1"),
-              Word("noun", "thing", "other", "straw mats", "たたみ", "101", "bonus 1", "畳"),
-              Word("noun", "thing", "other", "sliding door", "じょうじ", "101", "bonus 1", "障子"),
-              Word("noun", "thing", "other", "entrance-way (home)", "げんかん", "101", "bonus 1", "玄関"),
-              Word("noun", "thing", "other", "graduate school", "だいがくいん", "101", "bonus 1", "大学院"),
-              Word("noun", "thing", "other", "junior college", "たんだい", "101", "bonus 1", "短大"),
-              Word("noun", "thing", "other", "junior high school", "ちゅうがく", "101", "bonus 1", "中学"),
-              Word("noun", "thing", "other", "elementary school", "しょうがっこう", "101", "bonus 1", "小学校"),
-              Word("noun", "thing", "other", "nursery school", "ほいくえん", "101", "bonus 1", "保育園"),
-              Word("noun", "thing", "other", "kindergarten", "ようちえん", "101", "bonus 1", "幼稚園"),
-              Word("noun", "thing", "other", "compulsory education", "ぎむきょういく", "101", "bonus 1", "義務教育"),
-              Word("noun", "thing", "other", "eyebrow", "まゆげ", "101", "bonus 1", "眉毛"),
-              Word("noun", "thing", "other", "ear", "みみ", "101", "bonus 1", "耳"),
-              Word("noun", "thing", "other", "hand", "て", "101", "bonus 1", "手"),
-              Word("noun", "thing", "other", "neck", "くび", "101", "bonus 1", "首"),
-              Word("noun", "thing", "other", "finger", "ゆび", "101", "bonus 1", "指"),
-              Word("noun", "thing", "other", "nose", "はな", "101", "bonus 1", "鼻"),
-              Word("noun", "thing", "other", "shoulders", "かた", "101", "bonus 1", "肩"),
-              Word("noun", "thing", "other", "chest", "むね", "101", "bonus 1", "胸"),
-              Word("noun", "thing", "other", "butt", "おしり", "101", "bonus 1", "お尻"),
-              Word("noun", "thing", "other", "back (body part)", "せなか", "101", "bonus 1", "背中"),
-              Word("noun", "thing", "other", "head", "あたま", "101", "bonus 1", "頭"),
-              Word("noun", "thing", "other", "green", "みどり", "101", "bonus 1", "緑"),
-              Word("noun", "thing", "other", "navy blue", "こんいろ", "101", "bonus 1", "紺色"),
-              Word("noun", "thing", "other", "light blue", "みずいろ", "101", "bonus 1", "水色"),
-              Word("noun", "thing", "other", "silver (color)", "ぎんいろ", "101", "bonus 1", "銀色"),
-              Word("noun", "thing", "other", "orange (color)", "オレンジ", "101", "bonus 1"),
-              Word("noun", "thing", "other", "purple", "むらさき", "101", "bonus 1", "紫"),
-              Word("noun", "thing", "other", "gray", "はいいろ", "101", "bonus 1", "灰色"),
-              Word("noun", "thing", "other", "gold (color)", "きんいろ", "101", "bonus 1", "金色"),
-              Word("noun", "thing", "other", "pink", "ピンク", "101", "bonus 1"),
-              Word("noun", "thing", "other", "beige", "ベージュ", "101", "bonus 1"),
-              Word("noun", "thing", "other", "local (train)", "ふつう", "101", "bonus 1", "普通"),
-              Word("noun", "thing", "other", "express (train)", "きゅうこう", "101", "bonus 1", "急行"),
-              Word("noun", "thing", "other", "super express (train)", "とっきゅう", "101", "bonus 1", "特急"),
-              Word("noun", "thing", "other", "boarding ticket", "じょうしゃけん", "101", "bonus 1", "乗車券"),
-              Word("noun", "thing", "other", "commuter's pass", "ていきけん", "101", "bonus 1", "定期券"),
-              Word("noun", "thing", "other", "student discount", "がくわり", "101", "bonus 1", "学割"),
-              Word("noun", "thing", "other", "reserved seat", "していせき", "101", "bonus 1", "指定席"),
-              Word("noun", "thing", "other", "general admission seat", "じゆうせき", "101", "bonus 1", "自由席"),
-              Word("noun", "thing", "other", "round trip", "おうふく", "101", "bonus 1", "往復"),
-              Word("noun", "thing", "other", "one way", "かたみち", "101", "bonus 1", "片道"),
-              Word("noun", "thing", "other", "transfer (train)", "のりかえ", "101", "bonus 1", "乗り換え"),
-              Word("noun", "thing", "other", "last train", "しゅうでん", "101", "bonus 1", "終電"),
-              Word("noun", "thing", "other", "deadline", "しめきり", "101", "bonus 1"),
-              Word("noun", "thing", "other", "exercise (in class)", "れんしゅう", "101", "bonus 1", "練習"),
-              Word("noun", "thing", "other", "pronunciation", "はつおん", "101", "bonus 1", "発音"),
-              Word("noun", "thing", "other", "grammar", "ぶんぽう", "101", "bonus 1", "文法"),
-              Word("noun", "thing", "other", "question", "しつもん", "101", "bonus 1", "質問"),
-              Word("noun", "thing", "other", "answer", "こたえ", "101", "bonus 1", "答"),
-              Word("noun", "thing", "other", "dialect", "ほうげん", "101", "bonus 1", "方言"),
-              Word("noun", "thing", "other", "common language", "きょうつうご", "101", "bonus 1", "共通語"),
-              Word("noun", "thing", "other", "example", "れい", "101", "bonus 1", "例"),
-              Word("noun", "thing", "other", "antibiotic", "こうせいぶっしつ", "101", "bonus 1", "抗生物質"),
-              Word("noun", "thing", "other", "operation", "しゅじゅつ", "101", "bonus 1", "手術"),
-              Word("noun", "thing", "other", "injection", "ちゅうしゃ", "101", "bonus 1", "注射"),
-              Word("noun", "thing", "other", "thermometer", "たいおんけい", "101", "bonus 1", "体温計"),
 
-              Word("pronoun", "", "", "i", "わたし", "101", "unit 1", "私"),
-              Word("pronoun", "", "", "i (men)", "ぼく", "101", "unit 5", "僕"),
-              Word("pronoun", "", "", "you", "あなた", "101", "unit 4"),
+vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101", ["unit 1"], "お父さん"),
+              Word("noun", "person", "family", "mother", "おかあさん", "101", ["unit 1"], "お母さん"),
+              Word("noun", "person", "family", "older brother", "おにいさん", "101", ["unit 1", "unit 7"], "お兄さん"),
+              Word("noun", "person", "family", "younger brother", "おとうと", "101", ["unit 1", "unit 7"], "弟"),
+              Word("noun", "person", "family", "older sister", "おねえさん", "101", ["unit 1", "unit 7"], "お姉さん"),
+              Word("noun", "person", "family", "younger sister", "いもうと", "101", ["unit 1", "unit 7"], "妹"),
+              Word("noun", "person", "family", "family", "かぞく", "101", ["unit 1", "unit 7"], "家族"),
+              Word("noun", "person", "family", "grandfather", "おじいさん", "102", ["unit 7"]),
+              Word("noun", "person", "family", "grandmother", "おばあさん", "102", ["unit 7"]),
+              Word("noun", "person", "family", "my father", "ちち", "102", ["unit 7"], "父"),
+              Word("noun", "person", "family", "my mother", "はは", "102", ["unit 7"], "母"),
+              Word("noun", "person", "family", "my older brother", "あに", "102", ["unit 7"], "兄"),
+              Word("noun", "person", "family", "my older sister", "あね", "102", ["unit 7"], "姉"),
+              Word("noun", "person", "family", "siblings", "きょうだい", "102", ["unit 7"], "兄弟"),
+              Word("noun", "person", "family", "host family", "ホストファミリー", "102", ["unit 11"]),
+              Word("noun", "person", "family", "husband", "ごしゅじん", "102", ["bonus 1"], "ご主人"),
+              Word("noun", "person", "family", "wife", "おくさん", "102", ["bonus 1"], "奥さん"),
+              Word("noun", "person", "family", "my husband", "おっと", "102", ["bonus 1"], "夫"),
+              Word("noun", "person", "family", "my wife", "つま", "102", ["bonus 1"], "妻"),
+              Word("noun", "person", "family", "my grandfather", "そふ", "102", ["bonus 1"], "祖父"),
+              Word("noun", "person", "family", "my grandmother", "そぼ", "102", ["bonus 1"], "祖母"),
+              Word("noun", "person", "school", "teacher", "せんせい", "101", ["unit 1"], "先生"),
+              Word("noun", "person", "school", "student", "がくせい", "101", ["unit 1"], "学生"),
+              Word("noun", "person", "school", "college student", "だいがくせい", "101", ["unit 1"], "大学生"),
+              Word("noun", "person", "school", "international student", "りゅうがくせい", "101", ["unit 1"]),
+              Word("noun", "person", "school", "first year student", "いちねんせい", "101", ["unit 1"], "一年生"),
+              Word("noun", "person", "school", "second year student", "にねんせい", "101", ["unit 1"], "二年生"),
+              Word("noun", "person", "school", "third year student", "さんねんせい", "101", ["unit 1"], "三年生"),
+              Word("noun", "person", "school", "fourth year student", "よんねんせい", "101", ["unit 1"], "四年生"),
+              Word("noun", "person", "school", "high school student", "こうこうせい", "101", ["unit 1"], "高校生"),
+              Word("noun", "person", "school", "graduate student", "だいがくいんせい", "101", ["unit 1"]),
+              Word("noun", "person", "occupation", "doctor", "いしゃ", "101", ["unit 1"], "医者"),
+              Word("noun", "person", "occupation", "office worker", "かいしゃいん", "101", ["unit 1"], "会社員"),
+              Word("noun", "person", "occupation", "nurse", "かんごし", "101", ["unit 1"], "看護師"),
+              Word("noun", "person", "occupation", "housewife", "しゅふ", "101", ["unit 1"]),
+              Word("noun", "person", "occupation", "lawyer", "べんごし", "101", ["unit 1"]),
+              Word("noun", "person", "occupation", "occupation", "しごと", "101", ["unit 1", "unit 8"], "仕事"),
+              Word("noun", "person", "occupation", "singer", "かしゅ", "102", ["unit 11"], "歌手"),
+              Word("noun", "person", "occupation", "president of a company", "しゃちょう", "102", ["unit 11"], "社長"),
+              Word("noun", "person", "occupation", "writer", "さっか", "102", ["unit 11"], "作家"),
+              Word("noun", "person", "occupation", "journalist", "ジャーナリスト", "102", ["unit 11"]),
+              Word("noun", "person", "occupation", "police officer", "けいさつかん", "102", ["unit 11"], "警察官"),
+              Word("noun", "person", "occupation", "firefighter", "しょうぼうし", "102", ["unit 11"], "消防士"),
+              Word("noun", "person", "occupation", "schoolteacher", "きょうし", "102", ["unit 11"], "教師"),
+              Word("noun", "person", "occupation", "researcher", "けんきゅうしゃ", "102", ["unit 11"], "研究者"),
+              Word("noun", "person", "occupation", "astronaut", "うちゅうひこうし", "102", ["unit 11"], "宇宙飛行士"),
+              Word("noun", "person", "occupation", "athlete", "スポーツせんしゅ", "102", ["unit 11"], "スポーツ選手"),
+              Word("noun", "person", "occupation", "president of a country", "だいとうりょう", "102", ["unit 11"], "大統領"),
+              Word("noun", "person", "occupation", "actor", "はいゆう", "102", ["unit 11"], "俳優"),
+              Word("noun", "person", "occupation", "chef", "シェフ", "102", ["unit 11"]),
+              Word("noun", "person", "occupation", "cartoonist", "まんがか", "102", ["unit 11"], "漫画家"),
+              Word("noun", "person", "nationality", "japanese person", "にほんじん", "101", ["unit 1"], "日本人"),
+              Word("noun", "person", "nationality", "american person", "アメリカじん", "101", ["unit 1"]),
+              Word("noun", "person", "other", "friend", "ともだち", "101", ["unit 1"], "友だち"),
+              Word("noun", "person", "other", "person", "ひと", "101", ["unit 4"], "人"),
+              Word("noun", "person", "other", "child", "こども", "101", ["unit 4"], "子供"),
+              Word("noun", "person", "other", "man", "おとこのひと", "102", ["unit 7"], "男の人"),
+              Word("noun", "person", "other", "woman", "おんなのひと", "102", ["unit 7"], "女の子"),
+              Word("noun", "person", "other", "good child", "いいこ", "102", ["unit 9"], "いい子"),
+              Word("noun", "person", "other", "rich person", "おかねもち", "102", ["unit 10"], "お金持ち"),
+              Word("noun", "person", "other", "celebrity", "ゆうめいじん", "102", ["unit 10"], "有名人"),
+              Word("noun", "person", "other", "someone older", "としうえ", "102", ["unit 10"], "年上"),
+              Word("noun", "person", "other", "this person", "こちら", "102", ["unit 11"]),
+              Word("noun", "person", "other", "roommate", "ルームメイト", "102", ["unit 11"]),
+              Word("noun", "person", "other", "she/girlfriend", "かのじょ", "102", ["unit 12"], "彼女"),
+              Word("noun", "person", "other", "he/boyfriend", "かれ", "102", ["unit 12"], "彼"),
+              Word("noun", "person", "other", "boyfriend", "かれし", "102", ["unit 12"], "彼氏"),
+              Word("noun", "person", "other", "physician", "ないか", "102", ["bonus 1"], "内科"),
+              Word("noun", "person", "other", "dermatologist", "ひふか", "102", ["bonus 1"], "皮膚科"),
+              Word("noun", "person", "other", "surgeon", "げか", "102", ["bonus 1"], "外科"),
+              Word("noun", "person", "other", "dentist", "しか", "102", ["bonus 1"], "歯科"),
+              Word("noun", "place", "biome", "university", "だいがく", "101", ["unit 1"], "大学"),
+              Word("noun", "place", "building", "high school", "こうこう", "101", ["unit 1"], "高校"),
+              Word("noun", "place", "building", "home", "いえ", "101", ["unit 3"], "家"),
+              Word("noun", "place", "building", "restaurant", "レストラン", "101", ["unit 4"]),
+              Word("noun", "place", "building", "store", "みせ", "100", ["unit 2"]),
+              Word("noun", "place", "building", "my place", "うち", "100", ["unit 3"]),
+              Word("noun", "place", "building", "cafe", "カフェ", "100", ["unit 3"]),
+              Word("noun", "place", "building", "school", "がっこう", "101", ["unit 3"], "学校"),
+              Word("noun", "place", "building", "hospital", "びょういん", "101", ["unit 4"], "病院"),
+              Word("noun", "place", "building", "bank", "ぎんこう", "101", ["unit 2"]),
+              Word("noun", "place", "building", "temple", "おてら", "101", ["unit 4"], "お寺"),
+              Word("noun", "place", "building", "supermarket", "スーパー", "101", ["unit 4"]),
+              Word("noun", "place", "building", "hotel", "ホテル", "101", ["unit 4"]),
+              Word("noun", "place", "building", "bookstore", "ほんや", "101", ["unit 4"], "本屋"),
+              Word("noun", "place", "building", "convenience store", "コンビニ", "101", ["unit 2"]),
+              Word("noun", "place", "building", "department store", "デパート", "102", ["unit 7"]),
+              Word("noun", "place", "building", "beauty parlor", "びよういん", "102", ["unit 10"], "美容院"),
+              Word("noun", "place", "building", "library", "としょかん", "101", ["unit 2"]),
+              Word("noun", "place", "building", "post office", "ゆうびんきょく", "101", ["unit 2"]),
+              Word("noun", "place", "building", "art museum", "びじゅつかん", "102", ["unit 11"], "美術館"),
+              Word("noun", "place", "country", "britain", "イギリス", "101", ["unit 1", "unit 2"]),
+              Word("noun", "place", "country", "australia", "オーストラリア", "101", ["unit 1", "unit 11"]),
+              Word("noun", "place", "country", "canada", "カナダ", "101", ["unit 1"]),
+              Word("noun", "place", "country", "india", "インド", "101", ["unit 1"]),
+              Word("noun", "place", "country", "egypt", "エジプト", "101", ["unit 1"]),
+              Word("noun", "place", "country", "philippines", "フィリピン", "101", ["unit 1"]),
+              Word("noun", "place", "country", "japan", "にほん", "101", ["unit 1"], "日本"),
+              Word("noun", "place", "country", "united states", "アメリカ", "101", ["unit 1"]),
+              Word("noun", "place", "country", "korea", "かんこく", "101", ["unit 1", "unit 2"]),
+              Word("noun", "place", "country", "country", "くに", "101", ["unit 1"], "国"),
+              Word("noun", "place", "country", "china", "ちゅうごく", "101", ["unit 1", "unit 2"]),
+              Word("noun", "place", "country", "spain", "スペイン", "102", ["unit 8"]),
+              Word("noun", "place", "country", "foreign country", "がいこく", "102", ["unit 11"], "外国"),
+              Word("noun", "place", "room", "restroom", "トイレ", "101", ["unit 2"]),
+              Word("noun", "place", "room", "cafeteria", "しょくどう", "102", ["unit 7"], "食堂"),
+              Word("noun", "place", "room", "room", "へや", "101", ["unit 5"], "部屋"),
+              Word("noun", "place", "room", "restroom", "おてあらい", "102", ["unit 12"], "お手洗い"),
+              Word("noun", "place", "biome", "town", "まち", "101", ["unit 4"], "町"),
+              Word("noun", "place", "biome", "sea", "うみ", "101", ["unit 5"], "海"),
+              Word("noun", "place", "biome", "river", "かわ", "102", ["unit 11"], "川"),
+              Word("noun", "place", "biome", "lake", "みずうみ", "102", ["unit 11"], "湖"),
+              Word("noun", "place", "biome", "mountain", "やま", "102", ["unit 11"], "山"),
+              Word("noun", "place", "other", "park", "こうえん", "101", ["unit 4"], "公園"),
+              Word("noun", "place", "other", "bus stop", "バスてい", "101", ["unit 4"], "バス停"),
+              Word("noun", "place", "other", "place", "ところ", "102", ["unit 8"], "所"),
+              Word("noun", "place", "other", "station", "えき", "102", ["unit 10"], "駅"),
+              Word("noun", "place", "other", "subway", "ちかてつ", "102", ["unit 10"], "地下鉄"),
+              Word("noun", "place", "other", "zoo", "どうぶつえん", "102", ["unit 10"], "動物園"),
+              Word("noun", "place", "other", "world", "せかい", "102", ["unit 10"], "世界"),
+              Word("noun", "place", "other", "spa/hot spring", "おんせん", "102", ["unit 11"], "温泉"),
+              Word("noun", "place", "other", "camp", "キャンプ", "102", ["unit 11"]),
+              Word("noun", "place", "other", "shrine", "じんじゃ", "102", ["unit 11"], "神社"),
+              Word("noun", "place", "other", "ticket vending area", "きっぷうりば", "102", ["bonus 1"], "切符売り場"),
+              Word("noun", "place", "other", "gate (train)", "かいさつ", "102", ["bonus 1"], "改札"),
+              Word("noun", "place", "other", "platform (train)", "ホーム", "102", ["bonus 1"]),
+              Word("noun", "place", "other", "shop/stand", "ばいてん", "102", ["bonus 1"], "売店"),
+              Word("noun", "place", "other", "exit", "でぐち", "102", ["bonus 1"], "出口"),
+              Word("noun", "place", "other", "entrance", "入口", "102", ["bonus 1"], "神社"),
+              Word("noun", "place", "other", "stairs", "かいだん", "102", ["bonus 1"], "階段"),
+              Word("noun", "thing", "clothes", "t-shirt", "ティーシャツ", "101", ["unit 2"]),
+              Word("noun", "thing", "clothes", "watch", "とけい", "101", ["unit 2"]),
+              Word("noun", "thing", "clothes", "shoe", "くつ", "101", ["unit 2"]),
+              Word("noun", "thing", "clothes", "jeans", "ジーンズ", "101", ["unit 2"]),
+              Word("noun", "thing", "clothes", "hat", "ぼうし", "101", ["unit 2"]),
+              Word("noun", "thing", "clothes", "gloves", "てぶくろ", "102", ["unit 10"], "手袋"),
+              Word("noun", "thing", "clothes", "clothes", "ふく", "102", ["unit 12"], "服"),
+              Word("noun", "thing", "furniture", "chair", "いす", "101", ["unit 4"]),
+              Word("noun", "thing", "furniture", "desk", "つくえ", "101", ["unit 4"], "机"),
+              Word("noun", "thing", "furniture", "bath", "おふろ", "102", ["unit 8"], "お風呂"),
+              Word("noun", "thing", "major", "major", "せんこう", "101", ["unit 1"]),
+              Word("noun", "thing", "major", "english", "えいご", "101", ["unit 2"]),
+              Word("noun", "thing", "major", "asian studies", "アジアけんきゅう", "101", ["unit 1"]),
+              Word("noun", "thing", "major", "economics", "けいざい", "101", ["unit 1", "unit 2"]),
+              Word("noun", "thing", "major", "engineering", "こうがく", "101", ["unit 1"]),
+              Word("noun", "thing", "major", "computer", "コンピューター", "101", ["unit 1", "unit 2"]),
+              Word("noun", "thing", "major", "politics", "せいじ", "101", ["unit 1", "unit 12"], "政治"),
+              Word("noun", "thing", "major", "biology", "せいぶつがく", "101", ["unit 1"]),
+              Word("noun", "thing", "major", "business", "ビジネス", "101", ["unit 1", "unit 2"]),
+              Word("noun", "thing", "major", "literature", "ぶんがく", "101", ["unit 1"], "文学"),
+              Word("noun", "thing", "major", "history", "れきし", "101", ["unit 1", "unit 2"]),
+              Word("noun", "thing", "major", "international relations", "こくさいかんけい", "101", ["unit 1"]),
+              Word("noun", "thing", "technology", "telephone", "でんわ", "101", ["unit 1"], "電話"),
+              Word("noun", "thing", "technology", "smart phone", "スマホ", "101", ["unit 2"]),
+              Word("noun", "thing", "technology", "camera", "カメラ", "102", ["unit 8"]),
+              Word("noun", "thing", "food", "fish", "さかな", "101", ["unit 2"]),
+              Word("noun", "thing", "food", "food", "たべもの", "101", ["unit 5"], "食べ物"),
+              Word("noun", "thing", "food", "drink", "のみもの", "101", ["unit 5"], "飲み物"),
+              Word("noun", "thing", "food", "fruit", "くだもの", "101", ["unit 5"], "果物"),
+              Word("noun", "thing", "food", "pork cutlet", "とんかつ", "101", ["unit 2"]),
+              Word("noun", "thing", "food", "meat", "にく", "101", ["unit 2"]),
+              Word("noun", "thing", "food", "ice cream", "アイスクリーム", "101", ["unit 3"]),
+              Word("noun", "thing", "food", "hamburger", "ハンバーガー", "101", ["unit 3"]),
+              Word("noun", "thing", "food", "alcohol", "おさけ", "101", ["unit 3"], "お酒"),
+              Word("noun", "thing", "food", "green tea", "おちゃ", "101", ["unit 3"], "お茶"),
+              Word("noun", "thing", "food", "coffee", "コーヒー", "101", ["unit 3"]),
+              Word("noun", "thing", "food", "water", "みず", "101", ["unit 3"], "水"),
+              Word("noun", "thing", "food", "breakfast", "あさごはん", "101", ["unit 3"], "朝ご飯"),
+              Word("noun", "thing", "food", "lunch", "ひるごはん", "101", ["unit 3"], "昼ご飯"),
+              Word("noun", "thing", "food", "dinner", "ばんごはん", "101", ["unit 3"], "晩ご飯"),
+              Word("noun", "thing", "food", "rice", "ごはん", "101", ["unit 4"], "ご飯"),
+              Word("noun", "thing", "food", "bread", "パン", "101", ["unit 4"]),
+              Word("noun", "thing", "food", "menu", "メニュー", "101", ["unit 2"]),
+              Word("noun", "thing", "food", "vegetables", "やさい", "101", ["unit 2"]),
+              Word("noun", "thing", "food", "barbecue", "バーベキュー", "102", ["unit 8"]),
+              Word("noun", "thing", "food", "tomato", "トマト", "102", ["unit 8"]),
+              Word("noun", "thing", "food", "chopsticks", "はし", "102", ["unit 8"]),
+              Word("noun", "thing", "food", "boxed lunch", "おべんとう", "102", ["unit 9"], "お弁当"),
+              Word("noun", "thing", "food", "pizza", "ピザ", "102", ["unit 9"]),
+              Word("noun", "thing", "food", "milk", "ぎゅうにゅう", "102", ["unit 10"], "牛乳"),
+              Word("noun", "thing", "food", "cake", "ケーキ", "102", ["unit 10"]),
+              Word("noun", "thing", "food", "sushi", "すし", "102", ["unit 10"]),
+              Word("noun", "thing", "food", "tempura", "てんぷら", "102", ["unit 10"], "天ぷら"),
+              Word("noun", "thing", "food", "apple", "りんご", "102", ["unit 10"]),
+              Word("noun", "thing", "food", "cuisine", "りょうり", "102", ["unit 10"], "料理"),
+              Word("noun", "thing", "food", "beer", "ビール", "102", ["unit 11"]),
+              Word("noun", "thing", "food", "snack", "おかし", "102", ["unit 11"], "お菓子"),
+              Word("noun", "thing", "food", "juice", "ジュース", "102", ["unit 12"]),
+              Word("noun", "thing", "food", "egg", "たまご", "102", ["unit 12"], "卵"),
+              Word("noun", "thing", "food", "strawberry", "いちご", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "watermelon", "すいか", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "mandarin orange", "みかん", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "peach", "もも", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "grape", "ぶどう", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "carrot", "にんじん", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "onion", "たまねぎ", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "potato", "じゃがいも", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "eggplant", "なす", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "cucumber", "きゅうり", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "cabbage", "キャベツ", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "beef", "ぎゅうにく", "102", ["bonus 1"], "牛肉"),
+              Word("noun", "thing", "food", "pork", "ぶたにく", "102", ["bonus 1"], "豚肉"),
+              Word("noun", "thing", "food", "chicken meat", "とりにく", "102", ["bonus 1"], "鶏肉"),
+              Word("noun", "thing", "food", "side dish", "おかず", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "soup", "みそしる", "102", ["bonus 1"], "みそ汁"),
+              Word("noun", "thing", "food", "set menu", "ていしょく", "102", ["bonus 1"], "定食"),
+              Word("noun", "thing", "food", "dumplings", "ぎょうざ", "102", ["bonus 1"]),
+              Word("noun", "thing", "food", "beef rice bowl", "ぎゅうどん", "102", ["bonus 1"], "牛丼"),
+              Word("noun", "thing", "food", "pancake", "おこのみやき", "102", ["bonus 1"], "お好み焼き"),
+              Word("noun", "thing", "food", "rice balls", "おにぎり", "102", ["bonus 1"]),
+              Word("noun", "thing", "entertainment", "movie", "えいが", "101", ["unit 3"], "映画"),
+              Word("noun", "thing", "entertainment", "music", "おんがく", "101", ["unit 3"], "音楽"),
+              Word("noun", "thing", "entertainment", "magazine", "ざっし", "101", ["unit 3"], "雑誌"),
+              Word("noun", "thing", "entertainment", "sports", "スポーツ", "101", ["unit 3"]),
+              Word("noun", "thing", "entertainment", "date", "デート", "101", ["unit 3"]),
+              Word("noun", "thing", "entertainment", "tennis", "テニス", "101", ["unit 3"]),
+              Word("noun", "thing", "entertainment", "television", "テレビ", "101", ["unit 3"]),
+              Word("noun", "thing", "entertainment", "karaoke", "カラオケ", "102", ["unit 8"]),
+              Word("noun", "thing", "entertainment", "party", "パーティー", "102", ["unit 8"]),
+              Word("noun", "thing", "entertainment", "concert", "コンサート", "102", ["unit 9"]),
+              Word("noun", "thing", "entertainment", "kabuki", "かぶき", "102", ["unit 9"], "歌舞伎"),
+              Word("noun", "thing", "entertainment", "soccer", "サッカー", "102", ["unit 10"]),
+              Word("noun", "thing", "entertainment", "baseball", "やきゅう", "102", ["unit 10"], "野球"),
+              Word("noun", "thing", "entertainment", "festival", "おまつり", "102", ["unit 11"], "お祭り"),
+              Word("noun", "thing", "entertainment", "toy", "おもちゃ", "102", ["unit 11"]),
+              Word("noun", "thing", "entertainment", "match/game", "しあい", "102", ["unit 12"], "試合"),
+              Word("noun", "thing", "time", "tomorrow", "あした", "101", ["unit 3"], "明日"),
+              Word("noun", "thing", "time", "today", "きょう", "101", ["unit 3"], "今日"),
+              Word("noun", "thing", "time", "yesterday", "きのう", "101", ["unit 4"], "昨日"),
+              Word("noun", "thing", "time", "hours", "じかん", "101", ["unit 4"], "時間"),
+              Word("noun", "thing", "time", "last week", "せんしゅう", "101", ["unit 4"], "先週"),
+              Word("noun", "thing", "time", "this week", "こんしゅう", "101", ["unit 6"], "今週"),
+              Word("noun", "thing", "time", "next week", "らいしゅう", "101", ["unit 6"], "来週"),
+              Word("noun", "thing", "time", "next year", "らいねん", "101", ["unit 6"], "来年"),
+              Word("noun", "thing", "time", "night", "よる", "101", ["unit 6"], "夜"),
+              Word("noun", "thing", "time", "morning", "あさ", "101", ["unit 3"], "朝"),
+              Word("noun", "thing", "time", "tonight", "こんばん", "101", ["unit 3"], "今晩"),
+              Word("noun", "thing", "time", "every day", "まいにち", "101", ["unit 3"], "毎日"),
+              Word("noun", "thing", "time", "every night", "まいばん", "101", ["unit 3"], "毎晩"),
+              Word("noun", "thing", "time", "weekend", "しゅうまつ", "101", ["unit 3"], "週末"),
+              Word("noun", "thing", "time", "saturday", "どようび", "101", ["unit 3"], "土曜日"),
+              Word("noun", "thing", "time", "sunday", "にちようび", "101", ["unit 3"], "日曜日"),
+              Word("noun", "thing", "time", "monday", "げつようび", "101", ["unit 4"], "月曜日"),
+              Word("noun", "thing", "time", "tuesday", "かようび", "101", ["unit 4"], "火曜日"),
+              Word("noun", "thing", "time", "wednesday", "すいようび", "101", ["unit 4"], "水曜日"),
+              Word("noun", "thing", "time", "thursday", "もくようび", "101", ["unit 4"], "木曜日"),
+              Word("noun", "thing", "time", "friday", "きんようび", "101", ["unit 4"], "金曜日"),
+              Word("noun", "thing", "time", "holiday", "やすみ", "101", ["unit 5"], "休み"),
+              Word("noun", "thing", "time", "birthday", "たんじょうび", "101", ["unit 5"], "誕生日"),
+              Word("noun", "thing", "time", "summer", "なつ", "102", ["unit 8"], "夏"),
+              Word("noun", "thing", "time", "winter", "ふゆ", "102", ["unit 8"], "冬"),
+              Word("noun", "thing", "time", "this morning", "けさ", "102", ["unit 8"], "今朝"),
+              Word("noun", "thing", "time", "the day after tomorrow", "あさって", "102", ["unit 8"]),
+              Word("noun", "thing", "time", "every week", "まいしゅう", "102", ["unit 8"], "毎週"),
+              Word("noun", "thing", "time", "this month", "こんげつ", "102", ["unit 8"], "今月"),
+              Word("noun", "thing", "time", "next month", "らいげつ", "102", ["unit 8"], "来月"),
+              Word("noun", "thing", "time", "near future", "こんど", "102", ["unit 9"], "今度"),
+              Word("noun", "thing", "time", "last month", "せんげつ", "102", ["unit 9"], "先月"),
+              Word("noun", "thing", "time", "last year", "きょねん", "102", ["unit 9"], "去年"),
+              Word("noun", "thing", "time", "season", "きせつ", "102", ["unit 10"], "季節"),
+              Word("noun", "thing", "time", "spring", "はる", "102", ["unit 10"], "春"),
+              Word("noun", "thing", "time", "fall", "あき", "102", ["unit 10"], "秋"),
+              Word("noun", "thing", "time", "time", "じかん", "102", ["unit 10"], "時間"),
+              Word("noun", "thing", "time", "this year", "ことし", "102", ["unit 10"], "今年"),
+              Word("noun", "thing", "time", "this semester", "こんがっき", "102", ["unit 11"], "今学期"),
+              Word("noun", "thing", "time", "next semester", "らいがっき", "102", ["unit 11"], "来学期"),
+              Word("noun", "thing", "time", "New Year's", "おしょうがつ", "102", ["unit 11"], "お正月"),
+              Word("noun", "thing", "time", "future", "しょうらい", "102", ["unit 11"], "将来"),
+              Word("noun", "thing", "time", "New Year's Day", "がんじつ", "102", ["bonus 1"], "元日"),
+              Word("noun", "thing", "time", "Coming-Of-Age Day", "せいじんのひ", "102", ["bonus 1"], "成人の日"),
+              Word("noun", "thing", "time", "National Foundation Day", "けんこくきねんのひ", "102", ["bonus 1"], "建国記念の日"),
+              Word("noun", "thing", "time", "Emperor's Birthday", "てんのたんじょうび", "102", ["bonus 1"], "天の誕生日"),
+              Word("noun", "thing", "time", "Vernal Equinox Day", "しゅんぶんのひ", "102", ["bonus 1"], "春分の日"),
+              Word("noun", "thing", "time", "Showa Day", "しょうわのひ", "102", ["bonus 1"], "昭和の日"),
+              Word("noun", "thing", "time", "Constitution Day", "けんぽうきねんび", "102", ["bonus 1"], "憲法記念日"),
+              Word("noun", "thing", "time", "Greenery Day", "みどりのひ", "102", ["bonus 1"], "みどりの日"),
+              Word("noun", "thing", "time", "Children's Day", "こどものひ", "102", ["bonus 1"], "こどもの日"),
+              Word("noun", "thing", "time", "Marine Day", "うみのひ", "102", ["bonus 1"], "海の日"),
+              Word("noun", "thing", "time", "Mountain Day", "やまのひ", "102", ["bonus 1"], "山の日"),
+              Word("noun", "thing", "time", "Respect-for-the-Aged Day", "けいろうのひ", "102", ["bonus 1"], "敬老の日"),
+              Word("noun", "thing", "time", "Autumnal Equinox Day", "しゅうぶんのひ", "102", ["bonus 1"], "秋分の日"),
+              Word("noun", "thing", "time", "Health and Sports Day", "スポーツのひ", "102", ["bonus 1"], "スポーツの日"),
+              Word("noun", "thing", "time", "Culture Day", "ぶんかのひ", "102", ["bonus 1"], "文化の日"),
+              Word("noun", "thing", "time", "Labor Thanksgiving Day", "きんろうかんしゃのひ", "102", ["bonus 1"], "勤労感謝の日"),
+              Word("noun", "thing", "time", "the day before yesterday", "おととい", "102", ["bonus 1"]),
+              Word("noun", "thing", "time", "two weeks ago", "にしゅうかんまえ", "102", ["bonus 1"], "二週間前"),
+              Word("noun", "thing", "time", "two months ago", "にかげつまえ", "102", ["bonus 1"], "二か月間"),
+              Word("noun", "thing", "time", "the year before last", "おととし", "102", ["bonus 1"]),
+              Word("noun", "thing", "time", "the week after next", "さらいしゅう", "102", ["bonus 1"], "再来週"),
+              Word("noun", "thing", "time", "the month after next", "さらいげつ", "102", ["bonus 1"], "再来月"),
+              Word("noun", "thing", "time", "the year after next", "さらいねん", "102", ["bonus 1"], "再来年"),
+              Word("noun", "thing", "time", "summer vacation", "なつやすみ", "102", ["bonus 1"], "夏休み"),
+              Word("noun", "thing", "time", "winter vacation", "ふゆやすみ", "102", ["bonus 1"], "冬休み"),
+              Word("noun", "thing", "time", "spring vacation", "はるやすみ", "102", ["bonus 1"], "春休み"),
+              Word("noun", "thing", "animal", "dog", "いぬ", "101", ["unit 4"], "犬"),
+              Word("noun", "thing", "animal", "cat", "ねこ", "101", ["unit 4"], "猫"),
+              Word("noun", "thing", "other", "number", "ばんごう", "101", ["unit 1"]),
+              Word("noun", "thing", "other", "name", "なまえ", "101", ["unit 1"], "名前"),
+              Word("noun", "thing", "other", "umbrella", "かさ", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "bag", "かばん", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "wallet", "さいふ", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "bicycle", "じてんしゃ", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "newspaper", "しんぶん", "101", ["unit 2"], "新聞"),
+              Word("noun", "thing", "other", "notebook", "ノート", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "pen", "ぺん", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "book", "ほん", "101", ["unit 2"], "本"),
+              Word("noun", "thing", "other", "this one", "これ", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "that one", "それ", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "that one over there", "あれ", "101", ["unit 2"]),
+              Word("noun", "thing", "other", "yen", "えん", "101", ["unit 2"], "円"),
+              Word("noun", "thing", "other", "game", "ゲーム", "101", ["unit 4"]),
+              Word("noun", "thing", "other", "class", "クラス", "101", ["unit 4"]),
+              Word("noun", "thing", "other", "shopping", "かいもの", "101", ["unit 4"], "買い物"),
+              Word("noun", "thing", "other", "part-time job", "アルバイト", "101", ["unit 4"]),
+              Word("noun", "thing", "other", "flower", "はな", "101", ["unit 4"], "花"),
+              Word("noun", "thing", "other", "picture", "しゃしん", "101", ["unit 4"], "写真"),
+              Word("noun", "thing", "other", "report", "レポート", "101", ["unit 4"]),
+              Word("noun", "thing", "other", "travel", "りょこう", "101", ["unit 5"], "旅行"),
+              Word("noun", "thing", "other", "surfing", "サーフィン", "101", ["unit 5"]),
+              Word("noun", "thing", "other", "souvenir", "おみやげ", "101", ["unit 5"], "お土産"),
+              Word("noun", "thing", "other", "bus", "バス", "101", ["unit 5"]),
+              Word("noun", "thing", "other", "weather", "てんき", "101", ["unit 5"], "天気"),
+              Word("noun", "thing", "other", "homework", "しゅくだい", "101", ["unit 5"], "宿題"),
+              Word("noun", "thing", "other", "size", "サイズ", "101", ["unit 5"]),
+              Word("noun", "thing", "other", "kanji", "かんじ", "101", ["unit 6"], "漢字"),
+              Word("noun", "thing", "other", "textbook", "きょうかしょ", "101", ["unit 6"], "教科書"),
+              Word("noun", "thing", "other", "page", "ページ", "101", ["unit 6"]),
+              Word("noun", "thing", "other", "next", "つぎ", "101", ["unit 6"], "次"),
+              Word("noun", "thing", "other", "money", "おかね", "101", ["unit 6"], "お金"),
+              Word("noun", "thing", "other", "baggage", "にもつ", "101", ["unit 6"], "荷物"),
+              Word("noun", "thing", "other", "personal computer", "パソコン", "101", ["unit 6"]),
+              Word("noun", "thing", "other", "shower", "シャワー", "101", ["unit 6"]),
+              Word("noun", "thing", "other", "air conditioner", "エアコン", "101", ["unit 6"]),
+              Word("noun", "thing", "other", "electricity", "でんき", "101", ["unit 6"], "電気"),
+              Word("noun", "thing", "other", "window", "まど", "101", ["unit 6"], "窓"),
+              Word("noun", "thing", "other", "train", "でんしゃ", "101", ["unit 6"], "電車"),
+              Word("noun", "thing", "other", "test", "テスト", "101　", ["unit 5"]),
+              Word("noun", "thing", "other", "japanese language", "にほんご", "101", ["unit 1"], "日本語"),
+              Word("noun", "thing", "other", "company", "かいしゃ", "102", ["unit 7"], "会社"),
+              Word("noun", "thing", "other", "hair", "かみ", "102", ["unit 7"], "髪"),
+              Word("noun", "thing", "other", "mouth", "くち", "102", ["unit 7"], "口"),
+              Word("noun", "thing", "other", "eye", "め", "102", ["unit 7"], "目"),
+              Word("noun", "thing", "other", "glasses", "めがね", "102", ["unit 7"], "眼鏡"),
+              Word("noun", "thing", "other", "song", "うた", "102", ["unit 7"], "歌"),
+              Word("noun", "thing", "other", "club activity", "サークル", "102", ["unit 7"]),
+              Word("noun", "thing", "other", "car", "くるま", "102", ["unit 7"], "車"),
+              Word("noun", "thing", "other", "sunny weather", "はれ", "102", ["unit 8"], "晴れ"),
+              Word("noun", "thing", "other", "rain", "あめ", "102", ["unit 8"], "雨"),
+              Word("noun", "thing", "other", "cloudy weather", "くもり", "102", ["unit 8"], "曇り"),
+              Word("noun", "thing", "other", "snow", "ゆき", "102", ["unit 8"], "雪"),
+              Word("noun", "thing", "other", "weather forecast", "てんきよほう", "102", ["unit 8"], "天気予報"),
+              Word("noun", "thing", "other", "temperature (weather)", "きおん", "102", ["unit 8"], "気温"),
+              Word("noun", "thing", "other", "something", "なにか", "102", ["unit 8"], "何か"),
+              Word("noun", "thing", "other", "word", "たんご", "102", ["unit 9"], "単語"),
+              Word("noun", "thing", "other", "essay", "さくぶん", "102", ["unit 9"], "作文"),
+              Word("noun", "thing", "other", "exam", "しけん", "102", ["unit 9"], "試験"),
+              Word("noun", "thing", "other", "letter", "てがみ", "102", ["unit 9"], "手紙"),
+              Word("noun", "thing", "other", "e-mail", "メール", "102", ["unit 9"]),
+              Word("noun", "thing", "other", "guitar", "ギター", "102", ["unit 9"]),
+              Word("noun", "thing", "other", "piano", "ピアノ", "102", ["unit 9"]),
+              Word("noun", "thing", "other", "ticket", "チケット", "102", ["unit 9"]),
+              Word("noun", "thing", "other", "ski", "スキー", "102", ["unit 9"]),
+              Word("noun", "thing", "other", "illness", "びょうき", "102", ["unit 9"], "病気"),
+              Word("noun", "thing", "other", "medicine", "くすり", "102", ["unit 9"], "薬"),
+              Word("noun", "thing", "other", "color", "いろ", "102", ["unit 9"], "色"),
+              Word("noun", "thing", "other", "face", "かお", "102", ["unit 10"], "顔"),
+              Word("noun", "thing", "other", "bullet train", "しんかんせん", "102", ["unit 10"], "新幹線"),
+              Word("noun", "thing", "other", "ship", "ふね", "102", ["unit 10"], "船"),
+              Word("noun", "thing", "other", "airplane", "ひこうき", "102", ["unit 10"], "飛行機"),
+              Word("noun", "thing", "other", "reservation", "よやく", "102", ["unit 10"], "予約"),
+              Word("noun", "thing", "other", "tour", "ツアー", "102", ["unit 10"]),
+              Word("noun", "thing", "other", "life", "せいかつ", "102", ["unit 10"], "生活"),
+              Word("noun", "thing", "other", "dream", "ゆめ", "102", ["unit 11"], "夢"),
+              Word("noun", "thing", "other", "class", "じゅぎょう", "102", ["unit 11"], "授業"),
+              Word("noun", "thing", "other", "fishing", "つり", "102", ["unit 11"]),
+              Word("noun", "thing", "other", "drive", "ドライブ", "102", ["unit 11"]),
+              Word("noun", "thing", "other", "stomach", "おなか", "102", ["unit 12"]),
+              Word("noun", "thing", "other", "leg/foot", "あし", "102", ["unit 12"], "足"),
+              Word("noun", "thing", "other", "throat", "のど", "102", ["unit 12"], "喉"),
+              Word("noun", "thing", "other", "tooth", "は", "102", ["unit 12"], "歯"),
+              Word("noun", "thing", "other", "influenza", "インフルエンザ", "102", ["unit 12"]),
+              Word("noun", "thing", "other", "cold", "かぜ", "102", ["unit 12"], "風邪"),
+              Word("noun", "thing", "other", "cough", "せき", "102", ["unit 12"]),
+              Word("noun", "thing", "other", "hangover", "ふつかよい", "102", ["unit 12"], "二日酔い"),
+              Word("noun", "thing", "other", "homesickness", "ホームシッカ", "102", ["unit 12"]),
+              Word("noun", "thing", "other", "allergy", "アレルギー", "102", ["unit 12"]),
+              Word("noun", "thing", "other", "thing (an object)", "もの", "102", ["unit 12"], "物"),
+              Word("noun", "thing", "other", "business (to take  care of)", "ようじ", "102", ["unit 12"], "用事"),
+              Word("noun", "thing", "other", "grade", "せいせき", "102", ["unit 12"], "載積"),
+              Word("noun", "thing", "other", "meaning", "いみ", "102", ["unit 12"], "意味"),
+              Word("noun", "thing", "other", "present (gift)", "プレゼント", "102", ["unit 12"]),
+              Word("noun", "thing", "other", "ticket (train)", "きっぷ", "102", ["unit 12"], "切符"),
+              Word("noun", "thing", "other", "fee", "だい", "102", ["unit 12"], "代"),
+              Word("noun", "thing", "other", "pencil", "えんぴつ", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "eraser", "けしゴム", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "dictionary", "じしょ", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "door", "ドア", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "curtain", "カーテン", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "blackboard", "こくばん", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "straw mats", "たたみ", "101", ["bonus 1"], "畳"),
+              Word("noun", "thing", "other", "sliding door", "じょうじ", "101", ["bonus 1"], "障子"),
+              Word("noun", "thing", "other", "entrance-way (home)", "げんかん", "101", ["bonus 1"], "玄関"),
+              Word("noun", "thing", "other", "graduate school", "だいがくいん", "101", ["bonus 1"], "大学院"),
+              Word("noun", "thing", "other", "junior college", "たんだい", "101", ["bonus 1"], "短大"),
+              Word("noun", "thing", "other", "junior high school", "ちゅうがく", "101", ["bonus 1"], "中学"),
+              Word("noun", "thing", "other", "elementary school", "しょうがっこう", "101", ["bonus 1"], "小学校"),
+              Word("noun", "thing", "other", "nursery school", "ほいくえん", "101", ["bonus 1"], "保育園"),
+              Word("noun", "thing", "other", "kindergarten", "ようちえん", "101", ["bonus 1"], "幼稚園"),
+              Word("noun", "thing", "other", "compulsory education", "ぎむきょういく", "101", ["bonus 1"], "義務教育"),
+              Word("noun", "thing", "other", "eyebrow", "まゆげ", "101", ["bonus 1"], "眉毛"),
+              Word("noun", "thing", "other", "ear", "みみ", "101", ["bonus 1"], "耳"),
+              Word("noun", "thing", "other", "hand", "て", "101", ["bonus 1"], "手"),
+              Word("noun", "thing", "other", "neck", "くび", "101", ["bonus 1"], "首"),
+              Word("noun", "thing", "other", "finger", "ゆび", "101", ["bonus 1"], "指"),
+              Word("noun", "thing", "other", "nose", "はな", "101", ["bonus 1"], "鼻"),
+              Word("noun", "thing", "other", "shoulders", "かた", "101", ["bonus 1"], "肩"),
+              Word("noun", "thing", "other", "chest", "むね", "101", ["bonus 1"], "胸"),
+              Word("noun", "thing", "other", "butt", "おしり", "101", ["bonus 1"], "お尻"),
+              Word("noun", "thing", "other", "back (body part)", "せなか", "101", ["bonus 1"], "背中"),
+              Word("noun", "thing", "other", "head", "あたま", "101", ["bonus 1"], "頭"),
+              Word("noun", "thing", "other", "green", "みどり", "101", ["bonus 1"], "緑"),
+              Word("noun", "thing", "other", "navy blue", "こんいろ", "101", ["bonus 1"], "紺色"),
+              Word("noun", "thing", "other", "light blue", "みずいろ", "101", ["bonus 1"], "水色"),
+              Word("noun", "thing", "other", "silver (color)", "ぎんいろ", "101", ["bonus 1"], "銀色"),
+              Word("noun", "thing", "other", "orange (color)", "オレンジ", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "purple", "むらさき", "101", ["bonus 1"], "紫"),
+              Word("noun", "thing", "other", "gray", "はいいろ", "101", ["bonus 1"], "灰色"),
+              Word("noun", "thing", "other", "gold (color)", "きんいろ", "101", ["bonus 1"], "金色"),
+              Word("noun", "thing", "other", "pink", "ピンク", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "beige", "ベージュ", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "local (train)", "ふつう", "101", ["bonus 1"], "普通"),
+              Word("noun", "thing", "other", "express (train)", "きゅうこう", "101", ["bonus 1"], "急行"),
+              Word("noun", "thing", "other", "super express (train)", "とっきゅう", "101", ["bonus 1"], "特急"),
+              Word("noun", "thing", "other", "boarding ticket", "じょうしゃけん", "101", ["bonus 1"], "乗車券"),
+              Word("noun", "thing", "other", "commuter's pass", "ていきけん", "101", ["bonus 1"], "定期券"),
+              Word("noun", "thing", "other", "student discount", "がくわり", "101", ["bonus 1"], "学割"),
+              Word("noun", "thing", "other", "reserved seat", "していせき", "101", ["bonus 1"], "指定席"),
+              Word("noun", "thing", "other", "general admission seat", "じゆうせき", "101", ["bonus 1"], "自由席"),
+              Word("noun", "thing", "other", "round trip", "おうふく", "101", ["bonus 1"], "往復"),
+              Word("noun", "thing", "other", "one way", "かたみち", "101", ["bonus 1"], "片道"),
+              Word("noun", "thing", "other", "transfer (train)", "のりかえ", "101", ["bonus 1"], "乗り換え"),
+              Word("noun", "thing", "other", "last train", "しゅうでん", "101", ["bonus 1"], "終電"),
+              Word("noun", "thing", "other", "deadline", "しめきり", "101", ["bonus 1"]),
+              Word("noun", "thing", "other", "exercise (in class)", "れんしゅう", "101", ["bonus 1"], "練習"),
+              Word("noun", "thing", "other", "pronunciation", "はつおん", "101", ["bonus 1"], "発音"),
+              Word("noun", "thing", "other", "grammar", "ぶんぽう", "101", ["bonus 1"], "文法"),
+              Word("noun", "thing", "other", "question", "しつもん", "101", ["bonus 1"], "質問"),
+              Word("noun", "thing", "other", "answer", "こたえ", "101", ["bonus 1"], "答"),
+              Word("noun", "thing", "other", "dialect", "ほうげん", "101", ["bonus 1"], "方言"),
+              Word("noun", "thing", "other", "common language", "きょうつうご", "101", ["bonus 1"], "共通語"),
+              Word("noun", "thing", "other", "example", "れい", "101", ["bonus 1"], "例"),
+              Word("noun", "thing", "other", "antibiotic", "こうせいぶっしつ", "101", ["bonus 1"], "抗生物質"),
+              Word("noun", "thing", "other", "operation", "しゅじゅつ", "101", ["bonus 1"], "手術"),
+              Word("noun", "thing", "other", "injection", "ちゅうしゃ", "101", ["bonus 1"], "注射"),
+              Word("noun", "thing", "other", "thermometer", "たいおんけい", "101", ["bonus 1"], "体温計"),
 
-              Word("title", "", "", "Mr./Ms.", "さん", "101", "unit 1"),
+              Word("pronoun", "", "", "i", "わたし", "101", ["unit 1"], "私"),
+              Word("pronoun", "", "", "i (men)", "ぼく", "101", ["unit 5"], "僕"),
+              Word("pronoun", "", "", "you", "あなた", "101", ["unit 4"]),
 
-              Word("adjective", "i", "", "delicious", "おいしい", "101", "unit 2"),
-              Word("adjective", "i", "", "expensive", "たかい", "101", "unit 2", "高い"),
-              Word("adjective", "i", "", "early", "はやい", "101", "unit 3", "早い"),
-              Word("adjective", "i", "", "new", "あたらしい", "101", "unit 5", "新しい"),
-              Word("adjective", "i", "", "old", "ふるい", "101", "unit 5", "古い"),
-              Word("adjective", "i", "", "hot (thing)", "あつい", "101", "unit 5", "暑い"),
-              Word("adjective", "i", "", "hot (weather)", "あつい", "101", "unit 5", "熱い"),
-              Word("adjective", "i", "", "cold", "さむい", "101", "unit 5", "寒い"),
-              Word("adjective", "i", "", "busy", "いそがしい", "101", "unit 5", "忙しい"),
-              Word("adjective", "i", "", "large", "おおきい", "101", "unit 5", "大きい"),
-              Word("adjective", "i", "", "small", "ちいさい", "101", "unit 5", "小さい"),
-              Word("adjective", "i", "", "interesting", "おもしろい", "101", "unit 5", "面白い"),
-              Word("adjective", "i", "", "boring", "つまらない", "101", "unit 5"),
-              Word("adjective", "i", "", "easy", "やさしい", "101", "unit 5"),
-              Word("adjective", "i", "", "difficult", "むずかしい", "101", "unit 5", "難しい"),
-              Word("adjective", "i", "", "frightening", "こわい", "101", "unit 5", "怖い"),
-              Word("adjective", "i", "", "fun", "たのしい", "101", "unit 5", "楽しい"),
-              Word("adjective", "i", "", "cheap", "やすい", "101", "unit 5", "安い"),
-              Word("adjective", "i", "", "long", "ながい", "102", "unit 7", "長い"),
-              Word("adjective", "i", "", "short (length)", "みじかい", "102", "unit 7", "短い"),
-              Word("adjective", "i", "", "fast", "はやい", "102", "unit 7", "速い"),
-              Word("adjective", "i", "", "tall", "せがたかい", "102", "unit 7", "背が高い"),
-              Word("adjective", "i", "", "short (stature)", "せがひくい", "102", "unit 7", "背が低い"),
-              Word("adjective", "i", "", "cute", "かわいい", "102", "unit 7"),
-              Word("adjective", "i", "", "blue", "あおい", "102", "unit 9", "青い"),
-              Word("adjective", "i", "", "red", "あかい", "102", "unit 9", "赤い"),
-              Word("adjective", "i", "", "black", "くろい", "102", "unit 9", "黒い"),
-              Word("adjective", "i", "", "white", "しろい", "102", "unit 9", "白い"),
-              Word("adjective", "i", "", "lonely", "さびしい", "102", "unit 9", "寂しい"),
-              Word("adjective", "i", "", "young", "わかい", "102", "unit 9", "若い"),
-              Word("adjective", "i", "", "warm", "あたたかい", "102", "unit 10", "暖かい"),
-              Word("adjective", "i", "", "cool (weather)", "すずしい", "102", "unit 10", "涼しい"),
-              Word("adjective", "i", "", "cold (things)", "つめたい", "102", "unit 10", "冷たい"),
-              Word("adjective", "i", "", "slow/late", "おそい", "102", "unit 10", "遅い"),
-              Word("adjective", "i", "", "sleepy", "ねむい", "102", "unit 10", "眠い"),
-              Word("adjective", "i", "", "narrow/not spacious", "せまい", "102", "unit 12", "狭い"),
-              Word("adjective", "i", "", "wide/spacious", "ひろい", "102", "unit 12", "広い"),
-              Word("adjective", "i", "", "bad", "わるい", "102", "unit 12", "悪い"),
-              Word("adjective", "i", "", "hurt/painful", "いたい", "102", "unit 12", "痛い"),
-              Word("adjective", "i", "", "sweet", "あまい", "102", "unit 12", "甘い"),
-              Word("adjective", "i", "", "many", "おおい", "102", "unit 12", "多い"),
-              Word("adjective", "i", "", "yellow", "きいろい", "102", "bonus 1", "黄色い"),
-              Word("adjective", "i", "", "brown", "ちゃいろい", "102", "bonus 1", "茶色い"),
-              Word("adjective", "na", "", "like", "すきな", "101", "unit 5", "好きな"),
-              Word("adjective", "na", "", "dislike", "きらいな", "101", "unit 5", "嫌いな"),
-              Word("adjective", "na", "", "love", "だいすきな", "101", "unit 5", "大好きな"),
-              Word("adjective", "na", "", "hate", "だいきらいな", "101", "unit 5", "大嫌いな"),
-              Word("adjective", "na", "", "beautiful", "きれいな", "101", "unit 5"),
-              Word("adjective", "na", "", "healthy", "げんきな", "101", "unit 5", "元気な"),
-              Word("adjective", "na", "", "quiet", "しずかな", "101", "unit 5", "静かな"),
-              Word("adjective", "na", "", "lively", "にぎやかな", "101", "unit 5"),
-              Word("adjective", "na", "", "not busy", "ひまな", "101", "unit 5", "暇な"),
-              Word("adjective", "na", "", "tough (situation)", "たいへんな", "101", "unit 6", "大変な"),
-              Word("adjective", "na", "", "kind", "しんせつな", "102", "unit 7", "親切な"),
-              Word("adjective", "na", "", "convenient", "べんりな", "102", "unit 7", "便利な"),
-              Word("adjective", "na", "", "good at", "じょうずな", "102", "unit 8", "上手な"),
-              Word("adjective", "na", "", "poor at", "へたな", "102", "unit 8", "下手な"),
-              Word("adjective", "na", "", "famous", "ゆうめいな", "102", "unit 8", "有名な"),
-              Word("adjective", "na", "", "mean-spirited", "いじわるな", "102", "unit 9", "意地悪な"),
-              Word("adjective", "na", "", "easy/simple", "かんたんな", "102", "unit 10", "簡単な"),
-              Word("adjective", "na", "", "nice", "すてきな", "102", "unit 12", "素敵な"),
-              Word("adjective", "irregular", "", "good", "いい", "101", "unit 3"),
-              Word("adjective", "irregular", "", "good-looking", "かっこいい", "101", "unit 5"),
-              Word("adjective", "irregular", "", "smart", "あたまがいい", "102", "unit 7", "頭がいい"),
+              Word("title", "", "", "Mr./Ms.", "さん", "101", ["unit 1"]),
 
-              Word("adverb", "", "", "not much", "あまり", "101", "unit 3"),
-              Word("adverb", "", "", "not at all", "ぜんぜん", "101", "unit 3", "全然"),
-              Word("adverb", "", "", "usually", "たいてい", "101", "unit 3"),
-              Word("adverb", "", "", "a little", "ちょっと", "101", "unit 3"),
-              Word("adverb", "", "", "sometimes", "ときどき", "101", "unit 3", "時々"),
-              Word("adverb", "", "", "often", "よく", "101", "unit 3"),
-              Word("adverb", "", "", "about", "ぐらい", "101", "unit 4"),
-              Word("adverb", "", "", "together", "いっしょに", "101", "unit 5", "一緒に"),
-              Word("adverb", "", "", "extremely", "すごく", "101", "unit 5"),
-              Word("adverb", "", "", "very", "とても", "101", "unit 5"),
-              Word("adverb", "", "", "leisurely", "ゆっくり", "101", "unit 6"),
-              Word("adverb", "", "", "always", "いつも", "102", "unit 8"),
-              Word("adverb", "", "", "(do something) late", "おそく", "102", "unit 8", "遅く"),
-              Word("adverb", "", "", "(do something) early", "はやく", "102", "unit 10", "早く"),
-              Word("adverb", "", "", "(do something) fast", "はやく", "102", "unit 10", "速く"),
-              Word("adverb", "", "", "many", "たくさん", "101", "unit 4"),
-              Word("adverb", "", "", "alone", "ひとりで", "101", "unit 4", "一人で"),
+              Word("adjective", "i", "", "delicious", "おいしい", "101", ["unit 2"]),
+              Word("adjective", "i", "", "expensive", "たかい", "101", ["unit 2"], "高い"),
+              Word("adjective", "i", "", "early", "はやい", "101", ["unit 3"], "早い"),
+              Word("adjective", "i", "", "new", "あたらしい", "101", ["unit 5"], "新しい"),
+              Word("adjective", "i", "", "old", "ふるい", "101", ["unit 5"], "古い"),
+              Word("adjective", "i", "", "hot (thing)", "あつい", "101", ["unit 5"], "暑い"),
+              Word("adjective", "i", "", "hot (weather)", "あつい", "101", ["unit 5"], "熱い"),
+              Word("adjective", "i", "", "cold", "さむい", "101", ["unit 5"], "寒い"),
+              Word("adjective", "i", "", "busy", "いそがしい", "101", ["unit 5"], "忙しい"),
+              Word("adjective", "i", "", "large", "おおきい", "101", ["unit 5"], "大きい"),
+              Word("adjective", "i", "", "small", "ちいさい", "101", ["unit 5"], "小さい"),
+              Word("adjective", "i", "", "interesting", "おもしろい", "101", ["unit 5"], "面白い"),
+              Word("adjective", "i", "", "boring", "つまらない", "101", ["unit 5"]),
+              Word("adjective", "i", "", "easy", "やさしい", "101", ["unit 5"]),
+              Word("adjective", "i", "", "difficult", "むずかしい", "101", ["unit 5"], "難しい"),
+              Word("adjective", "i", "", "frightening", "こわい", "101", ["unit 5"], "怖い"),
+              Word("adjective", "i", "", "fun", "たのしい", "101", ["unit 5"], "楽しい"),
+              Word("adjective", "i", "", "cheap", "やすい", "101", ["unit 5"], "安い"),
+              Word("adjective", "i", "", "long", "ながい", "102", ["unit 7"], "長い"),
+              Word("adjective", "i", "", "short (length)", "みじかい", "102", ["unit 7"], "短い"),
+              Word("adjective", "i", "", "fast", "はやい", "102", ["unit 7"], "速い"),
+              Word("adjective", "i", "", "tall", "せがたかい", "102", ["unit 7"], "背が高い"),
+              Word("adjective", "i", "", "short (stature)", "せがひくい", "102", ["unit 7"], "背が低い"),
+              Word("adjective", "i", "", "cute", "かわいい", "102", ["unit 7"]),
+              Word("adjective", "i", "", "blue", "あおい", "102", ["unit 9"], "青い"),
+              Word("adjective", "i", "", "red", "あかい", "102", ["unit 9"], "赤い"),
+              Word("adjective", "i", "", "black", "くろい", "102", ["unit 9"], "黒い"),
+              Word("adjective", "i", "", "white", "しろい", "102", ["unit 9"], "白い"),
+              Word("adjective", "i", "", "lonely", "さびしい", "102", ["unit 9"], "寂しい"),
+              Word("adjective", "i", "", "young", "わかい", "102", ["unit 9"], "若い"),
+              Word("adjective", "i", "", "warm", "あたたかい", "102", ["unit 10"], "暖かい"),
+              Word("adjective", "i", "", "cool (weather)", "すずしい", "102", ["unit 10"], "涼しい"),
+              Word("adjective", "i", "", "cold (things)", "つめたい", "102", ["unit 10"], "冷たい"),
+              Word("adjective", "i", "", "slow/late", "おそい", "102", ["unit 10"], "遅い"),
+              Word("adjective", "i", "", "sleepy", "ねむい", "102", ["unit 10"], "眠い"),
+              Word("adjective", "i", "", "narrow/not spacious", "せまい", "102", ["unit 12"], "狭い"),
+              Word("adjective", "i", "", "wide/spacious", "ひろい", "102", ["unit 12"], "広い"),
+              Word("adjective", "i", "", "bad", "わるい", "102", ["unit 12"], "悪い"),
+              Word("adjective", "i", "", "hurt/painful", "いたい", "102", ["unit 12"], "痛い"),
+              Word("adjective", "i", "", "sweet", "あまい", "102", ["unit 12"], "甘い"),
+              Word("adjective", "i", "", "many", "おおい", "102", ["unit 12"], "多い"),
+              Word("adjective", "i", "", "yellow", "きいろい", "102", ["bonus 1"], "黄色い"),
+              Word("adjective", "i", "", "brown", "ちゃいろい", "102", ["bonus 1"], "茶色い"),
+              Word("adjective", "na", "", "like", "すきな", "101", ["unit 5"], "好きな"),
+              Word("adjective", "na", "", "dislike", "きらいな", "101", ["unit 5"], "嫌いな"),
+              Word("adjective", "na", "", "love", "だいすきな", "101", ["unit 5"], "大好きな"),
+              Word("adjective", "na", "", "hate", "だいきらいな", "101", ["unit 5"], "大嫌いな"),
+              Word("adjective", "na", "", "beautiful", "きれいな", "101", ["unit 5"]),
+              Word("adjective", "na", "", "healthy", "げんきな", "101", ["unit 5"], "元気な"),
+              Word("adjective", "na", "", "quiet", "しずかな", "101", ["unit 5"], "静かな"),
+              Word("adjective", "na", "", "lively", "にぎやかな", "101", ["unit 5"]),
+              Word("adjective", "na", "", "not busy", "ひまな", "101", ["unit 5"], "暇な"),
+              Word("adjective", "na", "", "tough (situation)", "たいへんな", "101", ["unit 6"], "大変な"),
+              Word("adjective", "na", "", "kind", "しんせつな", "102", ["unit 7"], "親切な"),
+              Word("adjective", "na", "", "convenient", "べんりな", "102", ["unit 7"], "便利な"),
+              Word("adjective", "na", "", "good at", "じょうずな", "102", ["unit 8"], "上手な"),
+              Word("adjective", "na", "", "poor at", "へたな", "102", ["unit 8"], "下手な"),
+              Word("adjective", "na", "", "famous", "ゆうめいな", "102", ["unit 8"], "有名な"),
+              Word("adjective", "na", "", "mean-spirited", "いじわるな", "102", ["unit 9"], "意地悪な"),
+              Word("adjective", "na", "", "easy/simple", "かんたんな", "102", ["unit 10"], "簡単な"),
+              Word("adjective", "na", "", "nice", "すてきな", "102", ["unit 12"], "素敵な"),
+              Word("adjective", "irregular", "", "good", "いい", "101", ["unit 3"]),
+              Word("adjective", "irregular", "", "good-looking", "かっこいい", "101", ["unit 5"]),
+              Word("adjective", "irregular", "", "smart", "あたまがいい", "102", ["unit 7"], "頭がいい"),
 
-              Word("preposition", "time", "", "now", "いま", "101", "unit 1", "今"),
-              Word("preposition", "time", "", "later on", "あとで", "101", "unit 6", "後で"),
-              Word("preposition", "time", "", "right away", "すぐ", "101", "unit 6"),
-              Word("preposition", "time", "", "not ... yet", "まだ", "102", "unit 8"),
-              Word("preposition", "time", "", "already", "もう", "102", "unit 9"),
-              Word("preposition", "location", "", "this", "この", "101", "unit 2"),
-              Word("preposition", "location", "", "that", "その", "101", "unit 2"),
-              Word("preposition", "location", "", "that over there", "あの", "101", "unit 2"),
-              Word("preposition", "location", "", "here", "ここ", "101", "unit 2"),
-              Word("preposition", "location", "", "there", "そこ", "101", "unit 2"),
-              Word("preposition", "location", "", "over there", "あそこ", "101", "unit 2"),
-              Word("preposition", "location", "", "right", "みぎ", "101", "unit 4", "右"),
-              Word("preposition", "location", "", "left", "ひだり", "101", "unit 4", "左"),
-              Word("preposition", "location", "", "front", "まえ", "101", "unit 4", "前"),
-              Word("preposition", "location", "", "back (of something)", "うしろ", "101", "unit 4", "後ろ"),
-              Word("preposition", "location", "", "inside", "なか", "101", "unit 4", "中"),
-              Word("preposition", "location", "", "on", "うえ", "101", "unit 4", "上"),
-              Word("preposition", "location", "", "under", "した", "101", "unit 4", "下"),
-              Word("preposition", "location", "", "near", "ちかく", "101", "unit 4", "近く"),
-              Word("preposition", "location", "", "next", "となり", "101", "unit 4", "隣"),
-              Word("preposition", "location", "", "between", "あいだ", "101", "unit 4", "間"),
-              Word("preposition", "location", "", "from...", "から", "102", "unit 9"),
-              Word("preposition", "location", "", "to (a place/a time)", "まで", "102", "unit 9"),
-              Word("preposition", "location", "", "coming from", "しゅっしん", "102", "unit 11", "出身"),
-              Word("preposition", "location", "", "north", "きた", "102", "bonus 1", "北"),
-              Word("preposition", "location", "", "south", "みなみ", "102", "bonus 1", "南"),
-              Word("preposition", "location", "", "east", "ひがし", "102", "bonus 1", "東"),
-              Word("preposition", "location", "", "west", "にし", "102", "bonus 1", "西"),
-              Word("preposition", "time", "", "and then", "それから", "101", "unit 4"),
-              Word("preposition", "time", "", "and then", "そして", "102", "unit 11"),
-              Word("preposition", "time", "", "after (an event)", "あと", "102", "unit 11", "後"),
-              Word("preposition", "time", "", "as much as possible", "できるだけ", "102", "unit 12"),
-              Word("preposition", "time", "", "very soon", "もうすぐ", "102", "unit 12"),
-              Word("preposition", "time", "", "for the first time", "はじめて", "102", "unit 12", "初めて"),
-              Word("preposition", "time", "", "for two or three more days", "にさんにち", "102", "unit 12", "二三日"),
+              Word("adverb", "", "", "not much", "あまり", "101", ["unit 3"]),
+              Word("adverb", "", "", "not at all", "ぜんぜん", "101", ["unit 3"], "全然"),
+              Word("adverb", "", "", "usually", "たいてい", "101", ["unit 3"]),
+              Word("adverb", "", "", "a little", "ちょっと", "101", ["unit 3"]),
+              Word("adverb", "", "", "sometimes", "ときどき", "101", ["unit 3"], "時々"),
+              Word("adverb", "", "", "often", "よく", "101", ["unit 3"]),
+              Word("adverb", "", "", "about", "ぐらい", "101", ["unit 4"]),
+              Word("adverb", "", "", "together", "いっしょに", "101", ["unit 5"], "一緒に"),
+              Word("adverb", "", "", "extremely", "すごく", "101", ["unit 5"]),
+              Word("adverb", "", "", "very", "とても", "101", ["unit 5"]),
+              Word("adverb", "", "", "leisurely", "ゆっくり", "101", ["unit 6"]),
+              Word("adverb", "", "", "always", "いつも", "102", ["unit 8"]),
+              Word("adverb", "", "", "(do something) late", "おそく", "102", ["unit 8"], "遅く"),
+              Word("adverb", "", "", "(do something) early", "はやく", "102", ["unit 10"], "早く"),
+              Word("adverb", "", "", "(do something) fast", "はやく", "102", ["unit 10"], "速く"),
+              Word("adverb", "", "", "many", "たくさん", "101", ["unit 4"]),
+              Word("adverb", "", "", "alone", "ひとりで", "101", ["unit 4"], "一人で"),
 
-              Word("time", "", "", "half past", "はん", "101", "unit 1"),
-              Word("time", "", "", "p.m.", "ごご", "101", "unit 1"),
-              Word("time", "", "", "a.m.", "ごぜん", "101", "unit 1"),
-              Word("time", "", "", "at about", "ごろ", "101", "unit 3"),
-              Word("time", "", "", "at the time of", "とき", "101", "unit 4", "時"),
+              Word("preposition", "time", "", "now", "いま", "101", ["unit 1"], "今"),
+              Word("preposition", "time", "", "later on", "あとで", "101", ["unit 6"], "後で"),
+              Word("preposition", "time", "", "right away", "すぐ", "101", ["unit 6"]),
+              Word("preposition", "time", "", "not ... yet", "まだ", "102", ["unit 8"]),
+              Word("preposition", "time", "", "already", "もう", "102", ["unit 9"]),
+              Word("preposition", "location", "", "this", "この", "101", ["unit 2"]),
+              Word("preposition", "location", "", "that", "その", "101", ["unit 2"]),
+              Word("preposition", "location", "", "that over there", "あの", "101", ["unit 2"]),
+              Word("preposition", "location", "", "here", "ここ", "101", ["unit 2"]),
+              Word("preposition", "location", "", "there", "そこ", "101", ["unit 2"]),
+              Word("preposition", "location", "", "over there", "あそこ", "101", ["unit 2"]),
+              Word("preposition", "location", "", "right", "みぎ", "101", ["unit 4"], "右"),
+              Word("preposition", "location", "", "left", "ひだり", "101", ["unit 4"], "左"),
+              Word("preposition", "location", "", "front", "まえ", "101", ["unit 4"], "前"),
+              Word("preposition", "location", "", "back (of something)", "うしろ", "101", ["unit 4"], "後ろ"),
+              Word("preposition", "location", "", "inside", "なか", "101", ["unit 4"], "中"),
+              Word("preposition", "location", "", "on", "うえ", "101", ["unit 4"], "上"),
+              Word("preposition", "location", "", "under", "した", "101", ["unit 4"], "下"),
+              Word("preposition", "location", "", "near", "ちかく", "101", ["unit 4"], "近く"),
+              Word("preposition", "location", "", "next", "となり", "101", ["unit 4"], "隣"),
+              Word("preposition", "location", "", "between", "あいだ", "101", ["unit 4"], "間"),
+              Word("preposition", "location", "", "from...", "から", "102", ["unit 9"]),
+              Word("preposition", "location", "", "to (a place/a time)", "まで", "102", ["unit 9"]),
+              Word("preposition", "location", "", "coming from", "しゅっしん", "102", ["unit 11"], "出身"),
+              Word("preposition", "location", "", "north", "きた", "102", ["bonus 1"], "北"),
+              Word("preposition", "location", "", "south", "みなみ", "102", ["bonus 1"], "南"),
+              Word("preposition", "location", "", "east", "ひがし", "102", ["bonus 1"], "東"),
+              Word("preposition", "location", "", "west", "にし", "102", ["bonus 1"], "西"),
+              Word("preposition", "time", "", "and then", "それから", "101", ["unit 4"]),
+              Word("preposition", "time", "", "and then", "そして", "102", ["unit 11"]),
+              Word("preposition", "time", "", "after (an event)", "あと", "102", ["unit 11"], "後"),
+              Word("preposition", "time", "", "as much as possible", "できるだけ", "102", ["unit 12"]),
+              Word("preposition", "time", "", "very soon", "もうすぐ", "102", ["unit 12"]),
+              Word("preposition", "time", "", "for the first time", "はじめて", "102", ["unit 12"], "初めて"),
+              Word("preposition", "time", "", "for two or three more days", "にさんにち", "102", ["unit 12"], "二三日"),
 
-              Word("question", "", "", "what", "なに", "101", "unit 1", "何"),
-              Word("question", "", "", "which one", "どれ", "101", "unit 2"),
-              Word("question", "", "", "which", "どの", "101", "unit 2"),
-              Word("question", "", "", "where", "どこ", "101", "unit 2"),
-              Word("question", "", "", "who", "だれ", "101", "unit 2"),
-              Word("question", "", "", "why", "どうして", "101", "unit 4"),
-              Word("question", "", "", "when", "いつ", "101", "unit 3"),
-              Word("question", "", "", "how much", "いくら", "101", "unit 2"),
-              Word("question", "", "", "what kind of", "どんな", "101", "unit 5"),
-              Word("question", "", "", "really", "ほんとうですか", "101", "unit 6", "本当ですか"),
-              Word("question", "", "", "how", "どう", "102", "unit 8"),
-              Word("question", "", "", "which", "どっち", "102", "unit 10"),
-              Word("question", "", "", "how/by what means", "どうやって", "102", "unit 10"),
-              Word("question", "", "", "how much/long", "どのぐらい", "102", "unit 10"),
+              Word("time", "", "", "half past", "はん", "101", ["unit 1"]),
+              Word("time", "", "", "p.m.", "ごご", "101", ["unit 1"]),
+              Word("time", "", "", "a.m.", "ごぜん", "101", ["unit 1"]),
+              Word("time", "", "", "at about", "ごろ", "101", ["unit 3"]),
+              Word("time", "", "", "at the time of", "とき", "101", ["unit 4"], "時"),
 
-              Word("verb", "u", "き", "to go", "いく", "101", "unit 3", "行く"),
-              Word("verb", "u", "り", "to go back", "かえる", "101", "unit 3", "帰る"),
-              Word("verb", "u", "き", "to listen", "きく", "101", "unit 3", "聞く"),
-              Word("verb", "u", "み", "to drink", "のむ", "101", "unit 3", "飲む"),
-              Word("verb", "u", "し", "to speak", "はなす", "101", "unit 3", "話す"),
-              Word("verb", "u", "み", "to read", "よむ", "101", "unit 3", "読む"),
-              Word("verb", "u", "い", "to meet", "あう", "101", "unit 4", "会う"),
-              Word("verb", "u", "り", "is (non-living thing)", "ある", "101", "unit 4"),
-              Word("verb", "u", "い", "to buy", "かう", "101", "unit 4", "買う"),
-              Word("verb", "u", "き", "to write", "かく", "101", "unit 4", "書く"),
-              Word("verb", "u", "り", "to take a picture", "とる", "101", "unit 4", "撮る"),
-              Word("verb", "u", "ち", "to wait", "まつ", "101", "unit 4", "待つ"),
-              Word("verb", "u", "ぎ", "to swim", "およぐ", "101", "unit 5", "泳ぐ"),
-              Word("verb", "u", "き", "to ask", "きく", "101", "unit 5", "聞く"),
-              Word("verb", "u", "り", "to ride", "のる", "101", "unit 5", "乗る"),
-              Word("verb", "u", "り", "to perform", "やる", "101", "unit 5"),
-              Word("verb", "u", "り", "to understand", "わかる", "101", "unit 4"),
-              Word("verb", "u", "び", "to play", "あそぶ", "101", "unit 6", "遊ぶ"),
-              Word("verb", "u", "ぎ", "to hurry", "いそぐ", "101", "unit 6", "急ぐ"),
-              Word("verb", "u", "し", "to return", "かえす", "101", "unit 6", "返す"),
-              Word("verb", "u", "し", "to turn off", "けす", "101", "unit 6", "消す"),
-              Word("verb", "u", "に", "to die", "しぬ", "101", "unit 6", "死ぬ"),
-              Word("verb", "u", "り", "to sit down", "すわる", "101", "unit 6", "座る"),
-              Word("verb", "u", "ち", "to stand up", "たつ", "101", "unit 6", "立つ"),
-              Word("verb", "u", "い", "to smoke", "たばこをすう", "101", "unit 6", "たばこを吸う"),
-              Word("verb", "u", "い", "to use", "つかう", "101", "unit 6", "使う"),
-              Word("verb", "u", "い", "to help", "てつだう", "101", "unit 6", "手伝う"),
-              Word("verb", "u", "り", "to enter", "はいる", "101", "unit 6", "入る"),
-              Word("verb", "u", "ち", "to carry", "もつ", "101", "unit 6", "持つ"),
-              Word("verb", "u", "み", "to rest", "やすむ", "101", "unit 6", "休む"),
-              Word("verb", "u", "い", "to sing", "うたう", "102", "unit 7", "歌う"),
-              Word("verb", "u", "り", "to put on (a hat)", "かぶる", "102", "unit 7"),
-              Word("verb", "u", "き", "to put on (items below your waist)", "はく", "102", "unit 7"),
-              Word("verb", "u", "り", "to get to know", "しる", "102", "unit 7", "知る"),
-              Word("verb", "u", "み", "to live", "すむ", "102", "unit 7", "住む"),
-              Word("verb", "u", "き", "to work", "はたらく", "102", "unit 7", "働く"),
-              Word("verb", "u", "り", "to gain weight", "ふとる", "102", "unit 7", "太る"),
-              Word("verb", "u", "い", "to wash", "あらう", "102", "unit 8", "洗う"),
-              Word("verb", "u", "い", "to say", "いう", "102", "unit 8", "言う"),
-              Word("verb", "u", "り", "to need", "いる", "102", "unit 8"),
-              Word("verb", "u", "り", "to be late", "おすくなる", "102", "unit 8", "遅くなる"),
-              Word("verb", "u", "り", "to take a bath", "おふろにはいる", "102", "unit 8", "お風呂に入る"),
-              Word("verb", "u", "い", "to think", "おもう", "102", "unit 8", "思う"),
-              Word("verb", "u", "り", "to cut", "きる", "102", "unit 8", "切る"),
-              Word("verb", "u", "り", "to make", "つくる", "102", "unit 8", "作る"),
-              Word("verb", "u", "り", "to fall (rain/snow)", "ふる", "102", "unit 8", "降る"),
-              Word("verb", "u", "き", "to take (a thing)", "もっていく", "102", "unit 8", "持っていく"),
-              Word("verb", "u", "り", "to dance", "おどる", "102", "unit 9", "踊る"),
-              Word("verb", "u", "り", "to end (something ends)", "おわる", "102", "unit 9", "終わる"),
-              Word("verb", "u", "み", "to take medicine", "くすりをのむ", "102", "unit 9", "薬を飲む"),
-              Word("verb", "u", "り", "to be popular", "にんきがある", "102", "unit 9", "人気がある"),
-              Word("verb", "u", "り", "to begin (something begins)", "はじまる", "102", "unit 9", "始まる"),
-              Word("verb", "u", "き", "to play (an instrument)", "ひく", "102", "unit 9", "弾く"),
-              Word("verb", "u", "い", "to get (from somebody)", "もらう", "102", "unit 9"),
-              Word("verb", "u", "り", "to take (time/money)", "かかる", "102", "unit 10"),
-              Word("verb", "u", "り", "to stay (at hotel, etc.)", "とまる", "102", "unit 10", "泊まる"),
-              Word("verb", "u", "り", "to become", "なる", "102", "unit 10"),
-              Word("verb", "u", "き", "to tell a lie", "うそをつく", "102", "unit 11"),
-              Word("verb", "u", "き", "to become hungry", "おなかがすく", "102", "unit 11"),
-              Word("verb", "u", "い", "to own (a pet)", "かう", "102", "unit 11", "飼う"),
-              Word("verb", "u", "り", "to cut (class)", "サボる", "102", "unit 11"),
-              Word("verb", "u", "り", "to take/get (class/grade)", "とる", "102", "unit 11", "取る"),
-              Word("verb", "u", "い", "to learn", "ならう", "102", "unit 11", "習う"),
-              Word("verb", "u", "り", "to climb", "のぼる", "102", "unit 11", "登る"),
-              Word("verb", "u", "り", "to run", "はしる", "102", "unit 11", "走る"),
-              Word("verb", "u", "き", "to walk", "おるく", "102", "unit 12", "歩く"),
-              Word("verb", "u", "き", "to catch a cold", "かぜをひく", "102", "unit 12", "風邪をひく"),
-              Word("verb", "u", "り", "to have a fever", "ねつがある", "102", "unit 12", "熱がある"),
-              Word("verb", "u", "き", "to become thirsty", "のどがかわく", "102", "unit 12", "喉が渇く"),
-              Word("verb", "u", "い", "to pay", "はらう", "102", "unit 12", "払う"),
-              Word("verb", "u", "し", "to lose", "なくす", "102", "unit 12"),
-              Word("verb", "u", "り", "to be interested", "きょうみがある", "102", "unit 12", "興味がある"),
-              Word("verb", "ru", "", "to get up", "おきる", "101", "unit 3", "起きる"),
-              Word("verb", "ru", "", "to eat", "たべる", "101", "unit 3", "食べる"),
-              Word("verb", "ru", "", "to sleep", "ねる", "101", "unit 3", "寝る"),
-              Word("verb", "ru", "", "to see", "みる", "101", "unit 3", "見る"),
-              Word("verb", "ru", "", "is (living thing)", "いる", "101", "unit 4"),
-              Word("verb", "ru", "", "to open", "あける", "101", "unit 6", "開ける"),
-              Word("verb", "ru", "", "to close", "しめる", "101", "unit 6", "閉める"),
-              Word("verb", "ru", "", "to teach", "おしえる", "101", "unit 6", "教える"),
-              Word("verb", "ru", "", "to forget", "わすれる", "101", "unit 6", "忘れる"),
-              Word("verb", "ru", "", "to get off", "おりる", "101", "unit 6", "降りる"),
-              Word("verb", "ru", "", "to borrow", "かりる", "101", "unit 6", "借りる"),
-              Word("verb", "ru", "", "to take a shower", "シャワーをあびる", "101", "unit 6", "シャワーを浴びる"),
-              Word("verb", "ru", "", "to turn on", "つける", "101", "unit 6"),
-              Word("verb", "ru", "", "to go out", "でかける", "101", "unit 5", "出かける"),
-              Word("verb", "ru", "", "to put on (glasses)", "かける", "102", "unit 7"),
-              Word("verb", "ru", "", "to put on (clothes above waist)", "きる", "102", "unit 7", "着る"),
-              Word("verb", "ru", "", "to lose weight", "やせる", "102", "unit 7"),
-              Word("verb", "ru", "", "to throw away", "すてる", "102", "unit 8", "捨てる"),
-              Word("verb", "ru", "", "to begin", "はじめる", "102", "unit 8", "始める"),
-              Word("verb", "ru", "", "to memorize", "おぼえる", "102", "unit 9", "覚える"),
-              Word("verb", "ru", "", "to attend/to exit", "でる", "102", "unit 9", "出る"),
-              Word("verb", "ru", "", "to decide", "きめる", "102", "unit 10", "決める"),
-              Word("verb", "ru", "", "to get tired", "つかれる", "102", "unit 11", "疲れる"),
-              Word("verb", "ru", "", "to quit", "やめる", "102", "unit 11"),
-              Word("verb", "ru", "", "to cough", "せきがでる", "102", "unit 12", "せきが出る"),
-              Word("verb", "ru", "", "to break up", "わかれる", "102", "unit 12", "別れる"),
-              Word("verb", "irregular", "くる", "to come", "くる", "101", "unit 3", "来る"),
-              Word("verb", "irregular", "する", "to do", "する", "101", "unit 3"),
-              Word("verb", "irregular", "する", "to study", "べんきょうする", "101", "unit 3", "勉強する"),
-              Word("verb", "irregular", "する", "to call", "でんわする", "101", "unit 6", "電話する"),
-              Word("verb", "irregular", "くる", "to bring (person)", "つれてくる", "101", "unit 6", "連れてくる"),
-              Word("verb", "irregular", "くる", "to bring (thing)", "もってくる", "101", "unit 6", "持ってくる"),
-              Word("verb", "irregular", "する", "to get married", "けっこんする", "102", "unit 7", "結婚する"),
-              Word("verb", "irregular", "する", "to drive", "うんてんする", "102", "unit 8", "運転する"),
-              Word("verb", "irregular", "する", "to do laundry", "せんたくする", "102", "unit 8", "洗濯する"),
-              Word("verb", "irregular", "する", "to clean", "そうじする", "102", "unit 8", "掃除する"),
-              Word("verb", "irregular", "する", "to cook", "りょうりする", "102", "unit 8", "料理する"),
-              Word("verb", "irregular", "する", "to exercise", "うんどうする", "102", "unit 9", "運動する"),
-              Word("verb", "irregular", "する", "to take a walk", "さんぽする", "102", "unit 9", "散歩する"),
-              Word("verb", "irregular", "する", "to chill/do nothing", "ごろごろする", "102", "unit 10"),
-              Word("verb", "irregular", "する", "to travel", "りょこうする", "102", "unit 10", "旅行する"),
-              Word("verb", "irregular", "する", "to practice", "れんしゅうする", "102", "unit 10", "練習する"),
-              Word("verb", "irregular", "する", "to have a fight", "けんかする", "102", "unit 11"),
-              Word("verb", "irregular", "する", "to introduce", "しょうかいする", "102", "unit 11", "紹介する"),
-              Word("verb", "irregular", "する", "to go on a diet", "ダイエットする", "102", "unit 11"),
+              Word("question", "", "", "what", "なに", "101", ["unit 1"], "何"),
+              Word("question", "", "", "which one", "どれ", "101", ["unit 2"]),
+              Word("question", "", "", "which", "どの", "101", ["unit 2"]),
+              Word("question", "", "", "where", "どこ", "101", ["unit 2"]),
+              Word("question", "", "", "who", "だれ", "101", ["unit 2"]),
+              Word("question", "", "", "why", "どうして", "101", ["unit 4"]),
+              Word("question", "", "", "when", "いつ", "101", ["unit 3"]),
+              Word("question", "", "", "how much", "いくら", "101", ["unit 2"]),
+              Word("question", "", "", "what kind of", "どんな", "101", ["unit 5"]),
+              Word("question", "", "", "really", "ほんとうですか", "101", ["unit 6"], "本当ですか"),
+              Word("question", "", "", "how", "どう", "102", ["unit 8"]),
+              Word("question", "", "", "which", "どっち", "102", ["unit 10"]),
+              Word("question", "", "", "how/by what means", "どうやって", "102", ["unit 10"]),
+              Word("question", "", "", "how much/long", "どのぐらい", "102", ["unit 10"]),
+
+              Word("verb", "u", "き", "to go", "いく", "101", ["unit 3"], "行く"),
+              Word("verb", "u", "り", "to go back", "かえる", "101", ["unit 3"], "帰る"),
+              Word("verb", "u", "き", "to listen", "きく", "101", ["unit 3"], "聞く"),
+              Word("verb", "u", "み", "to drink", "のむ", "101", ["unit 3"], "飲む"),
+              Word("verb", "u", "し", "to speak", "はなす", "101", ["unit 3"], "話す"),
+              Word("verb", "u", "み", "to read", "よむ", "101", ["unit 3"], "読む"),
+              Word("verb", "u", "い", "to meet", "あう", "101", ["unit 4"], "会う"),
+              Word("verb", "u", "り", "is (non-living thing)", "ある", "101", ["unit 4"]),
+              Word("verb", "u", "い", "to buy", "かう", "101", ["unit 4"], "買う"),
+              Word("verb", "u", "き", "to write", "かく", "101", ["unit 4"], "書く"),
+              Word("verb", "u", "り", "to take a picture", "とる", "101", ["unit 4"], "撮る"),
+              Word("verb", "u", "ち", "to wait", "まつ", "101", ["unit 4"], "待つ"),
+              Word("verb", "u", "ぎ", "to swim", "およぐ", "101", ["unit 5"], "泳ぐ"),
+              Word("verb", "u", "き", "to ask", "きく", "101", ["unit 5"], "聞く"),
+              Word("verb", "u", "り", "to ride", "のる", "101", ["unit 5"], "乗る"),
+              Word("verb", "u", "り", "to perform", "やる", "101", ["unit 5"]),
+              Word("verb", "u", "り", "to understand", "わかる", "101", ["unit 4"]),
+              Word("verb", "u", "び", "to play", "あそぶ", "101", ["unit 6"], "遊ぶ"),
+              Word("verb", "u", "ぎ", "to hurry", "いそぐ", "101", ["unit 6"], "急ぐ"),
+              Word("verb", "u", "し", "to return", "かえす", "101", ["unit 6"], "返す"),
+              Word("verb", "u", "し", "to turn off", "けす", "101", ["unit 6"], "消す"),
+              Word("verb", "u", "に", "to die", "しぬ", "101", ["unit 6"], "死ぬ"),
+              Word("verb", "u", "り", "to sit down", "すわる", "101", ["unit 6"], "座る"),
+              Word("verb", "u", "ち", "to stand up", "たつ", "101", ["unit 6"], "立つ"),
+              Word("verb", "u", "い", "to smoke", "たばこをすう", "101", ["unit 6"], "たばこを吸う"),
+              Word("verb", "u", "い", "to use", "つかう", "101", ["unit 6"], "使う"),
+              Word("verb", "u", "い", "to help", "てつだう", "101", ["unit 6"], "手伝う"),
+              Word("verb", "u", "り", "to enter", "はいる", "101", ["unit 6"], "入る"),
+              Word("verb", "u", "ち", "to carry", "もつ", "101", ["unit 6"], "持つ"),
+              Word("verb", "u", "み", "to rest", "やすむ", "101", ["unit 6"], "休む"),
+              Word("verb", "u", "い", "to sing", "うたう", "102", ["unit 7"], "歌う"),
+              Word("verb", "u", "り", "to put on (a hat)", "かぶる", "102", ["unit 7"]),
+              Word("verb", "u", "き", "to put on (items below your waist)", "はく", "102", ["unit 7"]),
+              Word("verb", "u", "り", "to get to know", "しる", "102", ["unit 7"], "知る"),
+              Word("verb", "u", "み", "to live", "すむ", "102", ["unit 7"], "住む"),
+              Word("verb", "u", "き", "to work", "はたらく", "102", ["unit 7"], "働く"),
+              Word("verb", "u", "り", "to gain weight", "ふとる", "102", ["unit 7"], "太る"),
+              Word("verb", "u", "い", "to wash", "あらう", "102", ["unit 8"], "洗う"),
+              Word("verb", "u", "い", "to say", "いう", "102", ["unit 8"], "言う"),
+              Word("verb", "u", "り", "to need", "いる", "102", ["unit 8"]),
+              Word("verb", "u", "り", "to be late", "おすくなる", "102", ["unit 8"], "遅くなる"),
+              Word("verb", "u", "り", "to take a bath", "おふろにはいる", "102", ["unit 8"], "お風呂に入る"),
+              Word("verb", "u", "い", "to think", "おもう", "102", ["unit 8"], "思う"),
+              Word("verb", "u", "り", "to cut", "きる", "102", ["unit 8"], "切る"),
+              Word("verb", "u", "り", "to make", "つくる", "102", ["unit 8"], "作る"),
+              Word("verb", "u", "り", "to fall (rain/snow)", "ふる", "102", ["unit 8"], "降る"),
+              Word("verb", "u", "き", "to take (a thing)", "もっていく", "102", ["unit 8"], "持っていく"),
+              Word("verb", "u", "り", "to dance", "おどる", "102", ["unit 9"], "踊る"),
+              Word("verb", "u", "り", "to end (something ends)", "おわる", "102", ["unit 9"], "終わる"),
+              Word("verb", "u", "み", "to take medicine", "くすりをのむ", "102", ["unit 9"], "薬を飲む"),
+              Word("verb", "u", "り", "to be popular", "にんきがある", "102", ["unit 9"], "人気がある"),
+              Word("verb", "u", "り", "to begin (something begins)", "はじまる", "102", ["unit 9"], "始まる"),
+              Word("verb", "u", "き", "to play (an instrument)", "ひく", "102", ["unit 9"], "弾く"),
+              Word("verb", "u", "い", "to get (from somebody)", "もらう", "102", ["unit 9"]),
+              Word("verb", "u", "り", "to take (time/money)", "かかる", "102", ["unit 10"]),
+              Word("verb", "u", "り", "to stay (at hotel, etc.)", "とまる", "102", ["unit 10"], "泊まる"),
+              Word("verb", "u", "り", "to become", "なる", "102", ["unit 10"]),
+              Word("verb", "u", "き", "to tell a lie", "うそをつく", "102", ["unit 11"]),
+              Word("verb", "u", "き", "to become hungry", "おなかがすく", "102", ["unit 11"]),
+              Word("verb", "u", "い", "to own (a pet)", "かう", "102", ["unit 11"], "飼う"),
+              Word("verb", "u", "り", "to cut (class)", "サボる", "102", ["unit 11"]),
+              Word("verb", "u", "り", "to take/get (class/grade)", "とる", "102", ["unit 11"], "取る"),
+              Word("verb", "u", "い", "to learn", "ならう", "102", ["unit 11"], "習う"),
+              Word("verb", "u", "り", "to climb", "のぼる", "102", ["unit 11"], "登る"),
+              Word("verb", "u", "り", "to run", "はしる", "102", ["unit 11"], "走る"),
+              Word("verb", "u", "き", "to walk", "おるく", "102", ["unit 12"], "歩く"),
+              Word("verb", "u", "き", "to catch a cold", "かぜをひく", "102", ["unit 12"], "風邪をひく"),
+              Word("verb", "u", "り", "to have a fever", "ねつがある", "102", ["unit 12"], "熱がある"),
+              Word("verb", "u", "き", "to become thirsty", "のどがかわく", "102", ["unit 12"], "喉が渇く"),
+              Word("verb", "u", "い", "to pay", "はらう", "102", ["unit 12"], "払う"),
+              Word("verb", "u", "し", "to lose", "なくす", "102", ["unit 12"]),
+              Word("verb", "u", "り", "to be interested", "きょうみがある", "102", ["unit 12"], "興味がある"),
+              Word("verb", "ru", "", "to get up", "おきる", "101", ["unit 3"], "起きる"),
+              Word("verb", "ru", "", "to eat", "たべる", "101", ["unit 3"], "食べる"),
+              Word("verb", "ru", "", "to sleep", "ねる", "101", ["unit 3"], "寝る"),
+              Word("verb", "ru", "", "to see", "みる", "101", ["unit 3"], "見る"),
+              Word("verb", "ru", "", "is (living thing)", "いる", "101", ["unit 4"]),
+              Word("verb", "ru", "", "to open", "あける", "101", ["unit 6"], "開ける"),
+              Word("verb", "ru", "", "to close", "しめる", "101", ["unit 6"], "閉める"),
+              Word("verb", "ru", "", "to teach", "おしえる", "101", ["unit 6"], "教える"),
+              Word("verb", "ru", "", "to forget", "わすれる", "101", ["unit 6"], "忘れる"),
+              Word("verb", "ru", "", "to get off", "おりる", "101", ["unit 6"], "降りる"),
+              Word("verb", "ru", "", "to borrow", "かりる", "101", ["unit 6"], "借りる"),
+              Word("verb", "ru", "", "to take a shower", "シャワーをあびる", "101", ["unit 6"], "シャワーを浴びる"),
+              Word("verb", "ru", "", "to turn on", "つける", "101", ["unit 6"]),
+              Word("verb", "ru", "", "to go out", "でかける", "101", ["unit 5"], "出かける"),
+              Word("verb", "ru", "", "to put on (glasses)", "かける", "102", ["unit 7"]),
+              Word("verb", "ru", "", "to put on (clothes above waist)", "きる", "102", ["unit 7"], "着る"),
+              Word("verb", "ru", "", "to lose weight", "やせる", "102", ["unit 7"]),
+              Word("verb", "ru", "", "to throw away", "すてる", "102", ["unit 8"], "捨てる"),
+              Word("verb", "ru", "", "to begin", "はじめる", "102", ["unit 8"], "始める"),
+              Word("verb", "ru", "", "to memorize", "おぼえる", "102", ["unit 9"], "覚える"),
+              Word("verb", "ru", "", "to attend/to exit", "でる", "102", ["unit 9"], "出る"),
+              Word("verb", "ru", "", "to decide", "きめる", "102", ["unit 10"], "決める"),
+              Word("verb", "ru", "", "to get tired", "つかれる", "102", ["unit 11"], "疲れる"),
+              Word("verb", "ru", "", "to quit", "やめる", "102", ["unit 11"]),
+              Word("verb", "ru", "", "to cough", "せきがでる", "102", ["unit 12"], "せきが出る"),
+              Word("verb", "ru", "", "to break up", "わかれる", "102", ["unit 12"], "別れる"),
+              Word("verb", "irregular", "くる", "to come", "くる", "101", ["unit 3"], "来る"),
+              Word("verb", "irregular", "する", "to do", "する", "101", ["unit 3"]),
+              Word("verb", "irregular", "する", "to study", "べんきょうする", "101", ["unit 3"], "勉強する"),
+              Word("verb", "irregular", "する", "to call", "でんわする", "101", ["unit 6"], "電話する"),
+              Word("verb", "irregular", "くる", "to bring (person)", "つれてくる", "101", ["unit 6"], "連れてくる"),
+              Word("verb", "irregular", "くる", "to bring (thing)", "もってくる", "101", ["unit 6"], "持ってくる"),
+              Word("verb", "irregular", "する", "to get married", "けっこんする", "102", ["unit 7"], "結婚する"),
+              Word("verb", "irregular", "する", "to drive", "うんてんする", "102", ["unit 8"], "運転する"),
+              Word("verb", "irregular", "する", "to do laundry", "せんたくする", "102", ["unit 8"], "洗濯する"),
+              Word("verb", "irregular", "する", "to clean", "そうじする", "102", ["unit 8"], "掃除する"),
+              Word("verb", "irregular", "する", "to cook", "りょうりする", "102", ["unit 8"], "料理する"),
+              Word("verb", "irregular", "する", "to exercise", "うんどうする", "102", ["unit 9"], "運動する"),
+              Word("verb", "irregular", "する", "to take a walk", "さんぽする", "102", ["unit 9"], "散歩する"),
+              Word("verb", "irregular", "する", "to chill/do nothing", "ごろごろする", "102", ["unit 10"]),
+              Word("verb", "irregular", "する", "to travel", "りょこうする", "102", ["unit 10"], "旅行する"),
+              Word("verb", "irregular", "する", "to practice", "れんしゅうする", "102", ["unit 10"], "練習する"),
+              Word("verb", "irregular", "する", "to have a fight", "けんかする", "102", ["unit 11"]),
+              Word("verb", "irregular", "する", "to introduce", "しょうかいする", "102", ["unit 11"], "紹介する"),
+              Word("verb", "irregular", "する", "to go on a diet", "ダイエットする", "102", ["unit 11"]),
               Word("verb", "irregular", "する", "to be late (for an appointment)",
-                   "ちこくする", "102", "unit 11", "遅刻する"),
-              Word("verb", "irregular", "する", "to study abroad", "りゅうがくする", "102", "unit 11", "留学する"),
-              Word("verb", "irregular", "する", "to get nervous", "きんちょうする", "102", "unit 12", "緊張する"),
-              Word("verb", "irregular", "する", "to worry", "しんぱいする", "102", "unit 12", "心配する"),
+                   "ちこくする", "102", ["unit 11"], "遅刻する"),
+              Word("verb", "irregular", "する", "to study abroad", "りゅうがくする", "102", ["unit 11"], "留学する"),
+              Word("verb", "irregular", "する", "to get nervous", "きんちょうする", "102", ["unit 12"], "緊張する"),
+              Word("verb", "irregular", "する", "to worry", "しんぱいする", "102", ["unit 12"], "心配する"),
 
-              Word("expressions", "", "", "um", "あのう", "101", "unit 1"),
-              Word("expressions", "", "", "yes", "はい", "101", "unit 1"),
-              Word("expressions", "", "", "yeah", "ええ", "101", "unit 3"),
-              Word("expressions", "", "", "yes it is", "そうです", "101", "unit 1"),
-              Word("expressions", "", "", "welcome", "いらっしゃいませ", "101", "unit 2"),
-              Word("expressions", "", "", "please", "おねがいします", "101", "unit 2"),
-              Word("expressions", "", "", "please give me", "ください", "101", "unit 2"),
-              Word("expressions", "", "", "in that case", "じゃあ", "101", "unit 2"),
-              Word("expressions", "", "", "here it is", "どうぞ", "101", "unit 2"),
-              Word("expressions", "", "", "thanks", "どうも", "101", "unit 2"),
-              Word("expressions", "", "", "that's right", "そうですね", "101", "unit 3"),
-              Word("expressions", "", "", "but", "でも", "101", "unit 3"),
-              Word("expressions", "", "", "that would be fine", "けっこうです　", "101", "unit 6", "結構です"),
-              Word("expressions", "", "", "so", "だから", "101", "unit 4"),
-              Word("expressions", "", "", "im sorry", "ごめんなさい", "101", "unit 4"),
-              Word("expressions", "", "", "how about", "どうですか", "101", "unit 3"),
-              Word("expressions", "", "", "hello (phone)", "もしもし", "101", "unit 4"),
-              Word("expressions", "", "", "don't worry", "だいじょうぶ", "101", "unit 5", "大丈夫"),
-              Word("expressions", "", "", "good morning", "おはようございます", "101", "unit 1"),
-              Word("expressions", "", "", "good afternoon", "こんにちは", "101", "unit 1"),
-              Word("expressions", "", "", "good evening", "こんばんは", "101", "unit 1"),
-              Word("expressions", "", "", "goodbye", "さようなら", "101", "unit 1"),
-              Word("expressions", "", "", "good night", "おやすみなさい", "101", "unit 1"),
-              Word("expressions", "", "", "thank you", "ありがとうございます", "101", "unit 1"),
-              Word("expressions", "", "", "excuse me", "すみません", "101", "unit 1"),
-              Word("expressions", "", "", "no", "いいえ", "101", "unit 1"),
-              Word("expressions", "", "", "i'll go and come back", "いってきます", "101", "unit 1"),
-              Word("expressions", "", "", "please go and come back", "いってらっしゃい", "101", "unit 1"),
-              Word("expressions", "", "", "i'm home", "ただいま", "101", "unit 1"),
-              Word("expressions", "", "", "welcome home", "おかえりなさい", "101", "unit 1"),
-              Word("expressions", "", "", "thank you for the meal (before)", "いただきます", "101", "unit 1"),
-              Word("expressions", "", "", "thank you for the meal (after)", "ごちそうさまでした", "101", "unit 1"),
-              Word("expressions", "", "", "how do you do", "はじめまして", "101", "unit 1"),
-              Word("expressions", "", "", "nice to meet you", "よろしくおねがいします", "101", "unit 1"),
-              Word("expressions", "", "", "years old", "さい", "101", "unit 1"),
-              Word("expressions", "", "", "one year old", "いっさい", "101", "unit 1"),
-              Word("expressions", "", "", "eight years old", "はっさい", "101", "unit 1"),
-              Word("expressions", "", "", "ten years old", "じゅっさい", "101", "unit 1"),
-              Word("expressions", "", "", "twenty years old", "はたち", "101", "unit 1"),
-              Word("expressions", "", "", "do you understand", "わかりましたか", "101", "unit 2"),
-              Word("expressions", "", "", "i understand", "わかりました", "101", "unit 2"),
-              Word("expressions", "", "", "i don't understand", "わかりません", "101", "unit 2"),
-              Word("expressions", "", "", "please say it slowly", "ゆっくりいってください", "101", "unit 2"),
-              Word("expressions", "", "", "please say it again", "もういちどいってください", "101", "unit 2"),
-              Word("expressions", "", "", "please wait for a while", "ちょっとまってください", "101", "unit 2"),
-              Word("expressions", "", "", "please listen", "きいてください", "102", "unit 2"),
-              Word("expressions", "", "", "but", "が", "102", "unit 7"),
-              Word("expressions", "", "", "not ... anything", "なにも", "102", "unit 7", "何も"),
-              Word("expressions", "", "", "nothing in particular", "べつに", "102", "unit 7", "別に"),
-              Word("expressions", "", "", "of course", "もちろん", "102", "unit 7"),
-              Word("expressions", "", "", "if you like", "よかったら", "102", "unit 7"),
-              Word("expressions", "", "", "uh-huh", "うん", "102", "unit 8"),
-              Word("expressions", "", "", "uh-uh", "ううん", "102", "unit 8"),
-              Word("expressions", "", "", "Cheers", "かんぱい", "102", "unit 8", "乾杯"),
-              Word("expressions", "", "", "all together", "みんなで", "102", "unit 8"),
-              Word("expressions", "", "", "that's too bad", "ざんねんですね", "102", "unit 8", "残念ですね"),
-              Word("expressions", "", "", "about/concerning", "について", "102", "unit 8"),
-              Word("expressions", "", "", "degrees (temperature)", "ど", "102", "unit 8", "度"),
-              Word("expressions", "", "", "I think so", "そう", "102", "unit 9"),
-              Word("expressions", "", "", "by all means", "ぜひ", "102", "unit 9", "是非"),
-              Word("expressions", "", "", "by the way", "ところで", "102", "unit 9"),
-              Word("expressions", "", "", "all", "みんな", "102", "unit 9"),
-              Word("expressions", "", "", "best", "いちばん", "102", "unit 10", "一番"),
-              Word("expressions", "", "", "on foot", "あるいて", "102", "unit 10", "歩いて"),
-              Word("expressions", "", "", "these days", "このごろ", "102", "unit 10"),
-              Word("expressions", "", "", "it has been a long time", "ひさしぶり", "102", "unit 11", "久しぶり"),
-              Word("expressions", "", "", "okay/so-so", "まあまあ", "102", "unit 11"),
-              Word("expressions", "", "", "more", "もっと", "102", "unit 11"),
-              Word("expressions", "", "", "just/only", "だけ", "102", "unit 11"),
-              Word("expressions", "", "", "points", "てん", "102", "unit 11", "点"),
-              Word("expressions", "", "", "get well soon", "おだいじに", "102", "unit 12", "お大事に"),
-              Word("expressions", "", "", "don't look well", "げんきがない", "102", "unit 12", "元気がない"),
-              Word("expressions", "", "", "probably", "たぶん", "102", "unit 12", "多分"),
-              Word("expressions", "", "", "moreover", "それに", "102", "unit 12"),
-              Word("expressions", "", "", "same", "おなじ", "102", "unit 12", "同じ"),
-              Word("expressions", "", "", "for example", "たとえば", "102", "bonus 1"),
-              Word("expressions", "", "", "anything else", "ほかに", "102", "bonus 1"),
-              Word("expressions", "", "", "is that so", "そうですか", "101", "unit 1")]
+              Word("expressions", "", "", "um", "あのう", "101", ["unit 1"]),
+              Word("expressions", "", "", "yes", "はい", "101", ["unit 1"]),
+              Word("expressions", "", "", "yeah", "ええ", "101", ["unit 3"]),
+              Word("expressions", "", "", "yes it is", "そうです", "101", ["unit 1"]),
+              Word("expressions", "", "", "welcome", "いらっしゃいませ", "101", ["unit 2"]),
+              Word("expressions", "", "", "please", "おねがいします", "101", ["unit 2"]),
+              Word("expressions", "", "", "please give me", "ください", "101", ["unit 2"]),
+              Word("expressions", "", "", "in that case", "じゃあ", "101", ["unit 2"]),
+              Word("expressions", "", "", "here it is", "どうぞ", "101", ["unit 2"]),
+              Word("expressions", "", "", "thanks", "どうも", "101", ["unit 2"]),
+              Word("expressions", "", "", "that's right", "そうですね", "101", ["unit 3"]),
+              Word("expressions", "", "", "but", "でも", "101", ["unit 3"]),
+              Word("expressions", "", "", "that would be fine", "けっこうです　", "101", ["unit 6"], "結構です"),
+              Word("expressions", "", "", "so", "だから", "101", ["unit 4"]),
+              Word("expressions", "", "", "im sorry", "ごめんなさい", "101", ["unit 4"]),
+              Word("expressions", "", "", "how about", "どうですか", "101", ["unit 3"]),
+              Word("expressions", "", "", "hello (phone)", "もしもし", "101", ["unit 4"]),
+              Word("expressions", "", "", "don't worry", "だいじょうぶ", "101", ["unit 5"], "大丈夫"),
+              Word("expressions", "", "", "good morning", "おはようございます", "101", ["unit 1"]),
+              Word("expressions", "", "", "good afternoon", "こんにちは", "101", ["unit 1"]),
+              Word("expressions", "", "", "good evening", "こんばんは", "101", ["unit 1"]),
+              Word("expressions", "", "", "goodbye", "さようなら", "101", ["unit 1"]),
+              Word("expressions", "", "", "good night", "おやすみなさい", "101", ["unit 1"]),
+              Word("expressions", "", "", "thank you", "ありがとうございます", "101", ["unit 1"]),
+              Word("expressions", "", "", "excuse me", "すみません", "101", ["unit 1"]),
+              Word("expressions", "", "", "no", "いいえ", "101", ["unit 1"]),
+              Word("expressions", "", "", "i'll go and come back", "いってきます", "101", ["unit 1"]),
+              Word("expressions", "", "", "please go and come back", "いってらっしゃい", "101", ["unit 1"]),
+              Word("expressions", "", "", "i'm home", "ただいま", "101", ["unit 1"]),
+              Word("expressions", "", "", "welcome home", "おかえりなさい", "101", ["unit 1"]),
+              Word("expressions", "", "", "thank you for the meal (before)", "いただきます", "101", ["unit 1"]),
+              Word("expressions", "", "", "thank you for the meal (after)", "ごちそうさまでした", "101", ["unit 1"]),
+              Word("expressions", "", "", "how do you do", "はじめまして", "101", ["unit 1"]),
+              Word("expressions", "", "", "nice to meet you", "よろしくおねがいします", "101", ["unit 1"]),
+              Word("expressions", "", "", "years old", "さい", "101", ["unit 1"]),
+              Word("expressions", "", "", "one year old", "いっさい", "101", ["unit 1"]),
+              Word("expressions", "", "", "eight years old", "はっさい", "101", ["unit 1"]),
+              Word("expressions", "", "", "ten years old", "じゅっさい", "101", ["unit 1"]),
+              Word("expressions", "", "", "twenty years old", "はたち", "101", ["unit 1"]),
+              Word("expressions", "", "", "do you understand", "わかりましたか", "101", ["unit 2"]),
+              Word("expressions", "", "", "i understand", "わかりました", "101", ["unit 2"]),
+              Word("expressions", "", "", "i don't understand", "わかりません", "101", ["unit 2"]),
+              Word("expressions", "", "", "please say it slowly", "ゆっくりいってください", "101", ["unit 2"]),
+              Word("expressions", "", "", "please say it again", "もういちどいってください", "101", ["unit 2"]),
+              Word("expressions", "", "", "please wait for a while", "ちょっとまってください", "101", ["unit 2"]),
+              Word("expressions", "", "", "please listen", "きいてください", "102", ["unit 2"]),
+              Word("expressions", "", "", "but", "が", "102", ["unit 7"]),
+              Word("expressions", "", "", "not ... anything", "なにも", "102", ["unit 7"], "何も"),
+              Word("expressions", "", "", "nothing in particular", "べつに", "102", ["unit 7"], "別に"),
+              Word("expressions", "", "", "of course", "もちろん", "102", ["unit 7"]),
+              Word("expressions", "", "", "if you like", "よかったら", "102", ["unit 7"]),
+              Word("expressions", "", "", "uh-huh", "うん", "102", ["unit 8"]),
+              Word("expressions", "", "", "uh-uh", "ううん", "102", ["unit 8"]),
+              Word("expressions", "", "", "Cheers", "かんぱい", "102", ["unit 8"], "乾杯"),
+              Word("expressions", "", "", "all together", "みんなで", "102", ["unit 8"]),
+              Word("expressions", "", "", "that's too bad", "ざんねんですね", "102", ["unit 8"], "残念ですね"),
+              Word("expressions", "", "", "about/concerning", "について", "102", ["unit 8"]),
+              Word("expressions", "", "", "degrees (temperature)", "ど", "102", ["unit 8"], "度"),
+              Word("expressions", "", "", "I think so", "そう", "102", ["unit 9"]),
+              Word("expressions", "", "", "by all means", "ぜひ", "102", ["unit 9"], "是非"),
+              Word("expressions", "", "", "by the way", "ところで", "102", ["unit 9"]),
+              Word("expressions", "", "", "all", "みんな", "102", ["unit 9"]),
+              Word("expressions", "", "", "best", "いちばん", "102", ["unit 10"], "一番"),
+              Word("expressions", "", "", "on foot", "あるいて", "102", ["unit 10"], "歩いて"),
+              Word("expressions", "", "", "these days", "このごろ", "102", ["unit 10"]),
+              Word("expressions", "", "", "it has been a long time", "ひさしぶり", "102", ["unit 11"], "久しぶり"),
+              Word("expressions", "", "", "okay/so-so", "まあまあ", "102", ["unit 11"]),
+              Word("expressions", "", "", "more", "もっと", "102", ["unit 11"]),
+              Word("expressions", "", "", "just/only", "だけ", "102", ["unit 11"]),
+              Word("expressions", "", "", "points", "てん", "102", ["unit 11"], "点"),
+              Word("expressions", "", "", "get well soon", "おだいじに", "102", ["unit 12"], "お大事に"),
+              Word("expressions", "", "", "don't look well", "げんきがない", "102", ["unit 12"], "元気がない"),
+              Word("expressions", "", "", "probably", "たぶん", "102", ["unit 12"], "多分"),
+              Word("expressions", "", "", "moreover", "それに", "102", ["unit 12"]),
+              Word("expressions", "", "", "same", "おなじ", "102", ["unit 12"], "同じ"),
+              Word("expressions", "", "", "for example", "たとえば", "102", ["bonus 1"]),
+              Word("expressions", "", "", "anything else", "ほかに", "102", ["bonus 1"]),
+              Word("expressions", "", "", "is that so", "そうですか", "101", ["unit 1"])]
 
 # The following is a list of all the particles the user can study
 part_list = [Particle("は", ["marks the topic of the sentence"]),
@@ -1233,6 +1238,14 @@ global window_height
 global full_screen
 global window_option
 global main_frame
+global color_1
+global color_2
+global color_3
+global color_4
+global color_5
+global color_scheme
+global progress_frame
+global selection_frame
 
 
 def character_menu():
@@ -1342,28 +1355,59 @@ def character_session_window():
     global answer
     global show_button
     global enter
+    global selection_frame
+    global input_box
 
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    new_button = Button(main_frame, text="New Character", command=get_char)
-    global input_box
+    heading = Label(main_frame, text="Translate the japanese character to romaji", font=("Arial", 20), bg=color_1,
+                    fg=color_3)
+
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .035)).grid(row=1, column=1)
+    prompt = Label(main_frame, text="", font=("Arial", 70), bg=color_4, fg=color_3)
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .025)).grid(row=2, column=1)
+    answer = Label(main_frame, text="", font=("Arial", 50), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
+
+    selection_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    new_button = Button(selection_frame, text="New Character", command=get_char)
+    show_button = Button(selection_frame, text="Show Answer", command=show_char)
+
     input_box = Entry(main_frame, font=("Arial", 30))
     enter = Button(main_frame, text="Enter", command=test_char)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(main_frame, text="Select the new word character to start practicing", font=("Arial", 15))
+
     feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(main_frame, text="Show Answer", command=show_char)
-    answer = Label(main_frame, text="", font=("Arial", 15))
+
     Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
-    new_button.grid(row=1, column=0)
-    input_box.grid(row=0, column=0, columnspan=3)
-    enter.grid(row=1, column=2)
-    prompt.grid(row=2, column=0, columnspan=3)
-    feedback.grid(row=3, column=0, columnspan=3)
-    show_button.grid(row=1, column=1)
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .09), padx=int(window_width * .0463), bg=color_1)
+    spacer_1.grid(row=0, column=0)
+    spacer_2 = Label(main_frame, text="", padx=int(window_width * .0463), bg=color_1)
+    spacer_2.grid(row=0, column=2)
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .06), bg=color_1)
+    spacer_3.grid(row=1, column=0)
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_4.grid(row=2, column=0)
+    spacer_5 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_5.grid(row=3, column=0)
+    spacer_6 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_6.grid(row=4, column=0)
+
+    heading.grid(row=0, column=1)
+    prompt.grid(row=1, column=1)
+
+    selection_frame.grid(row=3, column=1)
+    new_button.grid(row=0, column=0)
+    show_button.grid(row=0, column=1)
+
+    input_box.grid(row=4, column=1)
+    enter.grid(row=5, column=1)
+    feedback.grid(row=6, column=1)
 
 
 def get_char():
@@ -1387,11 +1431,11 @@ def get_char():
     if counter == 0:
         for i in range(len(session_list)):
             session_list[i].num_correct = 0
-    prompt_text = "Enter the romaji for " + session_list[current].character + ":"
+    prompt_text = session_list[current].character
     # A random word is selected from the session list
     prompt.destroy()
-    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
-    prompt.grid(row=2, column=0, columnspan=3)
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 70), bg=color_4, fg=color_3)
+    prompt.grid(row=1, column=1)
     # The old prompt is erased and the prompt for the new word is created and displayed
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -1441,8 +1485,8 @@ def show_char():
     global show_button
 
     session_list[current].num_correct = 0
-    answer = Label(main_frame, text=session_list[current].romaji, font=("Arial", 15))
-    answer.grid(row=4, column=0, columnspan=3)
+    answer = Label(main_frame, text=session_list[current].romaji, font=("Arial", 50), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
         new_button["state"] = NORMAL
@@ -1543,19 +1587,42 @@ def char_w_session_window():
     global prompt
     global feedback
     global show_button
+    global selection_frame
 
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    new_button = Button(main_frame, text="New Character", command=get_char_w)
-    prompt = Label(main_frame, text="Select the new character button to start practicing", font=("Arial", 15))
-    feedback = Label(main_frame, text="Press the show character button to reveal the character", font=("Arial", 15))
-    show_button = Button(main_frame, text="Show Character", command=show_char_w)
+    heading = Label(main_frame, text="Write the character for the romaji term", font=("Arial", 20), bg=color_1,
+                    fg=color_3)
+
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .025)).grid(row=1, column=1)
+    prompt = Label(main_frame, text="", font=("Arial", 50), bg=color_4, fg=color_3)
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .035)).grid(row=2, column=1)
+    feedback = Label(main_frame, text="", font=("Arial", 70), bg=color_4, fg=color_3)
+
+    selection_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    new_button = Button(selection_frame, text="New Character", command=get_char_w)
+    show_button = Button(selection_frame, text="Show Character", command=show_char_w)
+
     Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .09), padx=int(window_width * .0463), bg=color_1)
+    spacer_1.grid(row=0, column=0)
+    spacer_2 = Label(main_frame, text="", padx=int(window_width * .0463), bg=color_1)
+    spacer_2.grid(row=0, column=2)
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .06), bg=color_1)
+    spacer_3.grid(row=1, column=0)
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_4.grid(row=2, column=0)
+
+    heading.grid(row=0, column=1)
+    prompt.grid(row=1, column=1)
+    feedback.grid(row=2, column=1)
+
+    selection_frame.grid(row=3, column=1)
     new_button.grid(row=0, column=0)
-    prompt.grid(row=1, column=0, columnspan=2)
-    feedback.grid(row=2, column=0, columnspan=2)
     show_button.grid(row=0, column=1)
 
 
@@ -1570,10 +1637,15 @@ def get_char_w():
     global enter
 
     current = (current + 1) % len(session_list)
-    prompt_text = "Draw the " + session_list[current].char_type + " character for " + session_list[current].romaji + ":"
+    if session_list[current].char_type == "hiragana" or session_list[current].char_type == "mod hiragana" or \
+            session_list[current].char_type == "comp hiragana":
+        prompt_text = "hiragana "
+    else:
+        prompt_text = "katakana "
+    prompt_text += session_list[current].romaji
     prompt.destroy()
-    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
-    prompt.grid(row=1, column=0, columnspan=2)
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 50), bg=color_4, fg=color_3)
+    prompt.grid(row=1, column=1)
     # The old prompt is erased and the prompt for the new character is created and displayed
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -1589,8 +1661,9 @@ def show_char_w():
     global show_button
 
     feedback.destroy()
-    feedback = Label(main_frame, text=session_list[current].character, font=("IPAMincho", 80))
-    feedback.grid(row=2, column=0, columnspan=2)
+    feedback = Label(main_frame, text=session_list[current].character, font=("IPAMincho", 70), bg=color_4,
+                     fg=color_3)
+    feedback.grid(row=2, column=1)
     show_button["state"] = DISABLED
     new_button["state"] = NORMAL
 
@@ -1633,13 +1706,13 @@ def get_word():
                 round_total += 1
     curr_round.destroy()
     round_string = "round progress:" + str(round_counter) + "/" + str(round_total)
-    curr_round = Label(main_frame, text=round_string, font=("Arial", 15))
-    curr_round.grid(row=5, column=1)
-    prompt_text = "Enter the Japanese word for " + session_list[current].english + ":"
+    curr_round = Label(progress_frame, text=round_string, font=("Arial", 15), bg=color_1, fg=color_3)
+    curr_round.grid(row=1, column=0)
+    prompt_text = session_list[current].english
     # A random word is selected from the session list
     prompt.destroy()
-    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
-    prompt.grid(row=2, column=0, columnspan=3)
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 35), bg=color_4, fg=color_3)
+    prompt.grid(row=1, column=1)
     # The old prompt is erased and the prompt for the new word is created and displayed
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -1676,16 +1749,17 @@ def test_entry():
             progress.destroy()
         progress_string = "words learned: " + str(counter) + "/" + str(len(session_list))
         progress = Label(main_frame, text=progress_string, font=("Arial", 15))
-        progress.grid(row=4, column=1)
+        progress.grid(row=5, column=1)
         if feedback.winfo_exists() == 1:
             feedback.destroy()
         if answer.winfo_exists() == 1:
             answer.destroy()
         feedback = Label(main_frame, text="correct", font=("Arial", 15))
-        feedback.grid(row=3, column=0, columnspan=3)
+        feedback.grid(row=4, column=0, columnspan=3)
         input_box.delete(0, "end")
         new_button["state"] = NORMAL
         enter["state"] = DISABLED
+        show_button["state"] = DISABLED
     else:
         session_list[current].num_correct = 0
         if session_list[current].first_attempt:
@@ -1693,7 +1767,7 @@ def test_entry():
         if feedback.winfo_exists() == 1:
             feedback.destroy()
         feedback = Label(main_frame, text="incorrect", font=("Arial", 15))
-        feedback.grid(row=3, column=0, columnspan=3)
+        feedback.grid(row=4, column=0, columnspan=3)
 
 
 session_list = []
@@ -1710,8 +1784,8 @@ def show_answer():
     session_list[current].num_correct = 0
     if session_list[current].first_attempt:
         session_list[current].first_attempt = False
-    answer = Label(main_frame, text=session_list[current].japanese, font=("Arial", 15))
-    answer.grid(row=6, column=0, columnspan=3)
+    answer = Label(main_frame, text=session_list[current].japanese, font=("Arial", 35), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
         new_button["state"] = NORMAL
@@ -1728,52 +1802,52 @@ def create_vocab_session(list_units):
         global noun
         if noun.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "noun" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "noun" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global pronoun
         if pronoun.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "pronoun" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "pronoun" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global title
         if title.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "title" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "title" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global adjective
         if adjective.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "adjective" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "adjective" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global adverb
         if adverb.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "adverb" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "adverb" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global preposition
         if preposition.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "preposition" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "preposition" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global time
         if time.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "time" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "time" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global question
         if question.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "question" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "question" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global verb
         if verb.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "verb" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "verb" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
         global expression
         if expression.get() == 1:
             for i in range(len(vocab_list)):
-                if vocab_list[i].type == "expressions" and vocab_list[i].unit == unit.get():
+                if vocab_list[i].type == "expressions" and unit.get() in vocab_list[i].unit:
                     session_list.append(vocab_list[i])
 
     shuffle_list(session_list)
@@ -1795,6 +1869,8 @@ def vocab_session_window():
     global round_counter
     global curr_round
     global session_type
+    global progress_frame
+    global selection_frame
 
     for widget in main_frame.winfo_children():
         widget.destroy()
@@ -1802,31 +1878,72 @@ def vocab_session_window():
     round_total = len(session_list)
     round_counter = -1
 
-    input_box = Entry(main_frame, font=("Arial", 30))
-    enter = Button(main_frame, text="Enter", command=test_entry)
+    heading = Label(main_frame, text="Translate the english words to japanese", font=("Arial", 20), bg=color_1,
+                    fg=color_3)
+
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .22)).grid(row=1, column=1)
+    prompt = Label(main_frame, text="", font=("Arial", 35), bg=color_4, fg=color_3)
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .22)).grid(row=2, column=1)
+    answer = Label(main_frame, text="", font=("Arial", 35), bg=color_4, fg=color_3)
+
+    selection_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    new_button = Button(selection_frame, text="New Word", command=get_word, bg=color_4, fg=color_3, font=("Arial", 15),
+                        disabledforeground="#e6e6e6")
+    show_button = Button(selection_frame, text="Show Answer", command=show_answer, bg=color_4, fg=color_3,
+                         font=("Arial", 15), disabledforeground="#e6e6e6")
+    show_button["state"] = DISABLED
+    selection_spacer_1 = Label(selection_frame, text="", padx=int(window_width * .005), bg=color_1)
+
+    progress_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    feedback = Label(progress_frame, text="Press the enter button to test your answer", font=("Arial", 15), bg=color_1,
+                     fg=color_3)
+    progress_string = "words learned: 0/" + str(len(session_list))
+    progress = Label(progress_frame, text=progress_string, font=("Arial", 15), bg=color_1, fg=color_3)
+    round_string = "round progress:" + str(round_counter) + "/" + str(round_total)
+    curr_round = Label(progress_frame, text=round_string, font=("Arial", 15), bg=color_1, fg=color_3)
+
+    input_box = Entry(main_frame, font=("Arial", 30), bg=color_4, fg=color_3)
+    enter = Button(main_frame, text="Enter", command=test_entry, bg=color_4, fg=color_3, font=("Arial", 15),
+                   disabledforeground="#e6e6e6")
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
-    progress_string = "words learned: 0/" + str(len(session_list))
-    progress = Label(main_frame, text=progress_string, font=("Arial", 15))
 
-    new_button = Button(main_frame, text="New Word", command=get_word)
-    prompt = Label(main_frame, text="Select the new word button to start practicing", font=("Arial", 15))
-    show_button = Button(main_frame, text="Show Answer", command=show_answer)
-    answer = Label(main_frame, text="", font=("Arial", 15))
-    round_string = "round progress:" + str(round_counter) + "/" + str(round_total)
-    curr_round = Label(main_frame, text=round_string, font=("Arial", 15))
-    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
+    menu_button = Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu, bg=color_4, fg=color_3)
+    menu_button.grid(row=0, column=3)
+    close_button = Button(main_frame, bg=color_2, text="X", font=("Arial", int(window_width * .0156)), command=close,
+                          fg=color_3, padx=int(window_width * .0052))
+    close_button.grid(row=0, column=4)
 
-    input_box.grid(row=0, column=0, columnspan=3)
-    enter.grid(row=1, column=2)
-    feedback.grid(row=3, column=0, columnspan=3)
-    progress.grid(row=4, column=1)
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .0926), padx=int(window_width * .0463), bg=color_1)
+    spacer_1.grid(row=0, column=0)
+    spacer_2 = Label(main_frame, text="", pady=int(window_height * .0926), padx=int(window_width * .0463),
+                     bg=color_1)
+    spacer_2.grid(row=0, column=2)
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .0463), padx=int(window_width * .0463), bg=color_1)
+    spacer_3.grid(row=4, column=0)
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .0463), padx=int(window_width * .0463), bg=color_1)
+    spacer_4.grid(row=5, column=0)
+    spacer_5 = Label(main_frame, text="", pady=int(window_height * .0463), padx=int(window_width * .0463), bg=color_1)
+    spacer_5.grid(row=6, column=0)
 
-    new_button.grid(row=1, column=0)
-    prompt.grid(row=2, column=0, columnspan=3)
-    show_button.grid(row=1, column=1)
-    curr_round.grid(row=5, column=1)
+    heading.grid(row=0, column=1)
+    prompt.grid(row=1, column=1)
+    answer.grid(row=2, column=1)
+
+    selection_frame.grid(row=3, column=1)
+    new_button.grid(row=0, column=0)
+    selection_spacer_1.grid(row=0, column=1)
+    show_button.grid(row=0, column=2)
+
+    input_box.grid(row=4, column=1)
+    enter.grid(row=5, column=1)
+
+    progress_frame.grid(row=6, column=1)
+    feedback.grid(row=0, column=0)
+    curr_round.grid(row=1, column=0)
+    progress.grid(row=2, column=0)
 
 
 def vocab_menu():
@@ -2210,7 +2327,6 @@ def part_use_ses_win():
     answer = Label(main_frame, text="", font=("Arial", 15))
     Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
-
     new_button.grid(row=1, column=0)
     input_box.grid(row=0, column=0, columnspan=3)
     enter.grid(row=1, column=2)
@@ -2407,28 +2523,60 @@ def numbers():
     global new_button
     global answer
     global show_button
+    global selection_frame
+    global input_box
+    global enter
 
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    new_button = Button(main_frame, text="New number", command=get_number)
-    global input_box
-    input_box = Entry(main_frame, font=("Arial", 30), width=35)
-    enter_num = Button(main_frame, text="Enter", command=test_num)
+    heading = Label(main_frame, text="Translate the number to hiragana", font=("Arial", 20), bg=color_1,
+                    fg=color_3)
+
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .23), pady=int(window_height * .035)).grid(row=1, column=1)
+    prompt = Label(main_frame, text="", font=("Arial", 70), bg=color_4, fg=color_3)
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .3), pady=int(window_height * .022)).grid(row=2, column=1)
+    answer = Label(main_frame, text="", font=("Arial", 50), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
+
+    selection_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    new_button = Button(selection_frame, text="New Number", command=get_number)
+    show_button = Button(selection_frame, text="Show Answer", command=show_num)
+
+    input_box = Entry(main_frame, font=("Arial", 30))
+    enter = Button(main_frame, text="Enter", command=test_num)
     if session_type.get() == "flashcard":
-        enter_num["state"] = DISABLED
-    prompt = Label(main_frame, text="Select the new number button to start practicing", font=("Arial", 15))
+        enter["state"] = DISABLED
+
     feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(main_frame, text="Show Answer", command=show_num)
-    answer = Label(main_frame, text="", font=("Arial", 15))
+
     Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
-    new_button.grid(row=1, column=0)
-    input_box.grid(row=0, column=0, columnspan=3)
-    enter_num.grid(row=1, column=2)
-    prompt.grid(row=2, column=0, columnspan=3)
-    feedback.grid(row=3, column=0, columnspan=3)
-    show_button.grid(row=1, column=1)
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .09), padx=int(window_width * .0463), bg=color_1)
+    spacer_1.grid(row=0, column=0)
+    spacer_2 = Label(main_frame, text="", padx=int(window_width * .0463), bg=color_1)
+    spacer_2.grid(row=0, column=2)
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .06), bg=color_1)
+    spacer_3.grid(row=1, column=0)
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_4.grid(row=2, column=0)
+    spacer_5 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_5.grid(row=3, column=0)
+    spacer_6 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_6.grid(row=4, column=0)
+
+    heading.grid(row=0, column=1)
+    prompt.grid(row=1, column=1)
+
+    selection_frame.grid(row=3, column=1)
+    new_button.grid(row=0, column=0)
+    show_button.grid(row=0, column=1)
+
+    input_box.grid(row=4, column=1)
+    enter.grid(row=5, column=1)
+    feedback.grid(row=6, column=1)
 
 
 def get_number():
@@ -2442,12 +2590,12 @@ def get_number():
     current_num = random.randint(0, 99999)
     prompt_text = ""
     if session_type_alt.get() == "hiragana":
-        prompt_text = "Enter the Hiragana for " + str(current_num) + ":"
+        prompt_text = str(current_num)
     if session_type_alt.get() == "kanji":
-        prompt_text = "Enter the Hiragana for " + num_kanji(str(current_num)) + ":"
+        prompt_text = num_kanji(str(current_num))
     prompt.destroy()
-    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
-    prompt.grid(row=2, column=0, columnspan=3)
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 65), bg=color_4, fg=color_3)
+    prompt.grid(row=1, column=1)
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
     feedback.destroy()
@@ -2487,8 +2635,8 @@ def show_num():
 
     if answer.winfo_exists() == 1:
         answer.destroy()
-    answer = Label(main_frame, text=num_convert(str(current_num)), font=("Arial", 15))
-    answer.grid(row=4, column=0, columnspan=3)
+    answer = Label(main_frame, text=num_convert(str(current_num)), font=("Arial", 32), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
         new_button["state"] = NORMAL
@@ -2626,27 +2774,58 @@ def time_session_window():
     global answer
     global show_button
     global enter
+    global selection_frame
 
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    new_button = Button(main_frame, text="New time", command=get_time)
-    input_box = Entry(main_frame, font=("Arial", 30), width=35)
+    heading = Label(main_frame, text="Translate the time to hiragana", font=("Arial", 20), bg=color_1,
+                    fg=color_3)
+
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .035)).grid(row=1, column=1)
+    prompt = Label(main_frame, text="", font=("Arial", 70), bg=color_4, fg=color_3)
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .22), pady=int(window_height * .025)).grid(row=2, column=1)
+    answer = Label(main_frame, text="", font=("Arial", 50), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
+
+    selection_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    new_button = Button(selection_frame, text="New Time", command=get_time)
+    show_button = Button(selection_frame, text="Show Answer", command=show_time)
+
+    input_box = Entry(main_frame, font=("Arial", 30))
     enter = Button(main_frame, text="Enter", command=test_time)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(main_frame, text="Select the new time button to start practicing", font=("Arial", 15))
+
     feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(main_frame, text="Show Answer", command=show_time)
-    answer = Label(main_frame, text="", font=("Arial", 15))
+
     Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
-    new_button.grid(row=1, column=0)
-    input_box.grid(row=0, column=0, columnspan=3)
-    enter.grid(row=1, column=2)
-    prompt.grid(row=2, column=0, columnspan=3)
-    feedback.grid(row=3, column=0, columnspan=3)
-    show_button.grid(row=1, column=1)
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .09), padx=int(window_width * .0463), bg=color_1)
+    spacer_1.grid(row=0, column=0)
+    spacer_2 = Label(main_frame, text="", padx=int(window_width * .0463), bg=color_1)
+    spacer_2.grid(row=0, column=2)
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .06), bg=color_1)
+    spacer_3.grid(row=1, column=0)
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_4.grid(row=2, column=0)
+    spacer_5 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_5.grid(row=3, column=0)
+    spacer_6 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_6.grid(row=4, column=0)
+
+    heading.grid(row=0, column=1)
+    prompt.grid(row=1, column=1)
+
+    selection_frame.grid(row=3, column=1)
+    new_button.grid(row=0, column=0)
+    show_button.grid(row=0, column=1)
+
+    input_box.grid(row=4, column=1)
+    enter.grid(row=5, column=1)
+    feedback.grid(row=6, column=1)
 
 
 def get_time():
@@ -2664,12 +2843,12 @@ def get_time():
     current_time = hours + ":" + minutes
     prompt_text = ""
     if session_type_alt.get() == "hiragana":
-        prompt_text = "Enter the Hiragana for " + current_time
+        prompt_text = current_time
     if session_type_alt.get() == "kanji":
-        prompt_text = "Enter the Hiragana for " + time_kanji(current_time)
+        prompt_text = time_kanji(current_time)
     prompt.destroy()
-    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
-    prompt.grid(row=2, column=0, columnspan=3)
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 75), bg=color_4, fg=color_3)
+    prompt.grid(row=1, column=1)
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
     feedback.destroy()
@@ -2707,8 +2886,8 @@ def show_time():
     global answer
     global show_button
 
-    answer = Label(main_frame, text=time_convert(current_time), font=("Arial", 15))
-    answer.grid(row=4, column=0, columnspan=3)
+    answer = Label(main_frame, text=time_convert(current_time), font=("Arial", 35), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
         new_button["state"] = NORMAL
@@ -2896,27 +3075,58 @@ def calendar():
     global answer
     global show_button
     global enter
+    global selection_frame
 
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    input_box = Entry(main_frame, font=("Arial", 30), width=50)
-    new_button = Button(main_frame, text="New Date", command=get_date)
+    heading = Label(main_frame, text="Translate the date to hiragana", font=("Arial", 20), bg=color_1,
+                    fg=color_3)
+
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .035)).grid(row=1, column=1)
+    prompt = Label(main_frame, text="", font=("Arial", 70), bg=color_4, fg=color_3)
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .22), pady=int(window_height * .025)).grid(row=2, column=1)
+    answer = Label(main_frame, text="", font=("Arial", 50), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
+
+    selection_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    new_button = Button(selection_frame, text="New Date", command=get_date)
+    show_button = Button(selection_frame, text="Show Answer", command=show_date)
+
+    input_box = Entry(main_frame, font=("Arial", 30))
     enter = Button(main_frame, text="Enter", command=test_date)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(main_frame, text="Select the new date button to start practicing", font=("Arial", 15))
+
     feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(main_frame, text="Show Answer", command=show_date)
-    answer = Label(main_frame, text="", font=("Arial", 15))
+
     Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
-    input_box.grid(row=0, column=0, columnspan=3)
-    new_button.grid(row=1, column=0)
-    enter.grid(row=1, column=2)
-    prompt.grid(row=2, column=0, columnspan=3)
-    feedback.grid(row=3, column=0, columnspan=3)
-    show_button.grid(row=1, column=1)
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .09), padx=int(window_width * .0463), bg=color_1)
+    spacer_1.grid(row=0, column=0)
+    spacer_2 = Label(main_frame, text="", padx=int(window_width * .0463), bg=color_1)
+    spacer_2.grid(row=0, column=2)
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .06), bg=color_1)
+    spacer_3.grid(row=1, column=0)
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_4.grid(row=2, column=0)
+    spacer_5 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_5.grid(row=3, column=0)
+    spacer_6 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_6.grid(row=4, column=0)
+
+    heading.grid(row=0, column=1)
+    prompt.grid(row=1, column=1)
+
+    selection_frame.grid(row=3, column=1)
+    new_button.grid(row=0, column=0)
+    show_button.grid(row=0, column=1)
+
+    input_box.grid(row=4, column=1)
+    enter.grid(row=5, column=1)
+    feedback.grid(row=6, column=1)
 
 
 def get_date():
@@ -2940,12 +3150,12 @@ def get_date():
         day = str(random.randint(1, 29))
     prompt_text = ""
     if session_type_alt.get() == "hiragana":
-        prompt_text = "Enter the Hiragana for " + month + "/" + day
+        prompt_text = month + "/" + day
     if session_type_alt.get() == "kanji":
-        prompt_text = "Enter the Hiragana for " + date_kanji(month, day)
+        prompt_text = date_kanji(month, day)
     prompt.destroy()
-    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
-    prompt.grid(row=2, column=0, columnspan=3)
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 75), bg=color_4, fg=color_3)
+    prompt.grid(row=1, column=1)
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
     feedback.destroy()
@@ -2985,8 +3195,8 @@ def show_date():
     global answer
     global show_button
 
-    answer = Label(main_frame, text=date_convert(), font=("Arial", 15))
-    answer.grid(row=4, column=0, columnspan=3)
+    answer = Label(main_frame, text=date_convert(), font=("Arial", 35), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
         new_button["state"] = NORMAL
@@ -2996,7 +3206,8 @@ def date_convert():
     # This function converts an english date to a japanese date
     converted = ""
 
-    exception_days = {"1": "ついたち",
+    exception_days = {"0": "",
+                      "1": "ついたち",
                       "2": "ふつか",
                       "3": "みっか",
                       "4": "よっか",
@@ -3010,7 +3221,8 @@ def date_convert():
                       "20": "はつか",
                       "24": "にじゅうよっか"}
 
-    hir_num = {"1": "いち",
+    hir_num = {"0": "",
+               "1": "いち",
                "2": "に",
                "3": "さん",
                "5": "ご",
@@ -3273,7 +3485,7 @@ def create_conj_session(list_units, verb_list, conj_list):
             if verb_type.get() != "":
                 for i in range(len(vocab_list)):
                     if vocab_list[i].type == "verb" and \
-                            vocab_list[i].category == verb_type.get() and vocab_list[i].unit == unit.get():
+                            vocab_list[i].category == verb_type.get() and unit.get() in vocab_list[i].unit:
                         session_list.append(vocab_list[i])
 
     conjugations = []
@@ -3758,7 +3970,7 @@ def create_adj_session(list_units, adj_list, conj_list):
             if adj_type.get() != "":
                 for i in range(len(vocab_list)):
                     if vocab_list[i].type == "adjective" and \
-                            vocab_list[i].category == adj_type.get() and vocab_list[i].unit == unit.get():
+                            vocab_list[i].category == adj_type.get() and unit.get() in vocab_list[i].unit:
                         session_list.append(vocab_list[i])
 
     conjugations = []
@@ -4086,7 +4298,7 @@ def create_kanji_session(unit_list):
     current = 0
     for unit in unit_list:
         for i in range(len(vocab_list)):
-            if vocab_list[i].kanji != "" and vocab_list[i].unit == unit.get():
+            if vocab_list[i].kanji != "" and unit.get() in vocab_list[i].unit:
                 session_list.append(vocab_list[i])
 
     shuffle_list(session_list)
@@ -4104,27 +4316,58 @@ def kanji_session_window():
     global enter
     global input_box
     global session_type
+    global selection_frame
 
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    new_button = Button(main_frame, text="New Kanji", command=get_kanji)
+    heading = Label(main_frame, text="Translate the kanji to hiragana or katakana", font=("Arial", 20), bg=color_1,
+                    fg=color_3)
+
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .035)).grid(row=1, column=1)
+    prompt = Label(main_frame, text="", font=("Arial", 70), bg=color_4, fg=color_3)
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .025)).grid(row=2, column=1)
+    answer = Label(main_frame, text="", font=("Arial", 50), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
+
+    selection_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    new_button = Button(selection_frame, text="New Kanji", command=get_kanji)
+    show_button = Button(selection_frame, text="Show Answer", command=show_kanji)
+
     input_box = Entry(main_frame, font=("Arial", 30))
     enter = Button(main_frame, text="Enter", command=test_kanji)
     if session_type.get() == "flashcard":
         enter["state"] = DISABLED
-    prompt = Label(main_frame, text="Select the new kanji button to start practicing", font=("Arial", 15))
+
     feedback = Label(main_frame, text="Press the enter button to test your answer", font=("Arial", 15))
-    show_button = Button(main_frame, text="Show Answer", command=show_kanji)
-    answer = Label(main_frame, text="", font=("Arial", 15))
+
     Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
-    new_button.grid(row=1, column=0)
-    input_box.grid(row=0, column=0, columnspan=3)
-    enter.grid(row=1, column=2)
-    prompt.grid(row=2, column=0, columnspan=3)
-    feedback.grid(row=3, column=0, columnspan=3)
-    show_button.grid(row=1, column=1)
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .09), padx=int(window_width * .0463), bg=color_1)
+    spacer_1.grid(row=0, column=0)
+    spacer_2 = Label(main_frame, text="", padx=int(window_width * .0463), bg=color_1)
+    spacer_2.grid(row=0, column=2)
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .06), bg=color_1)
+    spacer_3.grid(row=1, column=0)
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_4.grid(row=2, column=0)
+    spacer_5 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_5.grid(row=3, column=0)
+    spacer_6 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_6.grid(row=4, column=0)
+
+    heading.grid(row=0, column=1)
+    prompt.grid(row=1, column=1)
+
+    selection_frame.grid(row=3, column=1)
+    new_button.grid(row=0, column=0)
+    show_button.grid(row=0, column=1)
+
+    input_box.grid(row=4, column=1)
+    enter.grid(row=5, column=1)
+    feedback.grid(row=6, column=1)
 
 
 def get_kanji():
@@ -4153,10 +4396,10 @@ def get_kanji():
         end_message = "Session complete, you may keep studying or exit to start new session"
         end_label = Label(main_frame, text=end_message, font=("Arial", 15))
         end_label.grid(row=4, column=0, columnspan=3)
-    prompt_text = "Enter the Hiragana word for " + session_list[current].kanji + ":"
+    prompt_text = session_list[current].kanji
     prompt.destroy()
-    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
-    prompt.grid(row=2, column=0, columnspan=3)
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 70), bg=color_4, fg=color_3)
+    prompt.grid(row=1, column=1)
     # The old prompt is erased and the prompt for the new kanji is created and displayed
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -4212,8 +4455,8 @@ def show_kanji():
     session_list[current].num_correct = 0
     if session_list[current].first_attempt:
         session_list[current].first_attempt = False
-    answer = Label(main_frame, text=session_list[current].japanese, font=("Arial", 15))
-    answer.grid(row=4, column=0, columnspan=3)
+    answer = Label(main_frame, text=session_list[current].japanese, font=("Arial", 50), bg=color_4, fg=color_3)
+    answer.grid(row=2, column=1)
     show_button["state"] = DISABLED
     if session_type.get() == "flashcard":
         new_button["state"] = NORMAL
@@ -4314,7 +4557,7 @@ def create_kanji_w_session(unit_list):
     current = 0
     for unit in unit_list:
         for i in range(len(vocab_list)):
-            if vocab_list[i].kanji != "" and vocab_list[i].unit == unit.get():
+            if vocab_list[i].kanji != "" and unit.get() in vocab_list[i].unit:
                 session_list.append(vocab_list[i])
 
     shuffle_list(session_list)
@@ -4328,19 +4571,42 @@ def kanji_w_session_window():
     global prompt
     global feedback
     global show_button
+    global selection_frame
 
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    new_button = Button(main_frame, text="New Kanji", command=get_kanji_w)
-    prompt = Label(main_frame, text="Select the new kanji button to start practicing", font=("Arial", 15))
-    feedback = Label(main_frame, text="Press the show kanji button to reveal the character", font=("Arial", 15))
-    show_button = Button(main_frame, text="Show Kanji", command=show_kanji_w)
+    heading = Label(main_frame, text="Write the kanji for the hiragana term", font=("Arial", 20), bg=color_1,
+                    fg=color_3)
+
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .025)).grid(row=1, column=1)
+    prompt = Label(main_frame, text="", font=("Arial", 50), bg=color_4, fg=color_3)
+    Label(main_frame, text="", font=("Arial", 35), bg=color_4,
+          fg=color_3, padx=int(window_width * .20), pady=int(window_height * .035)).grid(row=2, column=1)
+    feedback = Label(main_frame, text="", font=("Arial", 70), bg=color_4, fg=color_3)
+
+    selection_frame = LabelFrame(main_frame, borderwidth=0, highlightthickness=0, bg=color_1)
+    new_button = Button(selection_frame, text="New Kanji", command=get_kanji_w)
+    show_button = Button(selection_frame, text="Show Kanji", command=show_kanji_w)
+
     Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
 
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .09), padx=int(window_width * .0463), bg=color_1)
+    spacer_1.grid(row=0, column=0)
+    spacer_2 = Label(main_frame, text="", padx=int(window_width * .0463), bg=color_1)
+    spacer_2.grid(row=0, column=2)
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .06), bg=color_1)
+    spacer_3.grid(row=1, column=0)
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .04), bg=color_1)
+    spacer_4.grid(row=2, column=0)
+
+    heading.grid(row=0, column=1)
+    prompt.grid(row=1, column=1)
+    feedback.grid(row=2, column=1)
+
+    selection_frame.grid(row=3, column=1)
     new_button.grid(row=0, column=0)
-    prompt.grid(row=1, column=0, columnspan=2)
-    feedback.grid(row=2, column=0, columnspan=2)
     show_button.grid(row=0, column=1)
 
 
@@ -4355,11 +4621,10 @@ def get_kanji_w():
     global enter
 
     current = (current + 1) % len(session_list)
-    prompt_text = "Draw the kanji character for " + session_list[current].english + " / " \
-                  + session_list[current].japanese + ":"
+    prompt_text = session_list[current].japanese
     prompt.destroy()
-    prompt = Label(main_frame, text=prompt_text, font=("Arial", 15))
-    prompt.grid(row=1, column=0, columnspan=2)
+    prompt = Label(main_frame, text=prompt_text, font=("Arial", 50), bg=color_4, fg=color_3)
+    prompt.grid(row=1, column=1)
     # The old prompt is erased and the prompt for the new kanji is created and displayed
     new_button["state"] = DISABLED
     show_button["state"] = NORMAL
@@ -4375,8 +4640,8 @@ def show_kanji_w():
     global show_button
 
     feedback.destroy()
-    feedback = Label(main_frame, text=session_list[current].kanji, font=("IPAMincho", 80))
-    feedback.grid(row=2, column=0, columnspan=2)
+    feedback = Label(main_frame, text=session_list[current].kanji, font=("IPAMincho", 70), bg=color_4, fg=color_3)
+    feedback.grid(row=2, column=1)
     show_button["state"] = DISABLED
     new_button["state"] = NORMAL
 
@@ -4912,32 +5177,92 @@ def settings():
     global window_option
     global root
     global main_frame
+    global color_scheme
 
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    Label(main_frame, text="setting menu").grid(row=0, column=0)
-    Label(main_frame, text="window size").grid(row=1, column=0)
+    root.configure(bg=color_1)
+    main_frame.configure(bg=color_1)
 
-    full_screen_button = Radiobutton(main_frame, text="fullscreen", variable=window_option, value="fullscreen")
-    detected_button = Radiobutton(main_frame, text="detected screen size", variable=window_option,
-                                  value="detected screen size")
-    custom_button = Radiobutton(main_frame, text="custom", variable=window_option, value="custom")
-    Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu).grid(row=0, column=3)
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .0926), bg=color_1)
+    spacer_1.grid(row=0, column=2)
 
-    full_screen_button.grid(row=2, column=0)
-    detected_button.grid(row=3, column=0)
-    custom_button.grid(row=4, column=0)
+    title_label = Label(main_frame, text="settings  menu", background=color_5, fg=color_3,
+                        font=("Arial", int(window_width * .0156)))
+    title_label.grid(row=1, column=1, columnspan=3)
 
-    width_option = Entry(main_frame, font=("Arial", 15), width=10)
-    height_option = Entry(main_frame, font=("Arial", 15), width=10)
+    spacer_2 = Label(main_frame, text="", pady=int(window_height * .0463), bg=color_1)
+    spacer_2.grid(row=2, column=2)
 
-    width_option.grid(row=5, column=0)
-    height_option.grid(row=6, column=0)
+    window_label = Label(main_frame, text="window size", background=color_5, fg=color_3,
+                         font=("Arial", int(window_width * .01)))
+    window_label.grid(row=3, column=1)
 
-    apply_button = Button(main_frame, text="apply", command=lambda: apply(width_option.get(), height_option.get()))
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .0463), padx=int(window_width * .0463), bg=color_1)
+    spacer_3.grid(row=4, column=2)
 
-    apply_button.grid(row=7, column=0)
+    window_selections = LabelFrame(main_frame, borderwidth=1, highlightthickness=1, bg=color_1)
+    color_selections = LabelFrame(main_frame, borderwidth=1, highlightthickness=1, bg=color_1)
+
+    window_selections.grid(row=5, column=1)
+    color_selections.grid(row=5, column=3)
+
+    spacer_6 = Label(main_frame, text="", padx=int(window_width * .0463), bg=color_1)
+    spacer_6.grid(row=5, column=2)
+
+    full_screen_button = Radiobutton(window_selections, text="fullscreen", variable=window_option, value="fullscreen",
+                                     bg=color_5, fg=color_3, activebackground=color_4, selectcolor=color_4)
+    detected_button = Radiobutton(window_selections, text="detected screen size", variable=window_option,
+                                  value="detected screen size", bg=color_5, fg=color_3, activebackground=color_4,
+                                  selectcolor=color_4)
+    custom_button = Radiobutton(window_selections, text="custom", variable=window_option, value="custom", bg=color_5,
+                                fg=color_3, activebackground=color_4, selectcolor=color_4)
+
+    menu_button = Button(main_frame, text="main menu", font=("Arial", 15), command=main_menu, bg=color_4, fg=color_3)
+    menu_button.grid(row=0, column=5)
+
+    close_button = Button(main_frame, bg=color_2, text="X", font=("Arial", int(window_width * .0156)), command=close,
+                          fg=color_3, padx=int(window_width * .0052))
+    close_button.grid(row=0, column=6)
+
+    full_screen_button.grid(row=0, column=1)
+    detected_button.grid(row=1, column=1)
+    custom_button.grid(row=2, column=1)
+
+    width_option = Entry(window_selections, font=("Arial", 15), width=10, bg=color_4, fg=color_3)
+    height_option = Entry(window_selections, font=("Arial", 15), width=10, bg=color_4, fg=color_3)
+
+    width_option.grid(row=3, column=1)
+    height_option.grid(row=4, column=1)
+
+    dark_mode = Radiobutton(color_selections, text="dark mode", variable=color_scheme, value="dark mode", bg=color_5,
+                            fg=color_3, activebackground=color_4, selectcolor=color_4)
+    light_mode = Radiobutton(color_selections, text="light mode", variable=color_scheme, value="light mode", bg=color_5,
+                             fg=color_3, activebackground=color_4, selectcolor=color_4)
+
+    color_label = Label(main_frame, text="Select color scheme:", background=color_5, fg=color_3,
+                        font=("Arial", int(window_width * .01)))
+
+    color_label.grid(row=3, column=3)
+    dark_mode.grid(row=1, column=1)
+    light_mode.grid(row=2, column=1)
+
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .0463), bg=color_1)
+    spacer_4.grid(row=6, column=2)
+
+    apply_button = Button(main_frame, text="apply", command=lambda: apply(width_option.get(), height_option.get()),
+                          background=color_4, fg=color_3, borderwidth=0, font=("Arial", int(window_width * .01)),
+                          width=int(window_width * .007))
+
+    apply_button.grid(row=7, column=1, columnspan=3)
+
+    spacer_5 = Label(main_frame, text="", pady=int(window_height * .0926), padx=int(window_width * .1172),
+                     bg=color_1)
+    spacer_5.grid(row=0, column=4)
+
+    spacer_6 = Label(main_frame, text="", pady=int(window_height * .0926), padx=int(window_width * .138), bg=color_1)
+    spacer_6.grid(row=0, column=0)
 
 
 def apply(width, height):
@@ -4946,6 +5271,12 @@ def apply(width, height):
     global window_option
     global root
     global main_frame
+    global color_1
+    global color_2
+    global color_3
+    global color_4
+    global color_5
+    global color_scheme
 
     for widget in main_frame.winfo_children():
         widget.destroy()
@@ -4975,6 +5306,20 @@ def apply(width, height):
         height_offset = (int(root.winfo_screenheight() / 2)) - (int(window_height / 2))
         root.geometry(str(window_width) + "x" + str(window_height) + "+" + str(width_offset) + "+" + str(height_offset))
 
+    if color_scheme.get() == "dark mode":
+        color_1 = "#373434"
+        color_2 = "#FF0000"
+        color_3 = "#FFFFFF"
+        color_4 = "#6f6e6e"
+        color_5 = "#373434"
+
+    elif color_scheme.get() == "light mode":
+        color_1 = "#FFFFFF"
+        color_2 = "#FF0000"
+        color_3 = "#FFFFFF"
+        color_4 = "#3EB489"
+        color_5 = "#3EB489"
+
     main_frame = LabelFrame(root, borderwidth=0, highlightthickness=0)
     main_frame.pack()
 
@@ -4988,10 +5333,39 @@ def main_menu():
     for widget in main_frame.winfo_children():
         widget.destroy()
 
-    Label(main_frame, text="welcome to the japanese trainer").grid(row=0, column=0)
+    root.configure(bg=color_1)
+    main_frame.configure(bg=color_1)
 
-    Button(main_frame, text="Study", command=study_menu).grid(row=1, column=0)
-    Button(main_frame, text="Settings", command=settings).grid(row=2, column=0)
+    spacer_1 = Label(main_frame, text="", pady=int(window_height * .0926), bg=color_1)
+    spacer_1.grid(row=0, column=1)
+
+    spacer_4 = Label(main_frame, text="", pady=int(window_height * .0926), padx=int(window_width * .1172),
+                     bg=color_1)
+    spacer_4.grid(row=0, column=2)
+
+    spacer_5 = Label(main_frame, text="", pady=int(window_height * .0926), padx=int(window_width * .138), bg=color_1)
+    spacer_5.grid(row=0, column=0)
+
+    close_button = Button(main_frame, bg=color_2, text="X", font=("Arial", int(window_width * .0156)), command=close,
+                          fg=color_3, padx=int(window_width * .0052))
+    close_button.grid(row=0, column=3)
+
+    Label(main_frame, text="welcome to the japanese trainer", background=color_5, fg=color_3,
+          font=("Arial", int(window_width * .0156))).grid(row=1, column=1)
+
+    spacer_2 = Label(main_frame, text="", pady=int(window_height * .0463), bg=color_1)
+    spacer_2.grid(row=2, column=1)
+
+    Button(main_frame, text="Study", command=study_menu, background=color_4,
+           fg=color_3, borderwidth=0, font=("Arial", int(window_width * .0156)), width=int(window_width * .007),
+           ).grid(row=3, column=1)
+
+    spacer_3 = Label(main_frame, text="", pady=int(window_height * .0463), bg=color_1)
+    spacer_3.grid(row=4, column=1)
+
+    Button(main_frame, text="Settings", command=settings, background=color_4, fg=color_3,
+           borderwidth=0, font=("Arial", int(window_width * .0156)),
+           width=int(window_width * .007)).grid(row=5, column=1)
 
 
 def launch():
@@ -5000,6 +5374,12 @@ def launch():
     global main_frame
     global window_option
     global root
+    global color_1
+    global color_2
+    global color_3
+    global color_4
+    global color_5
+    global color_scheme
 
     window_width = root.winfo_screenwidth()
     window_height = root.winfo_screenheight()
@@ -5011,10 +5391,23 @@ def launch():
     if window_option.get() == "fullscreen":
         root.attributes('-fullscreen', True)
     root.title("Japanese Trainer")
+    color_1 = "#373434"
+    color_2 = "#FF0000"
+    color_3 = "#FFFFFF"
+    color_4 = "#6f6e6e"
+    color_5 = "#373434"
+    color_scheme = StringVar()
+    color_scheme.set("dark mode")
     main_frame = LabelFrame(root, borderwidth=0, highlightthickness=0)
     main_frame.pack()
 
     main_menu()
+
+
+def close():
+    global root
+
+    root.destroy()
 
 
 if __name__ == "__main__":
