@@ -358,7 +358,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "person", "occupation", "office worker", "かいしゃいん", "101", ["unit 1"], "会社員"),
               Word("noun", "person", "occupation", "nurse", "かんごし", "101", ["unit 1"], "看護師"),
               Word("noun", "person", "occupation", "housewife", "しゅふ", "101", ["unit 1"]),
-              Word("noun", "person", "occupation", "lawyer", "べんごし", "101", ["unit 1"]),
+              Word("noun", "person", "occupation", "lawyer", "べんごし", "101", ["unit 1", "unit 13"]),
               Word("noun", "person", "occupation", "occupation", "しごと", "101", ["unit 1", "unit 8"], "仕事"),
               Word("noun", "person", "occupation", "singer", "かしゅ", "102", ["unit 11"], "歌手"),
               Word("noun", "person", "occupation", "president of a company", "しゃちょう", "102", ["unit 11"], "社長"),
@@ -390,6 +390,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "person", "other", "she/girlfriend", "かのじょ", "102", ["unit 12"], "彼女"),
               Word("noun", "person", "other", "he/boyfriend", "かれ", "102", ["unit 12"], "彼"),
               Word("noun", "person", "other", "boyfriend", "かれし", "102", ["unit 12"], "彼氏"),
+              Word("noun", "person", "other", "adult", "おとな", "102", ["unit 13"], "大人"),
               Word("noun", "person", "other", "physician", "ないか", "102", ["bonus 1"], "内科"),
               Word("noun", "person", "other", "dermatologist", "ひふか", "102", ["bonus 1"], "皮膚科"),
               Word("noun", "person", "other", "surgeon", "げか", "102", ["bonus 1"], "外科"),
@@ -398,7 +399,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "place", "building", "high school", "こうこう", "101", ["unit 1"], "高校"),
               Word("noun", "place", "building", "home", "いえ", "101", ["unit 3"], "家"),
               Word("noun", "place", "building", "restaurant", "レストラン", "101", ["unit 4"]),
-              Word("noun", "place", "building", "store", "みせ", "100", ["unit 2"]),
+              Word("noun", "place", "building", "store", "みせ", "100", ["unit 2", "unit 13"], "店"),
               Word("noun", "place", "building", "my place", "うち", "100", ["unit 3"]),
               Word("noun", "place", "building", "cafe", "カフェ", "100", ["unit 3"]),
               Word("noun", "place", "building", "school", "がっこう", "101", ["unit 3"], "学校"),
@@ -414,6 +415,8 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "place", "building", "library", "としょかん", "101", ["unit 2"]),
               Word("noun", "place", "building", "post office", "ゆうびんきょく", "101", ["unit 2"]),
               Word("noun", "place", "building", "art museum", "びじゅつかん", "102", ["unit 11"], "美術館"),
+              Word("noun", "place", "building", "apartment (small)", "アパート", "102", ["unit 13"]),
+              Word("noun", "place", "building", "apartment (large)", "マンション", "102", ["unit 13"]),
               Word("noun", "place", "country", "britain", "イギリス", "101", ["unit 1", "unit 2"]),
               Word("noun", "place", "country", "australia", "オーストラリア", "101", ["unit 1", "unit 11"]),
               Word("noun", "place", "country", "canada", "カナダ", "101", ["unit 1"]),
@@ -446,6 +449,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "place", "other", "spa/hot spring", "おんせん", "102", ["unit 11"], "温泉"),
               Word("noun", "place", "other", "camp", "キャンプ", "102", ["unit 11"]),
               Word("noun", "place", "other", "shrine", "じんじゃ", "102", ["unit 11"], "神社"),
+              Word("noun", "place", "other", "airport", "くうこう", "102", ["unit 13"], "空港"),
               Word("noun", "place", "other", "ticket vending area", "きっぷうりば", "102", ["bonus 1"], "切符売り場"),
               Word("noun", "place", "other", "gate (train)", "かいさつ", "102", ["bonus 1"], "改札"),
               Word("noun", "place", "other", "platform (train)", "ホーム", "102", ["bonus 1"]),
@@ -460,6 +464,8 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "thing", "clothes", "hat", "ぼうし", "101", ["unit 2"]),
               Word("noun", "thing", "clothes", "gloves", "てぶくろ", "102", ["unit 10"], "手袋"),
               Word("noun", "thing", "clothes", "clothes", "ふく", "102", ["unit 12"], "服"),
+              Word("noun", "thing", "clothes", "kimono", "きもの", "102", ["unit 13"], "着物"),
+              Word("noun", "thing", "clothes", "sweater", "セーター", "102", ["unit 13"]),
               Word("noun", "thing", "furniture", "chair", "いす", "101", ["unit 4"]),
               Word("noun", "thing", "furniture", "desk", "つくえ", "101", ["unit 4"], "机"),
               Word("noun", "thing", "furniture", "bath", "おふろ", "102", ["unit 8"], "お風呂"),
@@ -512,6 +518,8 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "thing", "food", "snack", "おかし", "102", ["unit 11"], "お菓子"),
               Word("noun", "thing", "food", "juice", "ジュース", "102", ["unit 12"]),
               Word("noun", "thing", "food", "egg", "たまご", "102", ["unit 12"], "卵"),
+              Word("noun", "thing", "food", "curry", "カレー", "102", ["unit 13"]),
+              Word("noun", "thing", "food", "black tea", "こうちゃ", "102", ["unit 13"], "紅茶"),
               Word("noun", "thing", "food", "strawberry", "いちご", "102", ["bonus 1"]),
               Word("noun", "thing", "food", "watermelon", "すいか", "102", ["bonus 1"]),
               Word("noun", "thing", "food", "mandarin orange", "みかん", "102", ["bonus 1"]),
@@ -549,6 +557,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "thing", "entertainment", "festival", "おまつり", "102", ["unit 11"], "お祭り"),
               Word("noun", "thing", "entertainment", "toy", "おもちゃ", "102", ["unit 11"]),
               Word("noun", "thing", "entertainment", "match/game", "しあい", "102", ["unit 12"], "試合"),
+              Word("noun", "thing", "entertainment", "golf", "ゴルフ", "102", ["unit 13"]),
               Word("noun", "thing", "time", "tomorrow", "あした", "101", ["unit 3"], "明日"),
               Word("noun", "thing", "time", "today", "きょう", "101", ["unit 3"], "今日"),
               Word("noun", "thing", "time", "yesterday", "きのう", "101", ["unit 4"], "昨日"),
@@ -619,6 +628,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "thing", "time", "spring vacation", "はるやすみ", "102", ["bonus 1"], "春休み"),
               Word("noun", "thing", "animal", "dog", "いぬ", "101", ["unit 4"], "犬"),
               Word("noun", "thing", "animal", "cat", "ねこ", "101", ["unit 4"], "猫"),
+              Word("noun", "thing", "animal", "elephant", "ぞう", "102", ["unit 13"], "象"),
               Word("noun", "thing", "other", "number", "ばんごう", "101", ["unit 1"]),
               Word("noun", "thing", "other", "name", "なまえ", "101", ["unit 1"], "名前"),
               Word("noun", "thing", "other", "umbrella", "かさ", "101", ["unit 2"]),
@@ -716,6 +726,18 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("noun", "thing", "other", "present (gift)", "プレゼント", "102", ["unit 12"]),
               Word("noun", "thing", "other", "ticket (train)", "きっぷ", "102", ["unit 12"], "切符"),
               Word("noun", "thing", "other", "fee", "だい", "102", ["unit 12"], "代"),
+              Word("noun", "thing", "other", "musical instrument", "がっき", "102", ["unit 13"], "楽器"),
+              Word("noun", "thing", "other", "karate", "からて", "102", ["unit 13"], "空手"),
+              Word("noun", "thing", "other", "motorcycle", "バイク", "102", ["unit 13"]),
+              Word("noun", "thing", "other", "body", "からだ", "102", ["unit 13"], "体"),
+              Word("noun", "thing", "other", "foreign language", "がいこくご", "102", ["unit 13"], "外国語"),
+              Word("noun", "thing", "other", "language", "ことば", "102", ["unit 13"], "言葉"),
+              Word("noun", "thing", "other", "grammar", "ぶんぽう", "102", ["unit 13"], "文法"),
+              Word("noun", "thing", "other", "application", "アプリ", "102", ["unit 13"]),
+              Word("noun", "thing", "other", "consumer prices", "ぶっか", "102", ["unit 13"], "物価"),
+              Word("noun", "thing", "other", "advertisement", "こうこく", "102", ["unit 13"], "広告"),
+              Word("noun", "thing", "other", "recruitment", "ぼしゅう", "102", ["unit 13"], "募集"),
+              Word("noun", "thing", "other", "promise", "やくそく", "102", ["unit 13"], "約束"),
               Word("noun", "thing", "other", "pencil", "えんぴつ", "101", ["bonus 1"]),
               Word("noun", "thing", "other", "eraser", "けしゴム", "101", ["bonus 1"]),
               Word("noun", "thing", "other", "dictionary", "じしょ", "101", ["bonus 1"]),
@@ -782,6 +804,7 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("pronoun", "", "", "i", "わたし", "101", ["unit 1"], "私"),
               Word("pronoun", "", "", "i (men)", "ぼく", "101", ["unit 5"], "僕"),
               Word("pronoun", "", "", "you", "あなた", "101", ["unit 4"]),
+              Word("pronoun", "", "", "i (formal)", "わたくし", "101", ["unit 13"], "私"),
 
               Word("title", "", "", "Mr./Ms.", "さん", "101", ["unit 1"]),
 
@@ -826,6 +849,13 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("adjective", "i", "", "hurt/painful", "いたい", "102", ["unit 12"], "痛い"),
               Word("adjective", "i", "", "sweet", "あまい", "102", ["unit 12"], "甘い"),
               Word("adjective", "i", "", "many", "おおい", "102", ["unit 12"], "多い"),
+              Word("adjective", "i", "", "glad", "うれしい", "102", ["unit 13"]),
+              Word("adjective", "i", "", "sad", "かなしい", "102", ["unit 13"], "悲しいい"),
+              Word("adjective", "i", "", "strict", "きびしい", "102", ["unit 13"], "厳しい"),
+              Word("adjective", "i", "", "to feel sick", "きぶんがわるい", "102", ["unit 13"], "気分が悪くい"),
+              Word("adjective", "i", "", "spicy/salty", "からい", "102", ["unit 13"], "辛い"),
+              Word("adjective", "i", "", "awesome", "すごい", "102", ["unit 13"]),
+              Word("adjective", "i", "", "close", "ちかい", "102", ["unit 13"], "近い"),
               Word("adjective", "i", "", "yellow", "きいろい", "102", ["bonus 1"], "黄色い"),
               Word("adjective", "i", "", "brown", "ちゃいろい", "102", ["bonus 1"], "茶色い"),
               Word("adjective", "na", "", "like", "すきな", "101", ["unit 5"], "好きな"),
@@ -846,6 +876,9 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("adjective", "na", "", "mean-spirited", "いじわるな", "102", ["unit 9"], "意地悪な"),
               Word("adjective", "na", "", "easy/simple", "かんたんな", "102", ["unit 10"], "簡単な"),
               Word("adjective", "na", "", "nice", "すてきな", "102", ["unit 12"], "素敵な"),
+              Word("adjective", "na", "", "various", "いろいろな", "102", ["unit 13"]),
+              Word("adjective", "na", "", "happy (lasting)", "しあわせな", "102", ["unit 13"], "幸せな"),
+              Word("adjective", "na", "", "no good", "だめな", "102", ["unit 13"]),
               Word("adjective", "irregular", "", "good", "いい", "101", ["unit 3"]),
               Word("adjective", "irregular", "", "good-looking", "かっこいい", "101", ["unit 5"]),
               Word("adjective", "irregular", "", "smart", "あたまがいい", "102", ["unit 7"], "頭がいい"),
@@ -997,6 +1030,11 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("verb", "u", "い", "to pay", "はらう", "102", ["unit 12"], "払う"),
               Word("verb", "u", "し", "to lose", "なくす", "102", ["unit 12"]),
               Word("verb", "u", "り", "to be interested", "きょうみがある", "102", ["unit 12"], "興味がある"),
+              Word("verb", "u", "り", "to knit", "あむ", "102", ["unit 13"], "編む"),
+              Word("verb", "u", "り", "to try hard", "がんばる", "102", ["unit 13"], "頑張る"),
+              Word("verb", "u", "り", "to cry", "なく", "102", ["unit 13"], "泣く"),
+              Word("verb", "u", "り", "to brush", "みがく", "102", ["unit 13"], "磨く"),
+              Word("verb", "u", "り", "to keep a promise", "やくそくをまもる", "102", ["unit 13"], "約束を守る"),
               Word("verb", "ru", "", "to get up", "おきる", "101", ["unit 3"], "起きる"),
               Word("verb", "ru", "", "to eat", "たべる", "101", ["unit 3"], "食べる"),
               Word("verb", "ru", "", "to sleep", "ねる", "101", ["unit 3"], "寝る"),
@@ -1047,6 +1085,8 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("verb", "irregular", "する", "to study abroad", "りゅうがくする", "102", ["unit 11"], "留学する"),
               Word("verb", "irregular", "する", "to get nervous", "きんちょうする", "102", ["unit 12"], "緊張する"),
               Word("verb", "irregular", "する", "to worry", "しんぱいする", "102", ["unit 12"], "心配する"),
+              Word("verb", "irregular", "する", "to be touched (emotionally)",
+                   "かんどうする", "102", ["unit 13"], "感動する"),
 
               Word("expressions", "", "", "um", "あのう", "101", ["unit 1"]),
               Word("expressions", "", "", "yes", "はい", "101", ["unit 1"]),
@@ -1122,6 +1162,9 @@ vocab_list = [Word("noun", "person", "family", "father", "おとうさん", "101
               Word("expressions", "", "", "don't look well", "げんきがない", "102", ["unit 12"], "元気がない"),
               Word("expressions", "", "", "probably", "たぶん", "102", ["unit 12"], "多分"),
               Word("expressions", "", "", "moreover", "それに", "102", ["unit 12"]),
+              Word("expressions", "", "", "all", "ぜんぶ", "102", ["unit 13"], "全部"),
+              Word("expressions", "", "", "my name is...", "ともうします", "102", ["unit 13"], "と申します"),
+              Word("expressions", "", "", "especially", "とくに", "102", ["unit 13"], "特に"),
               Word("expressions", "", "", "same", "おなじ", "102", ["unit 12"], "同じ"),
               Word("expressions", "", "", "for example", "たとえば", "102", ["bonus 1"]),
               Word("expressions", "", "", "anything else", "ほかに", "102", ["bonus 1"]),
@@ -1986,6 +2029,7 @@ def vocab_menu():
     unit_10 = StringVar()
     unit_11 = StringVar()
     unit_12 = StringVar()
+    unit_13 = StringVar()
     bonus_1 = StringVar()
     session_type = StringVar()
     session_type.set("flashcard")
@@ -2002,6 +2046,7 @@ def vocab_menu():
                  unit_10,
                  unit_11,
                  unit_12,
+                 unit_13,
                  bonus_1]
 
     type_label = Label(main_frame, text="Select the word types you would like to study:", padx=50)
@@ -2050,6 +2095,7 @@ def vocab_menu():
     unit_10_check = Checkbutton(main_frame, text="unit 10", variable=unit_10, onvalue="unit 10", offvalue="")
     unit_11_check = Checkbutton(main_frame, text="unit 11", variable=unit_11, onvalue="unit 11", offvalue="")
     unit_12_check = Checkbutton(main_frame, text="unit 12", variable=unit_12, onvalue="unit 12", offvalue="")
+    unit_13_check = Checkbutton(main_frame, text="unit 13", variable=unit_13, onvalue="unit 13", offvalue="")
     bonus_1_check = Checkbutton(main_frame, text="bonus 1", variable=bonus_1, onvalue="bonus 1", offvalue="")
 
     unit_label.grid(row=0, column=0)
@@ -2065,6 +2111,7 @@ def vocab_menu():
     unit_10_check.grid(row=10, column=0)
     unit_11_check.grid(row=11, column=0)
     unit_12_check.grid(row=12, column=0)
+    unit_13_check.grid(row=12, column=0)
     bonus_1_check.grid(row=13, column=0)
 
     unit_1_check.deselect()
@@ -2079,6 +2126,7 @@ def vocab_menu():
     unit_10_check.deselect()
     unit_11_check.deselect()
     unit_12_check.deselect()
+    unit_13_check.deselect()
     bonus_1_check.deselect()
 
     session_button = Button(main_frame, text="Create Session", command=lambda: create_vocab_session(unit_list), pady=10)
